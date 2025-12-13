@@ -13,47 +13,51 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
-    <header>
-      <nav class="navbar bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img src="/images/logo-cenestur.png" alt="" />
-          </a>
-        </div>
-      </nav>
+  <body class="container">
+    <header class="border-bottom lh-1 py-3">
+      <div class="row flex-nowrap justify-content-middle align-items-center">
+        <a class="text-center" href="/index.html">
+          <img src="/images/logo-cenestur.png" alt="logo-cenestur" />
+        </a>
+      </div>
     </header>
-
-    <div class="container py-4">
-      <main>
-        <form class="card">
-          <div class="card-header">Formulario de operaciones Matematicas</div>
-          <div class="card-body">
-            <div class="mb-3">
-              <label class="form-label" for="numero1">Número 1</label>
-              <input
-                class="form-control"
-                type="text"
-                id="numero1"
-                name="numero1"
-              />
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label" for="numero2">Número 2</label>
-              <input
-                class="form-control"
-                type="text"
-                id="numero2"
-                name="numero2"
-              />
-            </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-          </div>
-        </form>
-      </main>
+    <div class="nav-scroller mb-3 border-bottom">
+      <nav class="nav nav-underline">
+        <a class="nav-item nav-link disabled" aria-disabled="true">Proyectos:</a>
+        <a href="/FormularioHTML/index.html" class="nav-item nav-link link-body-emphasis active">
+          Formulario HTML
+        </a>
+      </nav>
     </div>
+
+    <main>
+      <form class="card">
+        <div class="card-header">Formulario de operaciones Matematicas</div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label" for="numero1">Número 1</label>
+            <input
+              class="form-control"
+              type="text"
+              id="numero1"
+              name="numero1"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="numero2">Número 2</label>
+            <input
+              class="form-control"
+              type="text"
+              id="numero2"
+              name="numero2"
+            />
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </main>
   </body>
 </html>
