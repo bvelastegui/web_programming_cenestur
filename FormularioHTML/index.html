@@ -14,68 +14,44 @@
     />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
+    <header>
+      <nav class="navbar bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="#">
             <img src="/images/logo-cenestur.png" alt="" />
-            <a class="navbar-brand" href="#">Operaciones</a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarText"
-              aria-controls="navbarText"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"
-                    >Home</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
-                </li>
-              </ul>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container py-4">
+      <main>
+        <form class="card">
+          <div class="card-header">Formulario de operaciones Matematicas</div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label" for="numero1">Número 1</label>
+              <input
+                class="form-control"
+                type="text"
+                id="numero1"
+                name="numero1"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="numero2">Número 2</label>
+              <input
+                class="form-control"
+                type="text"
+                id="numero2"
+                name="numero2"
+              />
             </div>
           </div>
-        </nav>
-        <h1>Formulario de operaciones Matematicas</h1>
-      </header>
-
-      <main>
-        <form>
-          <div class="mb-3">
-            <label class="form-label" for="numero1">Número 1</label>
-            <input
-              class="form-control"
-              type="text"
-              id="numero1"
-              name="numero1"
-            />
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Enviar</button>
           </div>
-
-          <div class="mb-3">
-            <label class="form-label" for="numero2">Número 2</label>
-            <input
-              class="form-control"
-              type="text"
-              id="numero2"
-              name="numero2"
-            />
-          </div>
-
-          <button type="submit" class="btn btn-primary">
-            Enviar
-          </button>
         </form>
       </main>
     </div>
