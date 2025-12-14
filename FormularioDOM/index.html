@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Formulario DOM | Programación Web</title>
+    <meta name="description" content="Operaciones matematicas con javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="border-bottom py-3 mb-1">
+        <div
+          class="px-1 d-flex flex-nowrap justify-content-between align-items-center"
+        >
+          <a
+            class="link-body-emphasis link-underline-opacity-0 icon-link"
+            href="/index.html"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"
+              />
+            </svg>
+          </a>
+          <a tabindex="-1" href="/index.html">
+            <img src="/images/logo-cenestur.png" alt="logo-cenestur" />
+          </a>
+          <a target="_blank" href="" class="link-body-emphasis">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 499.36"
+              role="img"
+              class="navbar-nav-svg"
+              height="20"
+              width="20"
+            >
+              <title>GitHub</title>
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </header>
+      <div class="nav-scroller mb-3">
+        <nav class="nav nav-tabs px-1">
+          <a
+            href="/FormularioHTML/index.html"
+            class="nav-item nav-link link-body-emphasis"
+          >
+            Formulario HTML
+          </a>
+          <a
+            href="/FormularioDOM/index.html"
+            class="nav-item nav-link link-body-emphasis active"
+          >
+            Formulario DOM
+          </a>
+        </nav>
+      </div>
+
+      <main>
+        <div class="row g-4">
+          <div class="col-md-7">
+            <form
+              id="form"
+              class="card border needs-validation"
+              autocomplete="off"
+              novalidate
+            >
+              <div class="card-body">
+                <h4 class="mb-4 text-center">
+                  Formulario de operaciones matemáticas
+                </h4>
+                <div
+                  class="alert border border-primary text-primary text-center"
+                >
+                  <div>
+                    Ingresa los dos numeros y presiona el botón de la operación
+                    que deseas resolver.
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="numero1"
+                        name="numero1"
+                        placeholder="Numero 1"
+                        required
+                      />
+                      <label for="numero1">Numero 1</label>
+                      <div class="invalid-feedback" id="num1-invalid-feedback">
+                        Este campo es obligatorio
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="numero2"
+                        name="numero2"
+                        placeholder="Numero 2"
+                        required
+                      />
+                      <label for="numero2">Numero 2</label>
+                      <div class="invalid-feedback" id="num2-invalid-feedback">
+                        Este campo es obligatorio
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="form-label">Operaciones:</label>
+                  <div class="btn-group">
+                    <button
+                      id="sumar"
+                      type="submit"
+                      class="btn btn-outline-primary"
+                    >
+                      Sumar
+                    </button>
+                    <button
+                      id="restar"
+                      type="submit"
+                      class="btn btn-outline-primary"
+                    >
+                      Restar
+                    </button>
+                    <button
+                      id="multiplicar"
+                      type="submit"
+                      class="btn btn-outline-primary"
+                    >
+                      Multiplicar
+                    </button>
+                    <button
+                      id="dividir"
+                      type="submit"
+                      class="btn btn-outline-primary"
+                    >
+                      Dividir
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-floating">
+                  <input
+                    class="form-control fst-italic"
+                    type="text"
+                    id="resultado"
+                    name="resultado"
+                    placeholder="Resultado"
+                    value="Selecciona una operación matematica"
+                    disabled
+                  />
+                  <label for="resultado">Resultado</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-5">
+            <div class="position-sticky">
+              <div class="p-4 mb-3 bg-body-tertiary rounded border">
+                <h4>Objetivo</h4>
+                <p class="mb-0">
+                  Integrar las 4 operaciónes matematicas en un formulario HTML
+                  con la ayuda del DOM en javascript.
+                </p>
+              </div>
+              <div class="p-4 mb-3 bg-body-tertiary rounded border">
+                <h4>Implementación</h4>
+                <strong>HTML</strong>
+                <p>
+                  Se utiliza un formulario HTML estilizado con bootstrap 5 que
+                  incluye 3 inputs de tipo texto y 4 botones.
+                </p>
+                <p>
+                  Dos inputs se utilizan para el ingreso de los números y en el
+                  tercero se muestra el resultado de la operación.
+                </p>
+                <p>Se agrega un botón para cada operación matemática.</p>
+                <strong>Javascript</strong>
+                <p>
+                  Para acceder a los elementos del DOM se utiliza la función
+                  <code>document.getElementById("...")</code>.
+                </p>
+                <p>
+                  Para ejecutar la operación utilizamos un
+                  <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+                    target="_blank"
+                    class="link-body-emphasis"
+                  >
+                    event listener
+                  </a>
+                  <code>btn.addEventListener('clcik', () => {})</code>
+                </p>
+                <p>
+                  Teniendo en cuenta que el valor que retorna un input es de
+                  tipo texto utilizamos la función
+                  <code>Number(input.value)</code> para convertirlo en número y
+                  así poder ejecutar las operaciones aritméticas.
+                </p>
+                <p class="mb-0">
+                  En el caso de la división se agrega una validación que
+                  verifica si el divisor es igual a 0, si es el caso no se
+                  ejecuta la operación y en el input de resultado mostramos el
+                  mensaje <code>No se puede dividir numeros entre 0</code>
+                </p>
+              </div>
+              <div class="p-4 pb-1 mb-3 bg-body-tertiary rounded border">
+                <h4>Colaboradores</h4>
+                <ul class="list-unstyled m-0">
+                  <li>
+                    <div class="py-3 border-bottom">Evelyn V. Morocho P.</div>
+                  </li>
+                  <li>
+                    <div class="py-3 border-bottom">Sammy E. Rosero C.</div>
+                  </li>
+                  <li>
+                    <div class="py-3">Bryan D. Velastegui L.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      let form = document.getElementById("form");
+      let numero1 = document.getElementById("numero1");
+      let numero2 = document.getElementById("numero2");
+      let resultado = document.getElementById("resultado");
+      let num2IF = document.getElementById("num2-invalid-feedback");
+
+      // botones
+      let btnSumar = document.getElementById("sumar");
+      let btnRestar = document.getElementById("restar");
+      let btnMultiplicar = document.getElementById("multiplicar");
+      let btnDividir = document.getElementById("dividir");
+
+      btnSumar.addEventListener("click", (e) => {
+        if (!validarFormulario(e)) {
+          return;
+        }
+
+        e.preventDefault();
+        let suma = Number(numero1.value) + Number(numero2.value);
+
+        resultado.value = "El resultado de la suma es: " + suma;
+      });
+
+      btnRestar.addEventListener("click", (e) => {
+        if (!validarFormulario(e)) {
+          return;
+        }
+        e.preventDefault();
+        let resta = Number(numero1.value) - Number(numero2.value);
+
+        resultado.value = "El resultado de la resta es: " + resta;
+      });
+
+      btnMultiplicar.addEventListener("click", (e) => {
+        if (!validarFormulario(e)) {
+          return;
+        }
+        e.preventDefault();
+        let multiplicar = Number(numero1.value) * Number(numero2.value);
+
+        resultado.value =
+          "El resultado de la multiplicación es: " + multiplicar;
+      });
+
+      btnDividir.addEventListener("click", (e) => {
+        if (!validarFormulario(e)) {
+          return;
+        }
+        e.preventDefault();
+        let num1 = Number(numero1.value);
+        let num2 = Number(numero2.value);
+
+        if (num2 === 0) {
+          resultado.value = "No se puede dividir numeros entre 0";
+          resultado.classList.add("is-invalid");
+        } else {
+          let dividir = num1 / num2;
+
+          resultado.value = "El resultado de la división es: " + dividir;
+        }
+      });
+
+      function validarFormulario(e) {
+        let isValid = true;
+        resultado.classList.remove("is-invalid");
+
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+          isValid = false;
+        }
+
+        form.classList.add("was-validated");
+
+        return isValid;
+      }
+    </script>
+  </body>
+</html>
