@@ -5,5 +5,3 @@ async function obtenerDatos () {
   const imagen = document.getElementById('imagen')
   imagen.src = res[0].url
 }
-
-obtenerDatos();
