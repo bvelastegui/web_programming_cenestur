@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consumiendo APIs con JavaScript: The Cat API - CENESTUR</title>
-  <meta name="description" content="Aprende a consumir APIs externas con JavaScript usando fetch, async/await y a mostrar los datos dinámicamente en el DOM">
+  <meta
+    name="description"
+    content="Aprende a consumir APIs externas con JavaScript usando fetch, async/await y a mostrar los datos dinámicamente en el DOM"
+  >
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
@@ -101,10 +104,6 @@
           color: white;
       }
 
-      .author-card {
-          border-left: 4px solid #2a5298;
-      }
-
       .api-flow {
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           color: white;
@@ -126,7 +125,7 @@
       .api-flow-number {
           width: 40px;
           height: 40px;
-          background: rgba(255,255,255,0.2);
+          background: rgba(255, 255, 255, 0.2);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -149,7 +148,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <form class="d-flex ms-auto" id="search-form">
-        <input class="form-control me-2" type="search" placeholder="Buscar artículos..." id="search-input">
+        <input
+          aria-label="Buscar artículos" class="form-control me-2" type="search" placeholder="Buscar artículos..."
+          id="search-input"
+        >
         <button class="btn btn-outline-primary" type="submit">
           <i class="bi bi-search"></i>
         </button>
@@ -188,11 +190,16 @@
     <div class="col-lg-8">
       <article class="article-content">
         <p class="lead">
-          Una de las habilidades más importantes en el desarrollo web moderno es saber consumir APIs externas. En este artículo aprenderemos a usar <code>fetch</code> y <code>async/await</code> para obtener imágenes aleatorias de gatos desde The Cat API y mostrarlas dinámicamente en nuestra página.
+          Una de las habilidades más importantes en el desarrollo web moderno es saber consumir APIs externas. En este
+          artículo aprenderemos a usar <code>fetch</code> y <code>async/await</code> para obtener imágenes aleatorias de
+          gatos desde The Cat API y mostrarlas dinámicamente en nuestra página.
         </p>
 
         <!-- Banner destacado -->
-        <div class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4" role="alert">
+        <div
+          class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4"
+          role="alert"
+        >
           <div>
             <i class="bi bi-rocket-takeoff me-2 fs-5"></i>
             <strong>¿Quieres ver el resultado final?</strong> Prueba la aplicación funcionando ahora mismo.
@@ -206,14 +213,22 @@
 
         <h2><i class="bi bi-bullseye me-2"></i>Objetivo del Proyecto</h2>
 
-        <p>Este proyecto fue desarrollado en grupo con el objetivo de utilizar <a href="https://thecatapi.com/" target="_blank">The Cat API</a> para mostrar imágenes de gatos utilizando un diseño de Bootstrap. Al presionar los botones de interacción, se debe mostrar una nueva imagen obtenida desde la API.</p>
+        <p>Este proyecto fue desarrollado en grupo con el objetivo de utilizar <a
+          href="https://thecatapi.com/" target="_blank"
+        >The Cat API</a> para mostrar imágenes de gatos utilizando un diseño de Bootstrap. Al presionar los botones de
+          interacción, se debe mostrar una nueva imagen obtenida desde la API.</p>
 
         <div class="card bg-light border-0 mb-4">
           <div class="card-body">
             <h6 class="card-title"><i class="bi bi-lightbulb me-2"></i>Decisiones de Diseño</h6>
             <ul class="mb-0">
-              <li>Utilizamos <a href="https://getbootstrap.com/docs/5.3/components/card/#about" target="_blank">Cards de Bootstrap</a> para simular una tarjeta estilo Instagram</li>
-              <li>Implementamos 3 botones con estilo <a href="https://getbootstrap.com/docs/5.3/helpers/icon-link/" target="_blank">icon-link</a>: favorito, like y dislike</li>
+              <li>Utilizamos <a href="https://getbootstrap.com/docs/5.3/components/card/#about" target="_blank">Cards de
+                Bootstrap</a> para simular una tarjeta estilo Instagram
+              </li>
+              <li>Implementamos 3 botones con estilo <a
+                href="https://getbootstrap.com/docs/5.3/helpers/icon-link/" target="_blank"
+              >icon-link</a>: favorito, like y dislike
+              </li>
               <li>Al pulsar like o dislike se obtiene una nueva imagen desde la API</li>
             </ul>
           </div>
@@ -221,7 +236,9 @@
 
         <h2><i class="bi bi-question-circle me-2"></i>¿Qué es una API?</h2>
 
-        <p>Una <strong>API (Application Programming Interface)</strong> es un conjunto de reglas que permite que diferentes aplicaciones se comuniquen entre sí. En el contexto web, las APIs nos permiten obtener datos de servidores externos sin necesidad de recargar la página.</p>
+        <p>Una <strong>API (Application Programming Interface)</strong> es un conjunto de reglas que permite que
+          diferentes aplicaciones se comuniquen entre sí. En el contexto web, las APIs nos permiten obtener datos de
+          servidores externos sin necesidad de recargar la página.</p>
 
         <div class="api-flow">
           <h5 class="mb-3"><i class="bi bi-arrow-repeat me-2"></i>Flujo de una petición API</h5>
@@ -245,7 +262,8 @@
 
         <h2><i class="bi bi-filetype-json me-2"></i>The Cat API</h2>
 
-        <p><a href="https://thecatapi.com/" target="_blank">The Cat API</a> es una API pública y gratuita que proporciona imágenes aleatorias de gatos. Es perfecta para aprender porque:</p>
+        <p><a href="https://thecatapi.com/" target="_blank">The Cat API</a> es una API pública y gratuita que
+          proporciona imágenes aleatorias de gatos. Es perfecta para aprender porque:</p>
 
         <ul>
           <li>No requiere autenticación para uso básico</li>
@@ -295,28 +313,28 @@
 
         <table class="table table-bordered table-striped">
           <thead>
-            <tr>
-              <th>Elemento</th>
-              <th>Propósito</th>
-            </tr>
+          <tr>
+            <th>Elemento</th>
+            <th>Propósito</th>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><code>id="imagen"</code></td>
-              <td>Identificador para acceder a la imagen desde JavaScript</td>
-            </tr>
-            <tr>
-              <td><code>onclick="obtenerDatos()"</code></td>
-              <td>Ejecuta la función cuando se hace clic en el botón</td>
-            </tr>
-            <tr>
-              <td><code>card-img-top</code></td>
-              <td>Clase de Bootstrap para imagen en la parte superior de la tarjeta</td>
-            </tr>
-            <tr>
-              <td><code>mx-auto</code></td>
-              <td>Centra la tarjeta horizontalmente</td>
-            </tr>
+          <tr>
+            <td><code>id="imagen"</code></td>
+            <td>Identificador para acceder a la imagen desde JavaScript</td>
+          </tr>
+          <tr>
+            <td><code>onclick="obtenerDatos()"</code></td>
+            <td>Ejecuta la función cuando se hace clic en el botón</td>
+          </tr>
+          <tr>
+            <td><code>card-img-top</code></td>
+            <td>Clase de Bootstrap para imagen en la parte superior de la tarjeta</td>
+          </tr>
+          <tr>
+            <td><code>mx-auto</code></td>
+            <td>Centra la tarjeta horizontalmente</td>
+          </tr>
           </tbody>
         </table>
 
@@ -349,7 +367,8 @@
 
         <div class="alert alert-info">
           <i class="bi bi-info-circle me-2"></i>
-          <strong>¿Por qué asíncrono?</strong> Las peticiones a APIs toman tiempo (milisegundos o segundos). Si JavaScript esperara de forma síncrona, la página se congelaría hasta recibir respuesta.
+          <strong>¿Por qué asíncrono?</strong> Las peticiones a APIs toman tiempo (milisegundos o segundos). Si
+          JavaScript esperara de forma síncrona, la página se congelaría hasta recibir respuesta.
         </div>
 
         <h3>2. Fetch: Haciendo la petición</h3>
@@ -363,7 +382,8 @@
           <li>Por defecto hace peticiones GET</li>
         </ul>
 
-        <p><code>await</code> pausa la ejecución hasta que la Promesa se resuelva, y devuelve el resultado (un objeto <code>Response</code>).</p>
+        <p><code>await</code> pausa la ejecución hasta que la Promesa se resuelva, y devuelve el resultado (un objeto
+          <code>Response</code>).</p>
 
         <h3>3. Parseando la respuesta JSON</h3>
 
@@ -391,28 +411,29 @@ imagen.src = res[0].url</code></pre>
 
         <h2><i class="bi bi-diagram-3 me-2"></i>Entendiendo Promesas</h2>
 
-        <p>Las <strong>Promesas</strong> son objetos que representan el resultado eventual de una operación asíncrona. Tienen tres estados:</p>
+        <p>Las <strong>Promesas</strong> son objetos que representan el resultado eventual de una operación asíncrona.
+          Tienen tres estados:</p>
 
         <table class="table table-bordered table-striped">
           <thead>
-            <tr>
-              <th>Estado</th>
-              <th>Descripción</th>
-            </tr>
+          <tr>
+            <th>Estado</th>
+            <th>Descripción</th>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><code>pending</code></td>
-              <td>La operación está en progreso</td>
-            </tr>
-            <tr>
-              <td><code>fulfilled</code></td>
-              <td>La operación se completó exitosamente</td>
-            </tr>
-            <tr>
-              <td><code>rejected</code></td>
-              <td>La operación falló</td>
-            </tr>
+          <tr>
+            <td><code>pending</code></td>
+            <td>La operación está en progreso</td>
+          </tr>
+          <tr>
+            <td><code>fulfilled</code></td>
+            <td>La operación se completó exitosamente</td>
+          </tr>
+          <tr>
+            <td><code>rejected</code></td>
+            <td>La operación falló</td>
+          </tr>
           </tbody>
         </table>
 
@@ -429,7 +450,8 @@ imagen.src = res[0].url</code></pre>
     })
 }</code></pre>
 
-        <p><code>async/await</code> es "azúcar sintáctica" que hace el código más legible, pero internamente funcionan igual.</p>
+        <p><code>async/await</code> es "azúcar sintáctica" que hace el código más legible, pero internamente funcionan
+          igual.</p>
 
         <h2><i class="bi bi-shield-exclamation me-2"></i>Manejo de Errores</h2>
 
@@ -455,7 +477,8 @@ imagen.src = res[0].url</code></pre>
 
         <div class="alert alert-warning">
           <i class="bi bi-exclamation-triangle me-2"></i>
-          <strong>Importante:</strong> <code>fetch()</code> solo rechaza la promesa si hay un error de red. Los errores HTTP (404, 500, etc.) no lanzan excepciones, por eso verificamos <code>data.ok</code>.
+          <strong>Importante:</strong> <code>fetch()</code> solo rechaza la promesa si hay un error de red. Los errores
+          HTTP (404, 500, etc.) no lanzan excepciones, por eso verificamos <code>data.ok</code>.
         </div>
 
         <h2><i class="bi bi-gear me-2"></i>Opciones de Fetch</h2>
@@ -488,7 +511,8 @@ imagen.src = res[0].url</code></pre>
 
         <div class="alert alert-success mt-4">
           <i class="bi bi-arrow-right-circle me-2"></i>
-          <strong>Siguiente paso:</strong> Explorar APIs más complejas que requieran autenticación, como la API de GitHub o Spotify.
+          <strong>Siguiente paso:</strong> Explorar APIs más complejas que requieran autenticación, como la API de
+          GitHub o Spotify.
         </div>
 
         <hr class="my-5">
@@ -499,7 +523,8 @@ imagen.src = res[0].url</code></pre>
             <div class="row align-items-center">
               <div class="col-md-8">
                 <h4 class="mb-2"><i class="bi bi-play-circle-fill me-2"></i>Ver la Aplicación en Acción</h4>
-                <p class="mb-md-0 opacity-75">Prueba la aplicación y obtén imágenes aleatorias de gatos con cada clic.</p>
+                <p class="mb-md-0 opacity-75">Prueba la aplicación y obtén imágenes aleatorias de gatos con cada
+                  clic.</p>
               </div>
               <div class="col-md-4 text-md-end">
                 <a href="/TheCatsAPI/index.html" class="btn btn-light btn-lg">
@@ -549,7 +574,10 @@ imagen.src = res[0].url</code></pre>
       <div class="sidebar-widget">
         <h5 class="mb-3"><i class="bi bi-people me-2"></i>Colaboradores</h5>
         <div class="d-flex align-items-center mb-3">
-          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+          <div
+            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+            style="width: 40px; height: 40px;"
+          >
             <i class="bi bi-person"></i>
           </div>
           <div>
@@ -557,7 +585,10 @@ imagen.src = res[0].url</code></pre>
           </div>
         </div>
         <div class="d-flex align-items-center mb-3">
-          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+          <div
+            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+            style="width: 40px; height: 40px;"
+          >
             <i class="bi bi-person"></i>
           </div>
           <div>
@@ -565,8 +596,10 @@ imagen.src = res[0].url</code></pre>
           </div>
         </div>
         <div class="d-flex align-items-center">
-          <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
-               alt="Autor" class="rounded-circle me-2" width="40" height="40">
+          <img
+            src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+            alt="Autor" class="rounded-circle me-2" width="40" height="40"
+          >
           <div>
             <strong class="small">Bryan D. Velastegui L.</strong>
           </div>
@@ -639,12 +672,18 @@ imagen.src = res[0].url</code></pre>
             </a>
           </li>
           <li class="mb-2">
-            <a href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API" target="_blank" class="text-decoration-none text-dark">
+            <a
+              href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API" target="_blank"
+              class="text-decoration-none text-dark"
+            >
               <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Fetch API
             </a>
           </li>
           <li class="mb-2">
-            <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/Asynchronous/Promises" target="_blank" class="text-decoration-none text-dark">
+            <a
+              href="https://developer.mozilla.org/es/docs/Learn/JavaScript/Asynchronous/Promises" target="_blank"
+              class="text-decoration-none text-dark"
+            >
               <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Promesas
             </a>
           </li>
@@ -671,7 +710,9 @@ imagen.src = res[0].url</code></pre>
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p class="mb-0 text-center">&copy; 2025 <a href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0">Bryan Velastegui.</a> All rights reserved.</p>
+    <p class="mb-0 text-center">&copy; 2025 <a
+      href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0"
+    >Bryan Velastegui.</a> All rights reserved.</p>
   </div>
 </footer>
 

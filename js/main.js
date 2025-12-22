@@ -2,7 +2,7 @@ import useArticles from '/data/articles.js?v=20251221'
 import { chunks } from '/js/helpers.js'
 import { performSearch } from '/js/search.js'
 
-const { getPaginated, getModules, getTags, getTotalCount } = useArticles()
+const { getPaginated, getTags, getTotalCount } = useArticles()
 
 // Estado del scroll infinito
 const infiniteScrollState = {
@@ -13,19 +13,6 @@ const infiniteScrollState = {
 }
 const formatDate = (date) => {
   return Intl.DateTimeFormat('es-ES', { dateStyle: 'full' }).format(date)
-}
-
-function loadModules () {
-  const modules = getModules()
-  const listOfModules = document.getElementById('list-of-modules')
-  modules.forEach(module => {
-    const li = document.createElement('li')
-    li.innerHTML = `
-<a class="dropdown-item" href="#">
-  ${module}
-</a>`
-    listOfModules.appendChild(li)
-  })
 }
 
 function loadLastArticle () {

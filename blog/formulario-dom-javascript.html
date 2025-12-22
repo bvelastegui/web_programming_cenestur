@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manipulando Formularios con JavaScript y el DOM - CENESTUR</title>
-  <meta name="description" content="Aprende a crear formularios interactivos utilizando JavaScript y la manipulación del DOM para realizar operaciones matemáticas">
+  <meta
+    name="description"
+    content="Aprende a crear formularios interactivos utilizando JavaScript y la manipulación del DOM para realizar operaciones matemáticas"
+  >
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
@@ -100,10 +103,6 @@
           background: #2a5298;
           color: white;
       }
-
-      .author-card {
-          border-left: 4px solid #2a5298;
-      }
   </style>
 </head>
 <body>
@@ -118,7 +117,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <form class="d-flex ms-auto" id="search-form">
-        <input class="form-control me-2" type="search" placeholder="Buscar artículos..." id="search-input">
+        <input
+          aria-label="Buscar artículos" class="form-control me-2" type="search" placeholder="Buscar artículos..."
+          id="search-input"
+        >
         <button class="btn btn-outline-primary" type="submit">
           <i class="bi bi-search"></i>
         </button>
@@ -156,11 +158,16 @@
     <div class="col-lg-8">
       <article class="article-content">
         <p class="lead">
-          Después de aprender a crear formularios con HTML y Bootstrap, el siguiente paso es darles vida con JavaScript. En este artículo aprenderemos a manipular el DOM para crear un formulario de operaciones matemáticas completamente interactivo.
+          Después de aprender a crear formularios con HTML y Bootstrap, el siguiente paso es darles vida con JavaScript.
+          En este artículo aprenderemos a manipular el DOM para crear un formulario de operaciones matemáticas
+          completamente interactivo.
         </p>
 
         <!-- Banner destacado -->
-        <div class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4" role="alert">
+        <div
+          class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4"
+          role="alert"
+        >
           <div>
             <i class="bi bi-rocket-takeoff me-2 fs-5"></i>
             <strong>¿Quieres ver el resultado final?</strong> Prueba el formulario interactivo ahora mismo.
@@ -174,11 +181,13 @@
 
         <h2><i class="bi bi-bullseye me-2"></i>Objetivo del Proyecto</h2>
 
-        <p>El objetivo es integrar las 4 operaciones matemáticas básicas (suma, resta, multiplicación y división) en un formulario HTML, utilizando JavaScript y el DOM para procesar los datos sin recargar la página.</p>
+        <p>El objetivo es integrar las 4 operaciones matemáticas básicas (suma, resta, multiplicación y división) en un
+          formulario HTML, utilizando JavaScript y el DOM para procesar los datos sin recargar la página.</p>
 
         <div class="alert alert-info">
           <i class="bi bi-info-circle me-2"></i>
-          <strong>¿Qué es el DOM?</strong> El Document Object Model (DOM) es una interfaz de programación que permite a JavaScript acceder y manipular el contenido, estructura y estilo de un documento HTML.
+          <strong>¿Qué es el DOM?</strong> El Document Object Model (DOM) es una interfaz de programación que permite a
+          JavaScript acceder y manipular el contenido, estructura y estilo de un documento HTML.
         </div>
 
         <h2><i class="bi bi-file-earmark-code me-2"></i>Estructura HTML del Formulario</h2>
@@ -192,7 +201,8 @@
 
         <h3>Inputs con Form Floating</h3>
 
-        <p>Utilizamos el componente <strong>Form Floating</strong> de Bootstrap para crear inputs con etiquetas flotantes:</p>
+        <p>Utilizamos el componente <strong>Form Floating</strong> de Bootstrap para crear inputs con etiquetas
+          flotantes:</p>
 
         <pre><code>&lt;div class="form-floating"&gt;
   &lt;input
@@ -237,7 +247,8 @@
 
         <h2><i class="bi bi-braces me-2"></i>Accediendo al DOM con JavaScript</h2>
 
-        <p>El primer paso es obtener referencias a los elementos del formulario usando <code>document.getElementById()</code>:</p>
+        <p>El primer paso es obtener referencias a los elementos del formulario usando
+          <code>document.getElementById()</code>:</p>
 
         <pre><code>// Referencias a los inputs
 let form = document.getElementById("form");
@@ -253,7 +264,8 @@ let btnDividir = document.getElementById("dividir");</code></pre>
 
         <div class="alert alert-warning">
           <i class="bi bi-lightbulb me-2"></i>
-          <strong>Tip:</strong> Es buena práctica almacenar las referencias en variables para evitar múltiples búsquedas en el DOM, lo cual mejora el rendimiento.
+          <strong>Tip:</strong> Es buena práctica almacenar las referencias en variables para evitar múltiples búsquedas
+          en el DOM, lo cual mejora el rendimiento.
         </div>
 
         <h2><i class="bi bi-cursor me-2"></i>Event Listeners: Escuchando Eventos</h2>
@@ -279,28 +291,28 @@ let btnDividir = document.getElementById("dividir");</code></pre>
 
         <table class="table table-bordered table-striped">
           <thead>
-            <tr>
-              <th>Concepto</th>
-              <th>Descripción</th>
-            </tr>
+          <tr>
+            <th>Concepto</th>
+            <th>Descripción</th>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><code>addEventListener("click", ...)</code></td>
-              <td>Escucha el evento de clic en el elemento</td>
-            </tr>
-            <tr>
-              <td><code>e.preventDefault()</code></td>
-              <td>Evita el comportamiento por defecto (enviar formulario)</td>
-            </tr>
-            <tr>
-              <td><code>Number(valor)</code></td>
-              <td>Convierte un string a número</td>
-            </tr>
-            <tr>
-              <td><code>input.value</code></td>
-              <td>Obtiene o establece el valor de un input</td>
-            </tr>
+          <tr>
+            <td><code>addEventListener("click", ...)</code></td>
+            <td>Escucha el evento de clic en el elemento</td>
+          </tr>
+          <tr>
+            <td><code>e.preventDefault()</code></td>
+            <td>Evita el comportamiento por defecto (enviar formulario)</td>
+          </tr>
+          <tr>
+            <td><code>Number(valor)</code></td>
+            <td>Convierte un string a número</td>
+          </tr>
+          <tr>
+            <td><code>input.value</code></td>
+            <td>Obtiene o establece el valor de un input</td>
+          </tr>
           </tbody>
         </table>
 
@@ -334,7 +346,8 @@ if (num2 === 0) {
 
         <div class="alert alert-danger">
           <i class="bi bi-exclamation-triangle me-2"></i>
-          <strong>Importante:</strong> La división entre cero es matemáticamente indefinida. Siempre debemos validar que el divisor no sea cero antes de realizar la operación.
+          <strong>Importante:</strong> La división entre cero es matemáticamente indefinida. Siempre debemos validar que
+          el divisor no sea cero antes de realizar la operación.
         </div>
 
         <h2><i class="bi bi-check2-circle me-2"></i>Validación del Formulario</h2>
@@ -359,7 +372,8 @@ if (num2 === 0) {
         <h3>¿Cómo funciona?</h3>
 
         <ol>
-          <li><code>form.checkValidity()</code> verifica si todos los campos cumplen sus restricciones (como <code>required</code>)</li>
+          <li><code>form.checkValidity()</code> verifica si todos los campos cumplen sus restricciones (como <code>required</code>)
+          </li>
           <li><code>was-validated</code> activa los estilos visuales de validación de Bootstrap</li>
           <li><code>is-invalid</code> marca un campo específico como inválido</li>
         </ol>
@@ -368,28 +382,28 @@ if (num2 === 0) {
 
         <table class="table table-bordered table-striped">
           <thead>
-            <tr>
-              <th>Atributo</th>
-              <th>Propósito</th>
-            </tr>
+          <tr>
+            <th>Atributo</th>
+            <th>Propósito</th>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><code>novalidate</code></td>
-              <td>Desactiva la validación nativa del navegador para usar la personalizada</td>
-            </tr>
-            <tr>
-              <td><code>autocomplete="off"</code></td>
-              <td>Evita que el navegador sugiera valores anteriores</td>
-            </tr>
-            <tr>
-              <td><code>disabled</code></td>
-              <td>El input de resultado está deshabilitado para evitar edición manual</td>
-            </tr>
-            <tr>
-              <td><code>required</code></td>
-              <td>Marca el campo como obligatorio</td>
-            </tr>
+          <tr>
+            <td><code>novalidate</code></td>
+            <td>Desactiva la validación nativa del navegador para usar la personalizada</td>
+          </tr>
+          <tr>
+            <td><code>autocomplete="off"</code></td>
+            <td>Evita que el navegador sugiera valores anteriores</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td>El input de resultado está deshabilitado para evitar edición manual</td>
+          </tr>
+          <tr>
+            <td><code>required</code></td>
+            <td>Marca el campo como obligatorio</td>
+          </tr>
           </tbody>
         </table>
 
@@ -428,7 +442,8 @@ if (num2 === 0) {
 
         <div class="alert alert-success mt-4">
           <i class="bi bi-arrow-right-circle me-2"></i>
-          <strong>Siguiente paso:</strong> Explorar más métodos del DOM como <code>querySelector()</code>, <code>querySelectorAll()</code> y aprender sobre manipulación de estilos con <code>classList</code>.
+          <strong>Siguiente paso:</strong> Explorar más métodos del DOM como <code>querySelector()</code>, <code>querySelectorAll()</code>
+          y aprender sobre manipulación de estilos con <code>classList</code>.
         </div>
 
         <hr class="my-5">
@@ -439,7 +454,8 @@ if (num2 === 0) {
             <div class="row align-items-center">
               <div class="col-md-8">
                 <h4 class="mb-2"><i class="bi bi-play-circle-fill me-2"></i>Ver el Formulario en Acción</h4>
-                <p class="mb-md-0 opacity-75">Experimenta con el formulario interactivo y prueba todas las operaciones matemáticas.</p>
+                <p class="mb-md-0 opacity-75">Experimenta con el formulario interactivo y prueba todas las operaciones
+                  matemáticas.</p>
               </div>
               <div class="col-md-4 text-md-end">
                 <a href="/FormularioDOM/index.html" class="btn btn-light btn-lg">
@@ -478,7 +494,10 @@ if (num2 === 0) {
       <div class="sidebar-widget">
         <h5 class="mb-3"><i class="bi bi-people me-2"></i>Colaboradores</h5>
         <div class="d-flex align-items-center mb-3">
-          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+          <div
+            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+            style="width: 40px; height: 40px;"
+          >
             <i class="bi bi-person"></i>
           </div>
           <div>
@@ -486,7 +505,10 @@ if (num2 === 0) {
           </div>
         </div>
         <div class="d-flex align-items-center mb-3">
-          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+          <div
+            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+            style="width: 40px; height: 40px;"
+          >
             <i class="bi bi-person"></i>
           </div>
           <div>
@@ -494,8 +516,10 @@ if (num2 === 0) {
           </div>
         </div>
         <div class="d-flex align-items-center">
-          <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
-               alt="Autor" class="rounded-circle me-2" width="40" height="40">
+          <img
+            src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+            alt="Autor" class="rounded-circle me-2" width="40" height="40"
+          >
           <div>
             <strong class="small">Bryan D. Velastegui L.</strong>
           </div>
@@ -563,17 +587,26 @@ if (num2 === 0) {
         <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
         <ul class="list-unstyled">
           <li class="mb-2">
-            <a href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model" target="_blank" class="text-decoration-none text-dark">
+            <a
+              href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model" target="_blank"
+              class="text-decoration-none text-dark"
+            >
               <i class="bi bi-box-arrow-up-right me-2"></i>MDN - DOM
             </a>
           </li>
           <li class="mb-2">
-            <a href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank" class="text-decoration-none text-dark">
+            <a
+              href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank"
+              class="text-decoration-none text-dark"
+            >
               <i class="bi bi-box-arrow-up-right me-2"></i>MDN - addEventListener
             </a>
           </li>
           <li class="mb-2">
-            <a href="https://getbootstrap.com/docs/5.3/forms/validation/" target="_blank" class="text-decoration-none text-dark">
+            <a
+              href="https://getbootstrap.com/docs/5.3/forms/validation/" target="_blank"
+              class="text-decoration-none text-dark"
+            >
               <i class="bi bi-box-arrow-up-right me-2"></i>Bootstrap - Validación
             </a>
           </li>
@@ -591,7 +624,9 @@ if (num2 === 0) {
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p class="mb-0 text-center">&copy; 2025 <a href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0">Bryan Velastegui.</a> All rights reserved.</p>
+    <p class="mb-0 text-center">&copy; 2025 <a
+      href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0"
+    >Bryan Velastegui.</a> All rights reserved.</p>
   </div>
 </footer>
 
