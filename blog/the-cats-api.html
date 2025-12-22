@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumiendo APIs con JavaScript: The Cat API - CENESTUR</title>
+  <meta name="description" content="Aprende a consumir APIs externas con JavaScript usando fetch, async/await y a mostrar los datos dinámicamente en el DOM">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <style>
+      .hero-section {
+          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          color: white;
+          padding: 60px 0;
+          margin-bottom: 50px;
+      }
+
+      .cenestur-logo {
+          font-weight: 700;
+          background: linear-gradient(135deg, #1e3c72, #2a5298);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+
+      .footer {
+          background: #1e3c72;
+          color: white;
+          padding: 50px 0 20px;
+          margin-top: 80px;
+      }
+
+      .article-content h2 {
+          margin-top: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1e3c72;
+          border-bottom: 2px solid #2a5298;
+          padding-bottom: 0.5rem;
+      }
+
+      .article-content h3 {
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
+          color: #2a5298;
+      }
+
+      .article-content pre {
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+          border-radius: 8px;
+          padding: 1rem;
+          overflow-x: auto;
+      }
+
+      .article-content code {
+          color: #d63384;
+      }
+
+      .article-content pre code {
+          color: #212529;
+      }
+
+      .article-content table {
+          width: 100%;
+          margin: 1.5rem 0;
+      }
+
+      .article-content table th {
+          background: #1e3c72;
+          color: white;
+      }
+
+      .sidebar-widget {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          margin-bottom: 30px;
+      }
+
+      .tag-cloud a {
+          display: inline-block;
+          padding: 5px 15px;
+          margin: 5px;
+          background: #e9ecef;
+          border-radius: 20px;
+          color: #495057;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .tag-cloud a:hover {
+          background: #2a5298;
+          color: white;
+      }
+
+      .author-card {
+          border-left: 4px solid #2a5298;
+      }
+
+      .api-flow {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 2rem;
+          border-radius: 10px;
+          margin: 2rem 0;
+      }
+
+      .api-flow-step {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+      }
+
+      .api-flow-step:last-child {
+          margin-bottom: 0;
+      }
+
+      .api-flow-number {
+          width: 40px;
+          height: 40px;
+          background: rgba(255,255,255,0.2);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          margin-right: 1rem;
+          flex-shrink: 0;
+      }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto">
+        <input class="form-control me-2" type="search" placeholder="Buscar...">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">The Cat API</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Consumiendo APIs con JavaScript: The Cat API</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 15 de Diciembre, 2025</span>
+      <span><i class="bi bi-clock me-1"></i> 12 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">JavaScript</span>
+        <span class="badge bg-light text-dark">API</span>
+        <span class="badge bg-light text-dark">Fetch</span>
+        <span class="badge bg-light text-dark">Async/Await</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          Una de las habilidades más importantes en el desarrollo web moderno es saber consumir APIs externas. En este artículo aprenderemos a usar <code>fetch</code> y <code>async/await</code> para obtener imágenes aleatorias de gatos desde The Cat API y mostrarlas dinámicamente en nuestra página.
+        </p>
+
+        <!-- Banner destacado -->
+        <div class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4" role="alert">
+          <div>
+            <i class="bi bi-rocket-takeoff me-2 fs-5"></i>
+            <strong>¿Quieres ver el resultado final?</strong> Prueba la aplicación funcionando ahora mismo.
+          </div>
+          <a href="/TheCatsAPI/index.html" class="btn btn-primary btn-sm" target="_blank">
+            <i class="bi bi-play-fill me-1"></i>Ver Demo
+          </a>
+        </div>
+
+        <hr class="my-4">
+
+        <h2><i class="bi bi-bullseye me-2"></i>Objetivo del Proyecto</h2>
+
+        <p>Este proyecto fue desarrollado en grupo con el objetivo de utilizar <a href="https://thecatapi.com/" target="_blank">The Cat API</a> para mostrar imágenes de gatos utilizando un diseño de Bootstrap. Al presionar los botones de interacción, se debe mostrar una nueva imagen obtenida desde la API.</p>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title"><i class="bi bi-lightbulb me-2"></i>Decisiones de Diseño</h6>
+            <ul class="mb-0">
+              <li>Utilizamos <a href="https://getbootstrap.com/docs/5.3/components/card/#about" target="_blank">Cards de Bootstrap</a> para simular una tarjeta estilo Instagram</li>
+              <li>Implementamos 3 botones con estilo <a href="https://getbootstrap.com/docs/5.3/helpers/icon-link/" target="_blank">icon-link</a>: favorito, like y dislike</li>
+              <li>Al pulsar like o dislike se obtiene una nueva imagen desde la API</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2><i class="bi bi-question-circle me-2"></i>¿Qué es una API?</h2>
+
+        <p>Una <strong>API (Application Programming Interface)</strong> es un conjunto de reglas que permite que diferentes aplicaciones se comuniquen entre sí. En el contexto web, las APIs nos permiten obtener datos de servidores externos sin necesidad de recargar la página.</p>
+
+        <div class="api-flow">
+          <h5 class="mb-3"><i class="bi bi-arrow-repeat me-2"></i>Flujo de una petición API</h5>
+          <div class="api-flow-step">
+            <div class="api-flow-number">1</div>
+            <div>Tu aplicación envía una <strong>petición HTTP</strong> al servidor</div>
+          </div>
+          <div class="api-flow-step">
+            <div class="api-flow-number">2</div>
+            <div>El servidor <strong>procesa</strong> la petición</div>
+          </div>
+          <div class="api-flow-step">
+            <div class="api-flow-number">3</div>
+            <div>El servidor envía una <strong>respuesta</strong> (generalmente en formato JSON)</div>
+          </div>
+          <div class="api-flow-step">
+            <div class="api-flow-number">4</div>
+            <div>Tu aplicación <strong>procesa los datos</strong> y actualiza la interfaz</div>
+          </div>
+        </div>
+
+        <h2><i class="bi bi-filetype-json me-2"></i>The Cat API</h2>
+
+        <p><a href="https://thecatapi.com/" target="_blank">The Cat API</a> es una API pública y gratuita que proporciona imágenes aleatorias de gatos. Es perfecta para aprender porque:</p>
+
+        <ul>
+          <li>No requiere autenticación para uso básico</li>
+          <li>Devuelve respuestas simples en formato JSON</li>
+          <li>Es rápida y confiable</li>
+        </ul>
+
+        <h3>Endpoint que usaremos</h3>
+
+        <pre><code>https://api.thecatapi.com/v1/images/search</code></pre>
+
+        <p>Este endpoint devuelve un array con un objeto que contiene la URL de una imagen aleatoria:</p>
+
+        <pre><code>[
+  {
+    "id": "II9dOZmrw",
+    "url": "https://cdn2.thecatapi.com/images/II9dOZmrw.jpg",
+    "width": 1080,
+    "height": 1080
+  }
+]</code></pre>
+
+        <h2><i class="bi bi-code-square me-2"></i>Estructura HTML</h2>
+
+        <p>Nuestra interfaz es una tarjeta de Bootstrap que muestra la imagen del gato y botones de interacción:</p>
+
+        <pre><code>&lt;div class="container py-2 px-4"&gt;
+  &lt;div class="card mx-auto" style="width: 18rem;"&gt;
+    &lt;img src="..." class="card-img-top" alt="" id="imagen"&gt;
+    &lt;div class="card-body border-top"&gt;
+      &lt;div class="d-flex"&gt;
+        &lt;button class="btn btn-link icon-link"&gt;
+          &lt;!-- Icono corazón --&gt;
+        &lt;/button&gt;
+        &lt;button class="btn btn-link icon-link ms-auto" onclick="obtenerDatos()"&gt;
+          &lt;!-- Icono like --&gt;
+        &lt;/button&gt;
+        &lt;button class="btn btn-link icon-link" onclick="obtenerDatos()"&gt;
+          &lt;!-- Icono dislike --&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>Elementos clave</h3>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Elemento</th>
+              <th>Propósito</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id="imagen"</code></td>
+              <td>Identificador para acceder a la imagen desde JavaScript</td>
+            </tr>
+            <tr>
+              <td><code>onclick="obtenerDatos()"</code></td>
+              <td>Ejecuta la función cuando se hace clic en el botón</td>
+            </tr>
+            <tr>
+              <td><code>card-img-top</code></td>
+              <td>Clase de Bootstrap para imagen en la parte superior de la tarjeta</td>
+            </tr>
+            <tr>
+              <td><code>mx-auto</code></td>
+              <td>Centra la tarjeta horizontalmente</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-lightning me-2"></i>JavaScript: Fetch y Async/Await</h2>
+
+        <p>Aquí está el código JavaScript completo que hace la magia:</p>
+
+        <pre><code>async function obtenerDatos() {
+  const data = await fetch('https://api.thecatapi.com/v1/images/search')
+  const res = await data.json()
+
+  const imagen = document.getElementById('imagen')
+  imagen.src = res[0].url
+}</code></pre>
+
+        <p>Aunque son solo 6 líneas, hay mucho que entender. Vamos a desglosarlo:</p>
+
+        <h3>1. Funciones Asíncronas (async)</h3>
+
+        <pre><code>async function obtenerDatos() {
+  // ...
+}</code></pre>
+
+        <p>La palabra clave <code>async</code> antes de <code>function</code> indica que esta función:</p>
+        <ul>
+          <li>Contiene operaciones asíncronas (que toman tiempo)</li>
+          <li>Siempre devuelve una <strong>Promesa</strong></li>
+          <li>Puede usar <code>await</code> en su interior</li>
+        </ul>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>¿Por qué asíncrono?</strong> Las peticiones a APIs toman tiempo (milisegundos o segundos). Si JavaScript esperara de forma síncrona, la página se congelaría hasta recibir respuesta.
+        </div>
+
+        <h3>2. Fetch: Haciendo la petición</h3>
+
+        <pre><code>const data = await fetch('https://api.thecatapi.com/v1/images/search')</code></pre>
+
+        <p><code>fetch()</code> es una función nativa de JavaScript que:</p>
+        <ul>
+          <li>Realiza peticiones HTTP</li>
+          <li>Devuelve una Promesa</li>
+          <li>Por defecto hace peticiones GET</li>
+        </ul>
+
+        <p><code>await</code> pausa la ejecución hasta que la Promesa se resuelva, y devuelve el resultado (un objeto <code>Response</code>).</p>
+
+        <h3>3. Parseando la respuesta JSON</h3>
+
+        <pre><code>const res = await data.json()</code></pre>
+
+        <p>El objeto <code>Response</code> contiene la respuesta cruda. El método <code>.json()</code>:</p>
+        <ul>
+          <li>Extrae el cuerpo de la respuesta</li>
+          <li>Lo parsea como JSON</li>
+          <li>Devuelve una Promesa (por eso usamos <code>await</code> de nuevo)</li>
+        </ul>
+
+        <h3>4. Actualizando el DOM</h3>
+
+        <pre><code>const imagen = document.getElementById('imagen')
+imagen.src = res[0].url</code></pre>
+
+        <p>Finalmente:</p>
+        <ul>
+          <li>Obtenemos la referencia al elemento <code>&lt;img&gt;</code></li>
+          <li>Accedemos al primer elemento del array (<code>res[0]</code>)</li>
+          <li>Extraemos la propiedad <code>url</code></li>
+          <li>La asignamos al atributo <code>src</code> de la imagen</li>
+        </ul>
+
+        <h2><i class="bi bi-diagram-3 me-2"></i>Entendiendo Promesas</h2>
+
+        <p>Las <strong>Promesas</strong> son objetos que representan el resultado eventual de una operación asíncrona. Tienen tres estados:</p>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>pending</code></td>
+              <td>La operación está en progreso</td>
+            </tr>
+            <tr>
+              <td><code>fulfilled</code></td>
+              <td>La operación se completó exitosamente</td>
+            </tr>
+            <tr>
+              <td><code>rejected</code></td>
+              <td>La operación falló</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Sintaxis alternativa con .then()</h3>
+
+        <p>Antes de <code>async/await</code>, se usaba <code>.then()</code>:</p>
+
+        <pre><code>function obtenerDatos() {
+  fetch('https://api.thecatapi.com/v1/images/search')
+    .then(data => data.json())
+    .then(res => {
+      const imagen = document.getElementById('imagen')
+      imagen.src = res[0].url
+    })
+}</code></pre>
+
+        <p><code>async/await</code> es "azúcar sintáctica" que hace el código más legible, pero internamente funcionan igual.</p>
+
+        <h2><i class="bi bi-shield-exclamation me-2"></i>Manejo de Errores</h2>
+
+        <p>En producción, siempre debemos manejar posibles errores:</p>
+
+        <pre><code>async function obtenerDatos() {
+  try {
+    const data = await fetch('https://api.thecatapi.com/v1/images/search')
+
+    if (!data.ok) {
+      throw new Error('Error en la petición')
+    }
+
+    const res = await data.json()
+
+    const imagen = document.getElementById('imagen')
+    imagen.src = res[0].url
+  } catch (error) {
+    console.error('Error:', error)
+    alert('No se pudo cargar la imagen')
+  }
+}</code></pre>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong>Importante:</strong> <code>fetch()</code> solo rechaza la promesa si hay un error de red. Los errores HTTP (404, 500, etc.) no lanzan excepciones, por eso verificamos <code>data.ok</code>.
+        </div>
+
+        <h2><i class="bi bi-gear me-2"></i>Opciones de Fetch</h2>
+
+        <p>Aunque en nuestro ejemplo usamos fetch de forma básica, acepta un segundo parámetro con opciones:</p>
+
+        <pre><code>fetch('https://api.example.com/data', {
+  method: 'POST',           // GET, POST, PUT, DELETE
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer token123'
+  },
+  body: JSON.stringify({
+    nombre: 'Ejemplo'
+  })
+})</code></pre>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusión</h2>
+
+        <p>En este artículo aprendimos conceptos fundamentales del desarrollo web moderno:</p>
+
+        <ul>
+          <li><strong>APIs REST</strong>: Cómo funcionan y cómo consumirlas</li>
+          <li><strong>fetch()</strong>: La función nativa para hacer peticiones HTTP</li>
+          <li><strong>Promesas</strong>: Manejo de operaciones asíncronas</li>
+          <li><strong>async/await</strong>: Sintaxis moderna para código asíncrono</li>
+          <li><strong>JSON</strong>: Formato estándar para intercambio de datos</li>
+          <li><strong>Manipulación del DOM</strong>: Actualizar la interfaz con los datos recibidos</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Explorar APIs más complejas que requieran autenticación, como la API de GitHub o Spotify.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Call to Action - Demo en Acción -->
+        <div class="card border-0 shadow-lg bg-primary text-white mb-4">
+          <div class="card-body p-4">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h4 class="mb-2"><i class="bi bi-play-circle-fill me-2"></i>Ver la Aplicación en Acción</h4>
+                <p class="mb-md-0 opacity-75">Prueba la aplicación y obtén imágenes aleatorias de gatos con cada clic.</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <a href="/TheCatsAPI/index.html" class="btn btn-light btn-lg">
+                  <i class="bi bi-box-arrow-up-right me-2"></i>Abrir Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Posts -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículos Relacionados</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/formulario-dom-javascript.html" class="text-decoration-none text-dark d-block mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Manipulando Formularios con JavaScript y el DOM</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos del DOM antes de consumir APIs</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+            <hr>
+            <a href="/blog/formulario-html-bootstrap.html" class="text-decoration-none text-dark d-block">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Creando tu Primer Formulario Web con HTML5 y Bootstrap 5</h6>
+                  <p class="text-muted mb-0 small">Los fundamentos de HTML y Bootstrap</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Colaboradores -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-people me-2"></i>Colaboradores</h5>
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <strong class="small">Evelyn V. Morocho P.</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <strong class="small">Sammy E. Rosero C.</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+               alt="Autor" class="rounded-circle me-2" width="40" height="40">
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Objetivo del Proyecto</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> ¿Qué es una API?</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> The Cat API</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Estructura HTML</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Fetch y Async/Await</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Entendiendo Promesas</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Manejo de Errores</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Opciones de Fetch</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conclusión</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">JavaScript</a>
+          <a href="#">API</a>
+          <a href="#">Fetch</a>
+          <a href="#">Async/Await</a>
+          <a href="#">Promesas</a>
+          <a href="#">JSON</a>
+        </div>
+      </div>
+
+      <!-- Key Concepts -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-key me-2"></i>Conceptos Clave</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>fetch()</code> - Peticiones HTTP</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>async/await</code> - Código asíncrono</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>.json()</code> - Parsear respuesta</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>Promise</code> - Operaciones asíncronas</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>try/catch</code> - Manejo de errores</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="https://thecatapi.com/" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>The Cat API
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Fetch API
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/Asynchronous/Promises" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Promesas
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/TheCatsAPI/index.html" class="text-decoration-none text-dark">
+              <i class="bi bi-code-slash me-2"></i>Ver código de la app
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- API Info Widget -->
+      <div class="sidebar-widget bg-dark text-white">
+        <h5 class="mb-3"><i class="bi bi-cloud me-2"></i>API Endpoint</h5>
+        <code class="text-warning d-block mb-2" style="font-size: 0.8rem; word-break: break-all;">
+          https://api.thecatapi.com/v1/images/search
+        </code>
+        <small class="text-muted">Devuelve una imagen aleatoria de gato en formato JSON</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2024 <a href="https://bvelastegui.dev" target="_blank" class="text-white">Bryan D. Velastegui L.</a> Todos los derechos reservados.</p>
+      <p class="mb-0 mt-2 small opacity-75">
+        <i class="bi bi-robot"></i> Desarrollado con asistencia de <a href="https://claude.ai" target="_blank" class="text-white">Claude AI</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

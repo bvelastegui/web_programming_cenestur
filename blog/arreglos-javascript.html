@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arreglos en JavaScript: Métodos y Operaciones CRUD - CENESTUR</title>
+  <meta name="description" content="Aprende a trabajar con arreglos en JavaScript: operaciones CRUD, métodos de iteración (forEach, map, filter) y métodos útiles (join, concat, slice)">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <style>
+      .hero-section {
+          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          color: white;
+          padding: 60px 0;
+          margin-bottom: 50px;
+      }
+
+      .cenestur-logo {
+          font-weight: 700;
+          background: linear-gradient(135deg, #1e3c72, #2a5298);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+
+      .footer {
+          background: #1e3c72;
+          color: white;
+          padding: 50px 0 20px;
+          margin-top: 80px;
+      }
+
+      .article-content h2 {
+          margin-top: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1e3c72;
+          border-bottom: 2px solid #2a5298;
+          padding-bottom: 0.5rem;
+      }
+
+      .article-content h3 {
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
+          color: #2a5298;
+      }
+
+      .article-content pre {
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+          border-radius: 8px;
+          padding: 1rem;
+          overflow-x: auto;
+      }
+
+      .article-content code {
+          color: #d63384;
+      }
+
+      .article-content pre code {
+          color: #212529;
+      }
+
+      .article-content table {
+          width: 100%;
+          margin: 1.5rem 0;
+      }
+
+      .article-content table th {
+          background: #1e3c72;
+          color: white;
+      }
+
+      .sidebar-widget {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          margin-bottom: 30px;
+      }
+
+      .tag-cloud a {
+          display: inline-block;
+          padding: 5px 15px;
+          margin: 5px;
+          background: #e9ecef;
+          border-radius: 20px;
+          color: #495057;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .tag-cloud a:hover {
+          background: #2a5298;
+          color: white;
+      }
+
+      .crud-card {
+          border-left: 4px solid;
+          margin-bottom: 1rem;
+      }
+
+      .crud-create { border-color: #198754; }
+      .crud-read { border-color: #0d6efd; }
+      .crud-update { border-color: #ffc107; }
+      .crud-delete { border-color: #dc3545; }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto">
+        <input class="form-control me-2" type="search" placeholder="Buscar...">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Arreglos JavaScript</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Arreglos en JavaScript: Métodos y Operaciones CRUD</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 19 de Diciembre, 2025</span>
+      <span><i class="bi bi-clock me-1"></i> 15 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">JavaScript</span>
+        <span class="badge bg-light text-dark">Arrays</span>
+        <span class="badge bg-light text-dark">CRUD</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          Los arreglos (arrays) son una de las estructuras de datos más fundamentales en JavaScript. En este artículo aprenderemos a realizar operaciones CRUD, utilizar métodos de iteración como <code>forEach</code>, <code>map</code> y <code>filter</code>, y explorar métodos útiles como <code>join</code>, <code>concat</code> y <code>slice</code>.
+        </p>
+
+        <hr class="my-4">
+
+        <h2><i class="bi bi-collection me-2"></i>¿Qué es un Arreglo?</h2>
+
+        <p>Un arreglo es una estructura de datos que permite almacenar múltiples valores en una sola variable. En JavaScript, los arreglos pueden contener cualquier tipo de dato: números, strings, objetos, e incluso otros arreglos.</p>
+
+        <pre><code>// Arreglo de números
+let numeros = [1, 2, 3, 4, 5];
+
+// Arreglo de strings
+let frutas = ["Banana", "Apple", "Uva"];
+
+// Longitud del arreglo
+console.log(frutas.length); // 3
+
+// Acceder a un elemento por índice (empieza en 0)
+console.log(frutas[0]); // "Banana"</code></pre>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Importante:</strong> Los índices de los arreglos en JavaScript comienzan en <code>0</code>, no en <code>1</code>. El primer elemento está en la posición <code>[0]</code>.
+        </div>
+
+        <h2><i class="bi bi-database me-2"></i>Operaciones CRUD</h2>
+
+        <p><strong>CRUD</strong> es un acrónimo que representa las cuatro operaciones básicas que podemos realizar con datos:</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card crud-card crud-create">
+              <div class="card-body py-2">
+                <strong class="text-success">C</strong>reate - Crear
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card crud-card crud-read">
+              <div class="card-body py-2">
+                <strong class="text-primary">R</strong>ead - Leer
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card crud-card crud-update">
+              <div class="card-body py-2">
+                <strong class="text-warning">U</strong>pdate - Actualizar
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card crud-card crud-delete">
+              <div class="card-body py-2">
+                <strong class="text-danger">D</strong>elete - Eliminar
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Create (Crear)</h3>
+
+        <p>Para agregar elementos a un arreglo usamos <code>push()</code> y <code>unshift()</code>:</p>
+
+        <pre><code>let frutas = ["mango", "Apple", "Uva"];
+
+// Agregar al final
+frutas.push("Banana");
+console.log(frutas); // ["mango", "Apple", "Uva", "Banana"]
+
+// Agregar al principio
+frutas.unshift("Pera");
+console.log(frutas); // ["Pera", "mango", "Apple", "Uva", "Banana"]</code></pre>
+
+        <h3>Read (Leer)</h3>
+
+        <p>Accedemos a los elementos usando su índice:</p>
+
+        <pre><code>console.log(frutas);    // Todo el arreglo
+console.log(frutas[0]); // Primer elemento: "Pera"
+console.log(frutas[2]); // Tercer elemento: "Apple"</code></pre>
+
+        <h3>Update (Actualizar)</h3>
+
+        <p>Modificamos elementos asignando un nuevo valor al índice:</p>
+
+        <pre><code>frutas[0] = "Mango";
+console.log(frutas); // ["Mango", "mango", "Apple", "Uva", "Banana"]</code></pre>
+
+        <h3>Delete (Eliminar)</h3>
+
+        <p>Usamos <code>pop()</code>, <code>shift()</code> o <code>splice()</code>:</p>
+
+        <pre><code>// Eliminar el último elemento
+frutas.pop();
+console.log(frutas); // ["Mango", "mango", "Apple", "Uva"]
+
+// Eliminar el primer elemento
+frutas.shift();
+console.log(frutas); // ["mango", "Apple", "Uva"]
+
+// Eliminar en una posición específica (índice 1, eliminar 1 elemento)
+frutas.splice(1, 1);
+console.log(frutas); // ["mango", "Uva"]
+
+// Agregar en una posición específica (índice 1, eliminar 0, agregar "Kiwi")
+frutas.splice(1, 0, "Kiwi");
+console.log(frutas); // ["mango", "Kiwi", "Uva"]</code></pre>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Acción</th>
+              <th>Posición</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>push()</code></td>
+              <td>Agregar</td>
+              <td>Final</td>
+            </tr>
+            <tr>
+              <td><code>unshift()</code></td>
+              <td>Agregar</td>
+              <td>Inicio</td>
+            </tr>
+            <tr>
+              <td><code>pop()</code></td>
+              <td>Eliminar</td>
+              <td>Final</td>
+            </tr>
+            <tr>
+              <td><code>shift()</code></td>
+              <td>Eliminar</td>
+              <td>Inicio</td>
+            </tr>
+            <tr>
+              <td><code>splice()</code></td>
+              <td>Agregar/Eliminar</td>
+              <td>Cualquiera</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-arrow-repeat me-2"></i>Métodos de Iteración</h2>
+
+        <h3>forEach()</h3>
+
+        <p>Permite iterar sobre cada elemento del arreglo. <strong>No modifica</strong> el arreglo original y <strong>no retorna</strong> un nuevo arreglo:</p>
+
+        <pre><code>let numeros = [7, 8, 9, 10, 25, 26, 30, 43];
+
+numeros.forEach(numero => {
+  console.log(numero);
+});
+// Imprime: 7, 8, 9, 10, 25, 26, 30, 43</code></pre>
+
+        <h3>map()</h3>
+
+        <p><strong>No modifica</strong> el arreglo original y <strong>retorna un nuevo arreglo</strong> con los resultados de aplicar una función a cada elemento:</p>
+
+        <pre><code>let numeros = [7, 8, 9, 10, 25, 26, 30, 43];
+
+// Agregar 12% a cada número
+let numerosConIVA = numeros.map(numero => numero + (numero * 0.12));
+
+console.log(numerosConIVA);
+// [7.84, 8.96, 10.08, 11.2, 28, 29.12, 33.6, 48.16]
+
+console.log(numeros);
+// [7, 8, 9, 10, 25, 26, 30, 43] - Sin cambios</code></pre>
+
+        <h3>filter()</h3>
+
+        <p><strong>No modifica</strong> el arreglo original y <strong>retorna un nuevo arreglo</strong> con los elementos que cumplan una condición:</p>
+
+        <pre><code>let numeros = [7, 8, 9, 10, 25, 26, 30, 43];
+
+// Forma tradicional con for
+for (let i = 0; i < numeros.length; i++) {
+  if (numeros[i] > 10) console.log(numeros[i]);
+}
+
+// Forma moderna con filter
+let mayoresA20 = numeros.filter(numero => numero > 20);
+
+console.log(mayoresA20);
+// [25, 26, 30, 43]</code></pre>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-lightbulb me-2"></i>
+          <strong>Diferencia clave:</strong> <code>forEach</code> es para ejecutar acciones, <code>map</code> es para transformar datos, y <code>filter</code> es para filtrar datos.
+        </div>
+
+        <h2><i class="bi bi-tools me-2"></i>Métodos Útiles Adicionales</h2>
+
+        <h3>join() - Unir elementos en un string</h3>
+
+        <p>Crea y retorna un nuevo string concatenando todos los elementos del arreglo, separados por un delimitador:</p>
+
+        <pre><code>const notas = [10, 8.90, 9.66, 6.5, 9.51, 7.8, 8];
+
+// Unir con separador personalizado
+console.log(notas.join(" | "));
+// "10 | 8.9 | 9.66 | 6.5 | 9.51 | 7.8 | 8"
+
+// Unir con coma (por defecto)
+console.log(notas.join());
+// "10,8.9,9.66,6.5,9.51,7.8,8"</code></pre>
+
+        <h3>concat() - Unir arreglos</h3>
+
+        <p>Une dos o más arreglos. <strong>No modifica</strong> los arreglos originales y <strong>retorna un nuevo arreglo</strong>:</p>
+
+        <pre><code>const notas = [10, 8.90, 9.66, 6.5, 9.51, 7.8, 8];
+const notasMat = [10, 8, 7.7, 9.2];
+const notasDes = [6.5, 8.76, 9.56, 10];
+
+// Unir múltiples arreglos
+const todasLasNotas = notas.concat(notasMat, notasDes);
+
+console.log(notas);
+// [10, 8.9, 9.66, 6.5, 9.51, 7.8, 8] - Sin cambios
+
+console.log(todasLasNotas);
+// [10, 8.9, 9.66, 6.5, 9.51, 7.8, 8, 10, 8, 7.7, 9.2, 6.5, 8.76, 9.56, 10]</code></pre>
+
+        <h3>slice() - Extraer una porción</h3>
+
+        <p>Crea una copia superficial de una porción del arreglo. <strong>No modifica</strong> el arreglo original:</p>
+
+        <pre><code>const notas = [10, 8.90, 9.66, 6.5, 9.51, 7.8, 8];
+//              0    1     2     3    4     5   6
+
+// Extraer desde índice 3 hasta 5 (no incluye el 5)
+const notasMed = notas.slice(3, 5);
+
+console.log(notas);
+// [10, 8.9, 9.66, 6.5, 9.51, 7.8, 8] - Sin cambios
+
+console.log(notasMed);
+// [6.5, 9.51]</code></pre>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Nota:</strong> El segundo parámetro de <code>slice(inicio, fin)</code> indica dónde termina la copia, pero ese elemento <strong>no se incluye</strong> en el resultado.
+        </div>
+
+        <h3>sort() - Ordenar elementos</h3>
+
+        <p>Ordena los elementos del arreglo. <strong>Modifica</strong> el arreglo original:</p>
+
+        <pre><code>const notas = [10, 8.90, 9.66, 6.5, 9.51, 7.8, 8];
+
+// Ordenar de mayor a menor
+const notasOrdenadas = notas.sort((a, b) => a < b ? 1 : -1);
+
+// Obtener la nota más alta
+const notaMasAlta = notasOrdenadas.at(0);
+console.log(notaMasAlta); // 10</code></pre>
+
+        <h2><i class="bi bi-journal-code me-2"></i>Trabajo Individual: CRUD de Calificaciones</h2>
+
+        <p>Como parte del trabajo individual, se implementó un sistema CRUD para gestionar calificaciones de estudiantes, aplicando los métodos aprendidos:</p>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title"><i class="bi bi-list-check me-2"></i>Requisitos del trabajo</h6>
+            <ul class="mb-0">
+              <li>Implementar un CRUD de calificaciones</li>
+              <li>Aplicar <code>filter</code> para notas mayores a 7</li>
+              <li>Buscar el promedio más alto</li>
+              <li>Si el estudiante tiene mayor a 9.5, incrementar a 10</li>
+              <li>Investigar y aplicar: <code>join</code>, <code>concat</code> y <code>slice</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <pre><code>const notas = [10, 8.90, 9.66, 6.5, 9.51, 7.8, 8];
+
+// CREATE - Agregar notas
+notas.push(9.55);      // Al final
+notas.unshift(7.77);   // Al principio
+
+// READ - Leer notas
+console.log(notas);    // Todo el arreglo
+console.log(notas[3]); // Elemento específico
+
+// UPDATE - Actualizar notas mayores a 9.5
+for (let i = 0; i < notas.length; i++) {
+  if (notas[i] > 9.5) {
+    notas[i] = 10;
+  }
+}
+
+// DELETE - Eliminar notas
+notas.pop();           // Última
+notas.shift();         // Primera
+notas.splice(2, 1);    // Posición específica
+
+// FILTER - Notas mayores a 7
+const notasAprobadas = notas.filter(nota => nota > 7);
+console.log(notasAprobadas);
+
+// SORT + AT - Encontrar la nota más alta
+const notaMasAlta = notas.sort((a, b) => a < b ? 1 : -1).at(0);
+console.log(notaMasAlta);</code></pre>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusión</h2>
+
+        <p>En este artículo aprendimos:</p>
+
+        <ul>
+          <li><strong>CRUD</strong>: Operaciones básicas con <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code> y <code>splice</code></li>
+          <li><strong>Iteración</strong>: <code>forEach</code> para ejecutar acciones, <code>map</code> para transformar, <code>filter</code> para filtrar</li>
+          <li><strong>Manipulación</strong>: <code>join</code> para convertir a string, <code>concat</code> para unir arreglos, <code>slice</code> para extraer porciones</li>
+          <li><strong>Ordenamiento</strong>: <code>sort</code> para ordenar y <code>at</code> para acceder por índice</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Explorar métodos más avanzados como <code>reduce</code>, <code>find</code>, <code>some</code>, <code>every</code> y <code>flatMap</code>.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Related Posts -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículos Relacionados</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/formulario-dom-javascript.html" class="text-decoration-none text-dark d-block mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Manipulando Formularios con JavaScript y el DOM</h6>
+                  <p class="text-muted mb-0 small">Aprende a manipular el DOM con JavaScript</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+            <hr>
+            <a href="/blog/the-cats-api.html" class="text-decoration-none text-dark d-block">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Consumiendo APIs con JavaScript</h6>
+                  <p class="text-muted mb-0 small">Usa fetch y async/await para consumir APIs</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Autor -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-person me-2"></i>Autor</h5>
+        <div class="d-flex align-items-center">
+          <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+               alt="Autor" class="rounded-circle me-2" width="40" height="40">
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong><br>
+            <small class="text-muted">Estudiante - CENESTUR</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> ¿Qué es un Arreglo?</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Operaciones CRUD</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Métodos de Iteración</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Métodos Adicionales</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Trabajo Individual</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conclusión</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">JavaScript</a>
+          <a href="#">Arrays</a>
+          <a href="#">CRUD</a>
+          <a href="#">forEach</a>
+          <a href="#">map</a>
+          <a href="#">filter</a>
+        </div>
+      </div>
+
+      <!-- Key Methods -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-key me-2"></i>Métodos Clave</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-plus-circle text-success me-2 mt-1"></i>
+            <span><code>push()</code> / <code>unshift()</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-dash-circle text-danger me-2 mt-1"></i>
+            <span><code>pop()</code> / <code>shift()</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-arrow-repeat text-primary me-2 mt-1"></i>
+            <span><code>forEach()</code> / <code>map()</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-funnel text-warning me-2 mt-1"></i>
+            <span><code>filter()</code> / <code>find()</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-scissors text-info me-2 mt-1"></i>
+            <span><code>slice()</code> / <code>splice()</code></span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Array
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Array.map()
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Array.filter()
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2024 <a href="https://bvelastegui.dev" target="_blank" class="text-white">Bryan D. Velastegui L.</a> Todos los derechos reservados.</p>
+      <p class="mb-0 mt-2 small opacity-75">
+        <i class="bi bi-robot"></i> Desarrollado con asistencia de <a href="https://claude.ai" target="_blank" class="text-white">Claude AI</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
