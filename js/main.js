@@ -91,7 +91,7 @@ function loadMoreArticles () {
       row.classList.add('row')
       rowArticles.forEach(article => {
         const col = document.createElement('div')
-        col.classList.add('col-6')
+        col.classList.add('col-md-6')
         const card = document.importNode(cardTemplate.content, true)
         card.querySelector('.card-title').innerText = article.title
         card.querySelector('.card-img-top').src = article.image_path

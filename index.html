@@ -9,12 +9,19 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
   <link rel="manifest" href="/images/favico/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <!-- Custom CSS -->
   <style>
+      :root {
+        --bs-font-sans-serif: "Ubuntu Sans", sans-serif;
+      }
+
       .bg-gradient {
           background: rgba(var(--bs-secondary-rgb), 20%)!important;
       }
@@ -35,11 +42,6 @@
           width: 100%;
           height: 260px;
           object-fit: contain;
-      }
-
-      .blog-post-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
       .category-badge {
@@ -88,7 +90,7 @@
       .footer {
           background: #1e3c72;
           color: white;
-          padding: 50px 0 20px;
+          padding: 20px 0;
           margin-top: 80px;
       }
 
@@ -103,7 +105,7 @@
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-body shadow-sm sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-body shadow-sm sticky-top">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">
       <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
@@ -112,7 +114,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <form class="d-flex ms-auto" id="search-form">
+      <form class="d-flex ms-auto mt-2 mt-md-0" id="search-form">
         <input class="form-control me-2" type="search" placeholder="Buscar artículos..." id="search-input">
         <button class="btn btn-outline-primary" type="submit">
           <i class="bi bi-search"></i>
@@ -131,7 +133,7 @@
 </section>
 
 <template id="blog-post-card">
-  <div class="card blog-post-card border-0 shadow-sm h-100">
+  <div class="card blog-post-card border">
     <img src="https://picsum.photos/400/250?random=11" class="card-img-top" alt="Visualización con Plotly">
     <div class="card-body">
       <div class="post-tags mb-2">
@@ -156,7 +158,7 @@
       <h2 class="mb-4">📚 Últimos Artículos</h2>
 
       <!-- Featured Post -->
-      <div class="card blog-post-card border-0 shadow-sm placeholder-glow" id="last-post">
+      <div class="card blog-post-card border placeholder-glow" id="last-post">
         <div class="position-relative">
           <span class="badge bg-danger category-badge">Reciente</span>
           <img src="" height="100" class="card-img-top d-none bg-gradient" alt="">
@@ -166,11 +168,11 @@
           <h3 class="card-title">
             <span class="placeholder col-10"></span>
           </h3>
-          <div class="text-muted d-flex align-items-center mb-3" style="gap: 0.5rem;">
+          <div class="text-muted d-flex flex-wrap align-items-center mb-3" style="gap: 0.5rem;">
             <span class="post-publish-date" style="white-space: nowrap">
               <span class="placeholder col-12"></span>
             </span>
-            <div class="post-tags w-100 d-flex align-items-center" style="gap: 0.5rem;">
+            <div class="post-tags d-inline-flex align-items-center" style="gap: 0.5rem;">
               <span class="placeholder col-1"></span>
               <span class="placeholder col-1"></span>
             </div>
@@ -348,12 +350,7 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <div class="text-center">
-      <p class="mb-0">&copy; 2024 <a href="https://bvelastegui.dev" target="_blank" class="text-white">Bryan D. Velastegui L.</a> Todos los derechos reservados.</p>
-      <p class="mb-0 mt-2 small opacity-75">
-        <i class="bi bi-robot"></i> Desarrollado con asistencia de <a href="https://claude.ai" target="_blank" class="text-white">Claude AI</a>
-      </p>
-    </div>
+    <p class="mb-0 text-center">&copy; 2025 <a href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0">Bryan Velastegui.</a> All rights reserved.</p>
   </div>
 </footer>
 
