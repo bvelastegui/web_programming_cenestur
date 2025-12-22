@@ -81,7 +81,7 @@ export default function useArticles () {
   }
 
   function getTags () {
-    const carry = [];
+    const carry = []
     articles.forEach((article) => {
       article.tags.forEach(tag => {
         if (!carry.includes(tag)) {
@@ -90,12 +90,16 @@ export default function useArticles () {
       })
     })
 
-    return carry;
+    return carry
   }
 
   function getPaginated (limit = 5, offset = 0) {
     return articles.sort((a, b) => a.publish_date < b.publish_date ? 1 : -1).
-      slice(offset, limit)
+      slice(offset, offset + limit)
+  }
+
+  function getTotalCount () {
+    return articles.length
   }
 
   function getModules () {
@@ -119,5 +123,6 @@ export default function useArticles () {
     getModules,
     getPaginated,
     getLatestArticle,
+    getTotalCount,
   }
 };
