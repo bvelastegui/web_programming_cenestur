@@ -1,5 +1,6 @@
 import useArticles from '/data/articles.js?v=20251221'
 import { chunks } from '/js/helpers.js'
+import { performSearch } from '/js/search.js'
 
 const { getPaginated, getModules, getTags, getTotalCount } = useArticles()
 
@@ -129,10 +130,16 @@ function loadTags () {
   const tags = getTags()
 
   const globalTagList = document.getElementById('global-tags-list')
+  if (!globalTagList) return
+
   tags.forEach(tag => {
     const tagEl = document.createElement('a')
     tagEl.href = '#'
     tagEl.innerText = tag
+    tagEl.addEventListener('click', (e) => {
+      e.preventDefault()
+      performSearch(tag)
+    })
     globalTagList.appendChild(tagEl)
   })
 }
@@ -140,6 +147,6 @@ function loadTags () {
 document.addEventListener('DOMContentLoaded', () => {
   loadLastArticle()
   loadMoreArticles() // Carga inicial de artículos
-  setupInfiniteScroll()
   loadTags()
+  setupInfiniteScroll()
 })

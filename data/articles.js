@@ -116,6 +116,23 @@ export default function useArticles () {
     return articles.pop()
   }
 
+  function search (query) {
+    if (!query || query.trim() === '') {
+      return []
+    }
+
+    const normalizedQuery = query.toLowerCase().trim()
+
+    return articles.filter(article => {
+      const titleMatch = article.title.toLowerCase().includes(normalizedQuery)
+      const resumeMatch = article.resume.toLowerCase().includes(normalizedQuery)
+      const tagsMatch = article.tags.some(tag => tag.toLowerCase().includes(normalizedQuery))
+      const moduleMatch = article.module.toLowerCase().includes(normalizedQuery)
+
+      return titleMatch || resumeMatch || tagsMatch || moduleMatch
+    })
+  }
+
   return {
     getByTag,
     getByModule,
@@ -124,5 +141,6 @@ export default function useArticles () {
     getPaginated,
     getLatestArticle,
     getTotalCount,
+    search,
   }
 };
