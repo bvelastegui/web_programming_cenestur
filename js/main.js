@@ -1,7 +1,15 @@
 import useArticles from '/data/articles.js?v=20251221'
 import { chunks } from '/js/helpers.js'
 
-const { getPaginated, getModules, getTags } = useArticles()
+const { getPaginated, getModules, getTags, getTotalCount } = useArticles()
+
+// Estado del scroll infinito
+const infiniteScrollState = {
+  currentOffset: 1, // Empezamos en 1 porque el primer artículo se muestra como destacado
+  perPage: 4,
+  isLoading: false,
+  hasMore: true
+}
 
 function loadModules () {
   const modules = getModules()
@@ -49,38 +57,72 @@ ${lastArticle.publish_date.toDateString()}
   postLink.href = lastArticle.path
 }
 
-function loadPaginatedArticles (page = 1, perPage = 6) {
-  const offset = (page - 1) * perPage
-  const latestArticles = getPaginated(perPage, offset)
+function loadMoreArticles () {
+  if (infiniteScrollState.isLoading || !infiniteScrollState.hasMore) return
 
-  const postGridContainer = document.getElementById('post-grid')
-  const cardTemplate = document.getElementById('blog-post-card')
+  infiniteScrollState.isLoading = true
+  const loadingIndicator = document.getElementById('loading-indicator')
+  loadingIndicator.classList.remove('d-none')
 
-  const rows = chunks(latestArticles, 2)
-  rows.forEach(articles => {
-    const row = document.createElement('div')
-    row.classList.add('row')
-    articles.forEach(article => {
-      const col = document.createElement('div')
-      col.classList.add('col-6')
-      const card = document.importNode(cardTemplate.content, true)
-      card.querySelector('.card-title').innerText = article.title
-      card.querySelector('.card-img-top').src = article.image_path
-      card.querySelector(
-        '.post-publish-date').innerHTML = `<i class="bi bi-calendar3 me-1"></i>${article.publish_date.toDateString()}`
-      card.querySelector('.post-resume').innerText = article.resume
-      card.querySelector('.post-link').href = article.path
-      const tagsRender = []
-      article.tags.forEach(tag => {
-        tagsRender.push(`<span class="badge bg-success me-1">${tag}</span>`)
+  // Simulamos un pequeño delay para mostrar el loading
+  setTimeout(() => {
+    const articles = getPaginated(infiniteScrollState.perPage, infiniteScrollState.currentOffset)
+
+    if (articles.length === 0) {
+      infiniteScrollState.hasMore = false
+      loadingIndicator.classList.add('d-none')
+      infiniteScrollState.isLoading = false
+      return
+    }
+
+    const postGridContainer = document.getElementById('post-grid')
+    const cardTemplate = document.getElementById('blog-post-card')
+
+    const rows = chunks(articles, 2)
+    rows.forEach(rowArticles => {
+      const row = document.createElement('div')
+      row.classList.add('row')
+      rowArticles.forEach(article => {
+        const col = document.createElement('div')
+        col.classList.add('col-6')
+        const card = document.importNode(cardTemplate.content, true)
+        card.querySelector('.card-title').innerText = article.title
+        card.querySelector('.card-img-top').src = article.image_path
+        card.querySelector(
+          '.post-publish-date').innerHTML = `<i class="bi bi-calendar3 me-1"></i>${article.publish_date.toDateString()}`
+        card.querySelector('.post-resume').innerText = article.resume
+        card.querySelector('.post-link').href = article.path
+        const tagsRender = []
+        article.tags.forEach(tag => {
+          tagsRender.push(`<span class="badge bg-success me-1">${tag}</span>`)
+        })
+        card.querySelector('.post-tags').innerHTML = tagsRender.join('')
+        col.appendChild(card)
+        row.appendChild(col)
       })
-      card.querySelector('.post-tags').innerHTML = tagsRender.join('')
-      col.appendChild(card)
-      row.appendChild(col)
+      postGridContainer.appendChild(row)
     })
-    postGridContainer.appendChild(row)
-  })
 
+    infiniteScrollState.currentOffset += articles.length
+    infiniteScrollState.isLoading = false
+    loadingIndicator.classList.add('d-none')
+
+    // Verificar si hay más artículos (restamos 1 por el artículo destacado)
+    if (infiniteScrollState.currentOffset >= getTotalCount()) {
+      infiniteScrollState.hasMore = false
+    }
+  }, 300)
+}
+
+function setupInfiniteScroll () {
+  window.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+
+    // Cargar más cuando estemos cerca del final (100px antes)
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      loadMoreArticles()
+    }
+  })
 }
 
 function loadTags () {
@@ -97,6 +139,7 @@ function loadTags () {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadLastArticle()
-  loadPaginatedArticles()
+  loadMoreArticles() // Carga inicial de artículos
+  setupInfiniteScroll()
   loadTags()
 })
