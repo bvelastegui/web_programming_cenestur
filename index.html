@@ -92,14 +92,6 @@
           margin-top: 80px;
       }
 
-      .newsletter-form .form-control {
-          border-radius: 20px 0 0 20px;
-      }
-
-      .newsletter-form .btn {
-          border-radius: 0 20px 20px 0;
-      }
-
       .cenestur-logo {
           font-weight: 700;
           background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -221,131 +213,133 @@
 
     <!-- Sidebar -->
     <div class="col-lg-4">
-      <!-- About Widget -->
-      <div class="sidebar-widget">
-        <h4 class="mb-3"><i class="bi bi-info-circle"></i> Sobre la Materia</h4>
-        <img src="https://picsum.photos/350/200?random=20" alt="CENESTUR" class="img-fluid rounded mb-3">
-        <p>Este curso combina desarrollo web con ciencia de datos, preparándote para crear aplicaciones modernas que
-          procesan, analizan y visualizan información.</p>
-        <p class="small"><strong>Duración:</strong> 4 meses<br>
-          <strong>Modalidad:</strong> Presencial/Virtual<br>
-          <strong>Nivel:</strong> Intermedio</p>
-        <a href="#" class="btn btn-outline-primary btn-sm">Ver Syllabus →</a>
-      </div>
+      <div class="position-sticky" style="top: 5rem;">
+        <!-- About Widget -->
+        <!--<div class="sidebar-widget">
+          <h4 class="mb-3"><i class="bi bi-info-circle"></i> Sobre la Materia</h4>
+          <img src="https://picsum.photos/350/200?random=20" alt="CENESTUR" class="img-fluid rounded mb-3">
+          <p>Este curso combina desarrollo web con ciencia de datos, preparándote para crear aplicaciones modernas que
+            procesan, analizan y visualizan información.</p>
+          <p class="small"><strong>Duración:</strong> 4 meses<br>
+            <strong>Modalidad:</strong> Presencial/Virtual<br>
+            <strong>Nivel:</strong> Intermedio</p>
+          <a href="#" class="btn btn-outline-primary btn-sm">Ver Syllabus →</a>
+        </div>-->
 
-      <!-- Resources Widget -->
-      <!--<div class="sidebar-widget" id="recursos">
-        <h4 class="mb-3"><i class="bi bi-download"></i> Recursos de Clase</h4>
-        <ul class="list-unstyled">
-          <li class="mb-2">
-            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-file-pdf text-danger"></i> Guía Python Básico</span>
-              <small class="badge bg-secondary">PDF</small>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-file-code text-primary"></i> Notebooks Jupyter</span>
-              <small class="badge bg-secondary">ZIP</small>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-github"></i> Repositorio de Ejemplos</span>
-              <small class="badge bg-secondary">GitHub</small>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
-              <span><i class="bi bi-play-circle text-success"></i> Videos Tutoriales</span>
-              <small class="badge bg-secondary">YouTube</small>
-            </a>
-          </li>
-        </ul>
-      </div>-->
+        <!-- Resources Widget -->
+        <!--<div class="sidebar-widget" id="recursos">
+          <h4 class="mb-3"><i class="bi bi-download"></i> Recursos de Clase</h4>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-file-pdf text-danger"></i> Guía Python Básico</span>
+                <small class="badge bg-secondary">PDF</small>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-file-code text-primary"></i> Notebooks Jupyter</span>
+                <small class="badge bg-secondary">ZIP</small>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-github"></i> Repositorio de Ejemplos</span>
+                <small class="badge bg-secondary">GitHub</small>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-play-circle text-success"></i> Videos Tutoriales</span>
+                <small class="badge bg-secondary">YouTube</small>
+              </a>
+            </li>
+          </ul>
+        </div>-->
 
-      <!-- Technologies Widget -->
-      <div class="sidebar-widget">
-        <h4 class="mb-3"><i class="bi bi-tools"></i> Tecnologías del Curso</h4>
-        <div class="row g-2 text-center">
-          <div class="col-4">
-            <div class="p-2 bg-white rounded shadow-sm">
-              <i class="bi bi-filetype-py fs-4 text-primary"></i>
-              <small class="d-block">Python</small>
+        <!-- Technologies Widget -->
+        <div class="sidebar-widget">
+          <h4 class="mb-3"><i class="bi bi-tools"></i> Tecnologías del Curso</h4>
+          <div class="row g-2 text-center">
+            <div class="col-4">
+              <div class="p-2 bg-white rounded shadow-sm">
+                <i class="bi bi-filetype-js fs-4 text-warning"></i>
+                <small class="d-block">JavaScript</small>
+              </div>
             </div>
-          </div>
-          <div class="col-4">
-            <div class="p-2 bg-white rounded shadow-sm">
-              <i class="bi bi-filetype-js fs-4 text-warning"></i>
-              <small class="d-block">JavaScript</small>
+            <div class="col-4">
+              <div class="p-2 bg-white rounded shadow-sm">
+                <i class="bi bi-filetype-html fs-4 text-danger"></i>
+                <small class="d-block">HTML5</small>
+              </div>
             </div>
-          </div>
-          <div class="col-4">
-            <div class="p-2 bg-white rounded shadow-sm">
-              <i class="bi bi-filetype-html fs-4 text-danger"></i>
-              <small class="d-block">HTML5</small>
+            <div class="col-4">
+              <div class="p-2 bg-white rounded shadow-sm">
+                <i class="bi bi-filetype-css fs-4 text-info"></i>
+                <small class="d-block">CSS3</small>
+              </div>
             </div>
-          </div>
-          <div class="col-4">
-            <div class="p-2 bg-white rounded shadow-sm">
-              <i class="bi bi-filetype-css fs-4 text-info"></i>
-              <small class="d-block">CSS3</small>
+            <div class="col-4">
+              <div class="p-2 bg-white rounded shadow-sm">
+                <i class="bi bi-filetype-json fs-4 text-success"></i>
+                <small class="d-block">API's</small>
+              </div>
             </div>
-          </div>
-          <div class="col-4">
-            <div class="p-2 bg-white rounded shadow-sm">
-              <i class="bi bi-database fs-4 text-success"></i>
-              <small class="d-block">SQL</small>
+            <div class="col-4">
+              <div class="p-2 bg-white rounded shadow-sm">
+                <i class="bi bi-git fs-4 text-dark"></i>
+                <small class="d-block">Git</small>
+              </div>
             </div>
-          </div>
-          <div class="col-4">
-            <div class="p-2 bg-white rounded shadow-sm">
-              <i class="bi bi-git fs-4 text-dark"></i>
-              <small class="d-block">Git</small>
+            <div class="col-4">
+              <div class="p-2 bg-white rounded shadow-sm">
+                <i class="bi bi-filetype-py fs-4 text-primary"></i>
+                <small class="d-block">Python</small>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Popular Topics Widget -->
-      <!--<div class="sidebar-widget">
-        <h4 class="mb-3"><i class="bi bi-star"></i> Temas Populares</h4>
-        <div class="d-flex mb-3">
-          <img
-            src="https://picsum.photos/80/80?random=21" alt="Pandas" class="rounded me-3"
-            style="width: 80px; height: 80px; object-fit: cover;"
-          >
-          <div>
-            <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Análisis de Datos con Pandas</a></h6>
-            <small class="text-muted">2,456 vistas</small>
+        <!-- Popular Topics Widget -->
+        <!--<div class="sidebar-widget">
+          <h4 class="mb-3"><i class="bi bi-star"></i> Temas Populares</h4>
+          <div class="d-flex mb-3">
+            <img
+              src="https://picsum.photos/80/80?random=21" alt="Pandas" class="rounded me-3"
+              style="width: 80px; height: 80px; object-fit: cover;"
+            >
+            <div>
+              <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Análisis de Datos con Pandas</a></h6>
+              <small class="text-muted">2,456 vistas</small>
+            </div>
           </div>
-        </div>
-        <div class="d-flex mb-3">
-          <img
-            src="https://picsum.photos/80/80?random=22" alt="API" class="rounded me-3"
-            style="width: 80px; height: 80px; object-fit: cover;"
-          >
-          <div>
-            <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Creando tu Primera API REST</a></h6>
-            <small class="text-muted">1,892 vistas</small>
+          <div class="d-flex mb-3">
+            <img
+              src="https://picsum.photos/80/80?random=22" alt="API" class="rounded me-3"
+              style="width: 80px; height: 80px; object-fit: cover;"
+            >
+            <div>
+              <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Creando tu Primera API REST</a></h6>
+              <small class="text-muted">1,892 vistas</small>
+            </div>
           </div>
-        </div>
-        <div class="d-flex">
-          <img
-            src="https://picsum.photos/80/80?random=23" alt="Visualización" class="rounded me-3"
-            style="width: 80px; height: 80px; object-fit: cover;"
-          >
-          <div>
-            <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Visualización con Chart.js</a></h6>
-            <small class="text-muted">1,654 vistas</small>
+          <div class="d-flex">
+            <img
+              src="https://picsum.photos/80/80?random=23" alt="Visualización" class="rounded me-3"
+              style="width: 80px; height: 80px; object-fit: cover;"
+            >
+            <div>
+              <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Visualización con Chart.js</a></h6>
+              <small class="text-muted">1,654 vistas</small>
+            </div>
           </div>
-        </div>
-      </div>-->
+        </div>-->
 
-      <!-- Tags Widget -->
-      <div class="sidebar-widget">
-        <h4 class="mb-3"><i class="bi bi-tags"></i> Etiquetas</h4>
-        <div class="tag-cloud" id="global-tags-list"></div>
+        <!-- Tags Widget -->
+        <div class="sidebar-widget">
+          <h4 class="mb-3"><i class="bi bi-tags"></i> Etiquetas</h4>
+          <div class="tag-cloud" id="global-tags-list"></div>
+        </div>
       </div>
     </div>
   </div>

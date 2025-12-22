@@ -9,7 +9,10 @@ const infiniteScrollState = {
   currentOffset: 1, // Empezamos en 1 porque el primer artículo se muestra como destacado
   perPage: 4,
   isLoading: false,
-  hasMore: true
+  hasMore: true,
+}
+const formatDate = (date) => {
+  return Intl.DateTimeFormat('es-ES', { dateStyle: 'full' }).format(date)
 }
 
 function loadModules () {
@@ -39,7 +42,7 @@ function loadLastArticle () {
   const publishDate = document.querySelector('#last-post .post-publish-date')
   publishDate.innerHTML = `
 <i class="bi bi-calendar3 me-1"></i>
-${lastArticle.publish_date.toDateString()}
+${formatDate(lastArticle.publish_date)}
 `
 
   const tagList = document.querySelector('#last-post .post-tags')
@@ -67,7 +70,10 @@ function loadMoreArticles () {
 
   // Simulamos un pequeño delay para mostrar el loading
   setTimeout(() => {
-    const articles = getPaginated(infiniteScrollState.perPage, infiniteScrollState.currentOffset)
+    const articles = getPaginated(
+      infiniteScrollState.perPage,
+      infiniteScrollState.currentOffset,
+    )
 
     if (articles.length === 0) {
       infiniteScrollState.hasMore = false
@@ -89,8 +95,10 @@ function loadMoreArticles () {
         const card = document.importNode(cardTemplate.content, true)
         card.querySelector('.card-title').innerText = article.title
         card.querySelector('.card-img-top').src = article.image_path
-        card.querySelector(
-          '.post-publish-date').innerHTML = `<i class="bi bi-calendar3 me-1"></i>${article.publish_date.toDateString()}`
+        card.querySelector('.post-publish-date').innerHTML = `
+<i class="bi bi-calendar3 me-1"></i>
+${formatDate(article.publish_date)}
+`
         card.querySelector('.post-resume').innerText = article.resume
         card.querySelector('.post-link').href = article.path
         const tagsRender = []

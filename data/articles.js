@@ -16,7 +16,7 @@
 const articles = [
   {
     path: '/blog/arreglos-javascript.html',
-    publish_date: new Date(2025, 12, 19),
+    publish_date: new Date("2025-12-19T00:00"),
     title: 'Arreglos en JavaScript: Métodos y Operaciones CRUD',
     module: 'Unidad 1',
     resume: 'Los arreglos son una de las estructuras de datos más fundamentales en JavaScript. Aprende operaciones CRUD, métodos de iteración (forEach, map, filter) y métodos útiles como join, concat y slice.',
@@ -29,7 +29,7 @@ const articles = [
   },
   {
     path: '/blog/the-cats-api.html',
-    publish_date: new Date(2025, 12, 15),
+    publish_date: new Date("2025-12-15T00:00"),
     title: 'Consumiendo APIs con JavaScript: The Cat API',
     module: 'Unidad 1',
     resume: 'Una de las habilidades más importantes en el desarrollo web moderno es saber consumir APIs externas. En este artículo aprenderemos a usar fetch y async/await para obtener imágenes aleatorias de gatos desde The Cat API.',
@@ -43,7 +43,7 @@ const articles = [
   },
   {
     path: '/blog/formulario-dom-javascript.html',
-    publish_date: new Date(2025, 12, 14),
+    publish_date: new Date("2025-12-14T00:00"),
     title: 'Manipulando Formularios con JavaScript y el DOM',
     module: 'Unidad 1',
     resume: 'Después de aprender a crear formularios con HTML y Bootstrap, el siguiente paso es darles vida con JavaScript. En este artículo aprenderemos a manipular el DOM para crear un formulario de operaciones matemáticas completamente interactivo.',
@@ -57,7 +57,7 @@ const articles = [
   },
   {
     path: '/blog/formulario-html-bootstrap.html',
-    publish_date: new Date(2025, 12, 13),
+    publish_date: new Date("2025-12-13T00:00"),
     title: 'Creando tu Primer Formulario Web con HTML5 y Bootstrap 5',
     module: 'Unidad 1',
     resume: 'Cuando empezamos en el mundo del desarrollo web, uno de los primeros retos que enfrentamos es crear formularios funcionales y visualmente atractivos. En este artículo, analizaremos paso a paso cómo construir un formulario de operaciones matemáticas utilizando HTML5 y Bootstrap 5.',
