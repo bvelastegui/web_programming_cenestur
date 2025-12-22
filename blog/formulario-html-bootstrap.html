@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creando tu Primer Formulario Web con HTML5 y Bootstrap 5 - CENESTUR</title>
+  <meta name="description" content="Aprende a crear formularios funcionales y visualmente atractivos utilizando HTML5 y Bootstrap 5">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <style>
+      .hero-section {
+          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          color: white;
+          padding: 60px 0;
+          margin-bottom: 50px;
+      }
+
+      .cenestur-logo {
+          font-weight: 700;
+          background: linear-gradient(135deg, #1e3c72, #2a5298);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+
+      .footer {
+          background: #1e3c72;
+          color: white;
+          padding: 50px 0 20px;
+          margin-top: 80px;
+      }
+
+      .article-content h2 {
+          margin-top: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1e3c72;
+          border-bottom: 2px solid #2a5298;
+          padding-bottom: 0.5rem;
+      }
+
+      .article-content h3 {
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
+          color: #2a5298;
+      }
+
+      .article-content pre {
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+          border-radius: 8px;
+          padding: 1rem;
+          overflow-x: auto;
+      }
+
+      .article-content code {
+          color: #d63384;
+      }
+
+      .article-content pre code {
+          color: #212529;
+      }
+
+      .article-content table {
+          width: 100%;
+          margin: 1.5rem 0;
+      }
+
+      .article-content table th {
+          background: #1e3c72;
+          color: white;
+      }
+
+      .sidebar-widget {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          margin-bottom: 30px;
+      }
+
+      .tag-cloud a {
+          display: inline-block;
+          padding: 5px 15px;
+          margin: 5px;
+          background: #e9ecef;
+          border-radius: 20px;
+          color: #495057;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .tag-cloud a:hover {
+          background: #2a5298;
+          color: white;
+      }
+
+      .author-card {
+          border-left: 4px solid #2a5298;
+      }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto">
+        <input class="form-control me-2" type="search" placeholder="Buscar...">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Blog</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Formularios HTML5</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Creando tu Primer Formulario Web con HTML5 y Bootstrap 5</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 13 de Diciembre, 2025</span>
+      <span><i class="bi bi-clock me-1"></i> 8 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">HTML</span>
+        <span class="badge bg-light text-dark">CSS</span>
+        <span class="badge bg-light text-dark">Bootstrap</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          Cuando empezamos en el mundo del desarrollo web, uno de los primeros retos que enfrentamos es crear formularios funcionales y visualmente atractivos. En este artículo, analizaremos paso a paso cómo construir un formulario de operaciones matemáticas utilizando HTML5 y Bootstrap 5.
+        </p>
+
+        <!-- Banner destacado -->
+        <div class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4" role="alert">
+          <div>
+            <i class="bi bi-rocket-takeoff me-2 fs-5"></i>
+            <strong>¿Quieres ver el resultado final?</strong> Prueba el formulario funcionando ahora mismo.
+          </div>
+          <a href="/FormularioHTML/index.html" class="btn btn-primary btn-sm" target="_blank">
+            <i class="bi bi-play-fill me-1"></i>Ver Demo
+          </a>
+        </div>
+
+        <hr class="my-4">
+
+        <h2><i class="bi bi-file-code me-2"></i>La Base de Todo: Estructura HTML5</h2>
+
+        <p>Todo documento HTML5 comienza con una estructura fundamental que define cómo el navegador interpretará nuestro contenido:</p>
+
+        <pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;Formulario HTML | Programación Web&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Contenido aquí --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <p>Los <strong>meta tags</strong> son fundamentales:</p>
+        <ul>
+          <li><code>charset="utf-8"</code> nos permite usar caracteres especiales como tildes y la ñ</li>
+          <li><code>viewport</code> asegura que nuestra página se vea correctamente en dispositivos móviles</li>
+        </ul>
+
+        <h2><i class="bi bi-bootstrap me-2"></i>Integrando Bootstrap 5: Estilos sin Complicaciones</h2>
+
+        <p>En lugar de escribir cientos de líneas de CSS, Bootstrap nos ofrece estilos predefinidos. Lo integramos mediante un CDN:</p>
+
+        <pre><code>&lt;link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+  crossorigin="anonymous"
+/&gt;</code></pre>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Seguridad:</strong> El atributo <code>integrity</code> es una medida de seguridad llamada <strong>SRI (Subresource Integrity)</strong> que verifica que el archivo no haya sido modificado maliciosamente.
+        </div>
+
+        <h2><i class="bi bi-diagram-3 me-2"></i>Etiquetas Semánticas: Código con Significado</h2>
+
+        <p>HTML5 introdujo etiquetas que describen el propósito de cada sección:</p>
+
+        <pre><code>&lt;body class="container"&gt;
+  &lt;header&gt;
+    &lt;!-- Encabezado con logo y navegación --&gt;
+  &lt;/header&gt;
+
+  &lt;nav&gt;
+    &lt;!-- Menú de navegación --&gt;
+  &lt;/nav&gt;
+
+  &lt;main&gt;
+    &lt;!-- Contenido principal --&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+
+        <p>Estas etiquetas no solo organizan mejor nuestro código, sino que mejoran la <strong>accesibilidad</strong> para lectores de pantalla y el <strong>SEO</strong> de nuestra página.</p>
+
+        <h2><i class="bi bi-grid me-2"></i>El Sistema de Clases de Bootstrap</h2>
+
+        <p>Bootstrap funciona mediante clases CSS predefinidas. Veamos las más utilizadas en nuestro formulario:</p>
+
+        <h3>Contenedores y Espaciado</h3>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>Función</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>container</code></td>
+              <td>Centra el contenido con márgenes automáticos</td>
+            </tr>
+            <tr>
+              <td><code>py-3</code></td>
+              <td>Padding vertical (arriba y abajo)</td>
+            </tr>
+            <tr>
+              <td><code>mb-3</code></td>
+              <td>Margen inferior</td>
+            </tr>
+            <tr>
+              <td><code>px-1</code></td>
+              <td>Padding horizontal</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Flexbox Simplificado</h3>
+
+        <pre><code>&lt;div class="d-flex justify-content-between align-items-center"&gt;</code></pre>
+
+        <p>Con solo tres clases activamos Flexbox, distribuimos los elementos en los extremos y los alineamos verticalmente al centro.</p>
+
+        <h3>Componente Card</h3>
+
+        <p>Bootstrap nos ofrece el componente <strong>Card</strong> para agrupar contenido de forma elegante:</p>
+
+        <pre><code>&lt;form class="card"&gt;
+  &lt;div class="card-header"&gt;Título&lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;!-- Campos del formulario --&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn btn-primary"&gt;Enviar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+
+        <h2><i class="bi bi-ui-checks me-2"></i>Construyendo el Formulario</h2>
+
+        <p>Un formulario accesible requiere vincular cada <code>&lt;label&gt;</code> con su <code>&lt;input&gt;</code> correspondiente:</p>
+
+        <pre><code>&lt;div class="mb-3"&gt;
+  &lt;label class="form-label" for="numero1"&gt;Número 1&lt;/label&gt;
+  &lt;input
+    class="form-control"
+    type="text"
+    id="numero1"
+    name="numero1"
+  /&gt;
+&lt;/div&gt;</code></pre>
+
+        <p>El atributo <code>for</code> del label debe coincidir con el <code>id</code> del input. Esto permite que al hacer clic en el texto "Número 1", el cursor se posicione automáticamente en el campo correspondiente.</p>
+
+        <h2><i class="bi bi-folder-symlink me-2"></i>Navegación con Pestañas</h2>
+
+        <p>Para navegar entre diferentes páginas, utilizamos el componente <strong>Nav Tabs</strong>:</p>
+
+        <pre><code>&lt;nav class="nav nav-tabs"&gt;
+  &lt;a href="/FormularioHTML/index.html" class="nav-item nav-link active"&gt;
+    Formulario HTML
+  &lt;/a&gt;
+  &lt;a href="/FormularioDOM/index.html" class="nav-item nav-link"&gt;
+    Formulario DOM
+  &lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+
+        <p>La clase <code>active</code> indica visualmente en qué página nos encontramos actualmente.</p>
+
+        <h2><i class="bi bi-image me-2"></i>Iconos SVG: Gráficos Escalables</h2>
+
+        <p>En lugar de usar imágenes tradicionales para los iconos, el código utiliza <strong>SVG inline</strong>:</p>
+
+        <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+     fill="currentColor" viewBox="0 0 16 16"&gt;
+  &lt;path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5..." /&gt;
+&lt;/svg&gt;</code></pre>
+
+        <p>Los SVG son vectoriales, lo que significa que se ven nítidos en cualquier tamaño y son extremadamente livianos.</p>
+
+        <h2><i class="bi bi-lightbulb me-2"></i>Oportunidades de Mejora</h2>
+
+        <p>Todo código puede evolucionar. Algunas mejoras para este formulario serían:</p>
+
+        <ol>
+          <li><strong>Usar <code>type="number"</code></strong> en lugar de <code>text</code> para validar automáticamente que se ingresen números</li>
+          <li><strong>Agregar el atributo <code>required</code></strong> para campos obligatorios</li>
+          <li><strong>Definir un <code>action</code></strong> en el formulario para indicar a dónde se envían los datos</li>
+        </ol>
+
+        <pre><code>&lt;input
+  class="form-control"
+  type="number"
+  id="numero1"
+  name="numero1"
+  required
+/&gt;</code></pre>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusión</h2>
+
+        <p>Con HTML5 y Bootstrap 5 podemos crear formularios profesionales en poco tiempo. Los conceptos clave que aplicamos fueron:</p>
+
+        <ul>
+          <li>Estructura semántica de HTML5</li>
+          <li>Integración de frameworks CSS vía CDN</li>
+          <li>Sistema de clases utilitarias de Bootstrap</li>
+          <li>Componentes predefinidos (Cards, Nav Tabs, Forms)</li>
+          <li>Accesibilidad mediante labels vinculados</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Agregar JavaScript para procesar los datos del formulario y realizar las operaciones matemáticas.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Call to Action - Formulario en Acción -->
+        <div class="card border-0 shadow-lg bg-primary text-white mb-4">
+          <div class="card-body p-4">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h4 class="mb-2"><i class="bi bi-play-circle-fill me-2"></i>Ver el Formulario en Acción</h4>
+                <p class="mb-md-0 opacity-75">Explora el código funcionando en vivo y experimenta con el formulario que acabamos de analizar.</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <a href="/FormularioHTML/index.html" class="btn btn-light btn-lg">
+                  <i class="bi bi-box-arrow-up-right me-2"></i>Abrir Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Autor -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-person me-2"></i>Autor</h5>
+        <div class="d-flex align-items-center">
+          <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+               alt="Autor" class="rounded-circle me-2" width="40" height="40">
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong><br>
+            <small class="text-muted">Estudiante - CENESTUR</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Estructura HTML5</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Integrando Bootstrap 5</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Etiquetas Semánticas</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Sistema de Clases</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Construyendo el Formulario</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Navegación con Pestañas</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Iconos SVG</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Oportunidades de Mejora</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conclusión</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">HTML5</a>
+          <a href="#">CSS3</a>
+          <a href="#">Bootstrap</a>
+          <a href="#">Formularios</a>
+          <a href="#">Accesibilidad</a>
+          <a href="#">CDN</a>
+        </div>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="https://getbootstrap.com/docs/5.3/" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>Documentación Bootstrap 5
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN Web Docs - HTML
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/FormularioHTML/index.html" class="text-decoration-none text-dark">
+              <i class="bi bi-code-slash me-2"></i>Ver código del formulario
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2024 <a href="https://bvelastegui.dev" target="_blank" class="text-white">Bryan D. Velastegui L.</a> Todos los derechos reservados.</p>
+      <p class="mb-0 mt-2 small opacity-75">
+        <i class="bi bi-robot"></i> Desarrollado con asistencia de <a href="https://claude.ai" target="_blank" class="text-white">Claude AI</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

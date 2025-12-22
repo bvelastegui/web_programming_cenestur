@@ -1,2 +1,383 @@
-Hola Mundo!
-Este es mi segundo cambio!
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programación Web para Ciencias de Datos - CENESTUR</title>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <style>
+      .bg-gradient {
+          background: rgba(var(--bs-secondary-rgb), 20%)!important;
+      }
+
+      .hero-section {
+          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          color: white;
+          padding: 100px 0;
+          margin-bottom: 50px;
+      }
+
+      .blog-post-card {
+          transition: transform 0.3s ease;
+          margin-bottom: 30px;
+      }
+
+      .blog-post-card .card-img-top {
+          width: 100%;
+          height: 260px;
+          object-fit: contain;
+      }
+
+      .blog-post-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-badge {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          z-index: 1;
+      }
+
+      .author-info {
+          display: flex;
+          align-items: center;
+          margin-top: 15px;
+      }
+
+      .author-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px;
+      }
+
+      .sidebar-widget {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          margin-bottom: 30px;
+      }
+
+      .tag-cloud a {
+          display: inline-block;
+          padding: 5px 15px;
+          margin: 5px;
+          background: #e9ecef;
+          border-radius: 20px;
+          color: #495057;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .tag-cloud a:hover {
+          background: #2a5298;
+          color: white;
+      }
+
+      .footer {
+          background: #1e3c72;
+          color: white;
+          padding: 50px 0 20px;
+          margin-top: 80px;
+      }
+
+      .newsletter-form .form-control {
+          border-radius: 20px 0 0 20px;
+      }
+
+      .newsletter-form .btn {
+          border-radius: 0 20px 20px 0;
+      }
+
+      .cenestur-logo {
+          font-weight: 700;
+          background: linear-gradient(135deg, #1e3c72, #2a5298);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto">
+        <input class="form-control me-2" type="search" placeholder="Buscar...">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold mb-3">Programación Web para Ciencias de Datos</h1>
+    <h3 class="mb-4">Instituto Superior Tecnológico CENESTUR</h3>
+    <p class="lead mb-4">Aprende a construir aplicaciones web modernas para análisis y visualización de datos</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="#posts" class="btn btn-light btn-lg"><i class="bi bi-book"></i> Ver Tutoriales</a>
+      <a href="#recursos" class="btn btn-outline-light btn-lg"><i class="bi bi-folder2-open"></i> Recursos de Clase</a>
+    </div>
+  </div>
+</section>
+
+<template id="blog-post-card">
+  <div class="card blog-post-card border-0 shadow-sm h-100">
+    <img src="https://picsum.photos/400/250?random=11" class="card-img-top" alt="Visualización con Plotly">
+    <div class="card-body">
+      <div class="post-tags mb-2">
+        <span class="badge bg-success">JavaScript</span>
+      </div>
+      <h5 class="card-title">Creando Dashboards Interactivos con Plotly.js</h5>
+      <p class="text-muted small post-publish-date">
+        <i class="bi bi-calendar3"></i> 19 de Diciembre, 2024
+      </p>
+      <p class="card-text post-resume">Descubre cómo crear visualizaciones de datos interactivas y responsivas usando
+        Plotly.js. Incluye ejemplos con datos reales.</p>
+      <a href="#" class="text-primary text-decoration-none post-link">Leer más →</a>
+    </div>
+  </div>
+</template>
+
+<!-- Main Content -->
+<div class="container" id="posts">
+  <div class="row">
+    <!-- Blog Posts -->
+    <div class="col-lg-8">
+      <h2 class="mb-4">📚 Últimos Artículos</h2>
+
+      <!-- Featured Post -->
+      <div class="card blog-post-card border-0 shadow-sm placeholder-glow" id="last-post">
+        <div class="position-relative">
+          <span class="badge bg-danger category-badge">Reciente</span>
+          <img src="" height="100" class="card-img-top d-none bg-gradient" alt="">
+          <div class="placeholder card-img-top col-12 rounded-top"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">
+            <span class="placeholder col-10"></span>
+          </h3>
+          <div class="text-muted d-flex align-items-center mb-3" style="gap: 0.5rem;">
+            <span class="post-publish-date" style="white-space: nowrap">
+              <span class="placeholder col-12"></span>
+            </span>
+            <div class="post-tags w-100 d-flex align-items-center" style="gap: 0.5rem;">
+              <span class="placeholder col-1"></span>
+              <span class="placeholder col-1"></span>
+            </div>
+          </div>
+          <p class="card-text">
+            <span class="placeholder col-6"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-1"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-7"></span>
+            <span class="placeholder col-1"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-5"></span>
+          </p>
+          <div class="author-info">
+            <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968" alt="Autor" class="author-avatar">
+            <div>
+              <strong class="author-name">Bryan D. Velastegui L.</strong><br>
+              <small class="text-muted">Estudiante</small>
+            </div>
+          </div>
+          <a href="#" class="btn btn-primary mt-3 post-link">
+            Leer más <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Regular Posts Grid -->
+      <div id="post-grid">
+
+      </div>
+
+      <!-- Pagination -->
+      <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- About Widget -->
+      <div class="sidebar-widget">
+        <h4 class="mb-3"><i class="bi bi-info-circle"></i> Sobre la Materia</h4>
+        <img src="https://picsum.photos/350/200?random=20" alt="CENESTUR" class="img-fluid rounded mb-3">
+        <p>Este curso combina desarrollo web con ciencia de datos, preparándote para crear aplicaciones modernas que
+          procesan, analizan y visualizan información.</p>
+        <p class="small"><strong>Duración:</strong> 4 meses<br>
+          <strong>Modalidad:</strong> Presencial/Virtual<br>
+          <strong>Nivel:</strong> Intermedio</p>
+        <a href="#" class="btn btn-outline-primary btn-sm">Ver Syllabus →</a>
+      </div>
+
+      <!-- Resources Widget -->
+      <!--<div class="sidebar-widget" id="recursos">
+        <h4 class="mb-3"><i class="bi bi-download"></i> Recursos de Clase</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-file-pdf text-danger"></i> Guía Python Básico</span>
+              <small class="badge bg-secondary">PDF</small>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-file-code text-primary"></i> Notebooks Jupyter</span>
+              <small class="badge bg-secondary">ZIP</small>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-github"></i> Repositorio de Ejemplos</span>
+              <small class="badge bg-secondary">GitHub</small>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="#" class="text-decoration-none text-dark d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-play-circle text-success"></i> Videos Tutoriales</span>
+              <small class="badge bg-secondary">YouTube</small>
+            </a>
+          </li>
+        </ul>
+      </div>-->
+
+      <!-- Technologies Widget -->
+      <div class="sidebar-widget">
+        <h4 class="mb-3"><i class="bi bi-tools"></i> Tecnologías del Curso</h4>
+        <div class="row g-2 text-center">
+          <div class="col-4">
+            <div class="p-2 bg-white rounded shadow-sm">
+              <i class="bi bi-filetype-py fs-4 text-primary"></i>
+              <small class="d-block">Python</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-2 bg-white rounded shadow-sm">
+              <i class="bi bi-filetype-js fs-4 text-warning"></i>
+              <small class="d-block">JavaScript</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-2 bg-white rounded shadow-sm">
+              <i class="bi bi-filetype-html fs-4 text-danger"></i>
+              <small class="d-block">HTML5</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-2 bg-white rounded shadow-sm">
+              <i class="bi bi-filetype-css fs-4 text-info"></i>
+              <small class="d-block">CSS3</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-2 bg-white rounded shadow-sm">
+              <i class="bi bi-database fs-4 text-success"></i>
+              <small class="d-block">SQL</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="p-2 bg-white rounded shadow-sm">
+              <i class="bi bi-git fs-4 text-dark"></i>
+              <small class="d-block">Git</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Topics Widget -->
+      <!--<div class="sidebar-widget">
+        <h4 class="mb-3"><i class="bi bi-star"></i> Temas Populares</h4>
+        <div class="d-flex mb-3">
+          <img
+            src="https://picsum.photos/80/80?random=21" alt="Pandas" class="rounded me-3"
+            style="width: 80px; height: 80px; object-fit: cover;"
+          >
+          <div>
+            <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Análisis de Datos con Pandas</a></h6>
+            <small class="text-muted">2,456 vistas</small>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <img
+            src="https://picsum.photos/80/80?random=22" alt="API" class="rounded me-3"
+            style="width: 80px; height: 80px; object-fit: cover;"
+          >
+          <div>
+            <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Creando tu Primera API REST</a></h6>
+            <small class="text-muted">1,892 vistas</small>
+          </div>
+        </div>
+        <div class="d-flex">
+          <img
+            src="https://picsum.photos/80/80?random=23" alt="Visualización" class="rounded me-3"
+            style="width: 80px; height: 80px; object-fit: cover;"
+          >
+          <div>
+            <h6 class="mb-1"><a href="#" class="text-dark text-decoration-none">Visualización con Chart.js</a></h6>
+            <small class="text-muted">1,654 vistas</small>
+          </div>
+        </div>
+      </div>-->
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h4 class="mb-3"><i class="bi bi-tags"></i> Etiquetas</h4>
+        <div class="tag-cloud" id="global-tags-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2024 <a href="https://bvelastegui.dev" target="_blank" class="text-white">Bryan D. Velastegui L.</a> Todos los derechos reservados.</p>
+      <p class="mb-0 mt-2 small opacity-75">
+        <i class="bi bi-robot"></i> Desarrollado con asistencia de <a href="https://claude.ai" target="_blank" class="text-white">Claude AI</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manipulando Formularios con JavaScript y el DOM - CENESTUR</title>
+  <meta name="description" content="Aprende a crear formularios interactivos utilizando JavaScript y la manipulación del DOM para realizar operaciones matemáticas">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <style>
+      .hero-section {
+          background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+          color: white;
+          padding: 60px 0;
+          margin-bottom: 50px;
+      }
+
+      .cenestur-logo {
+          font-weight: 700;
+          background: linear-gradient(135deg, #1e3c72, #2a5298);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+
+      .footer {
+          background: #1e3c72;
+          color: white;
+          padding: 50px 0 20px;
+          margin-top: 80px;
+      }
+
+      .article-content h2 {
+          margin-top: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1e3c72;
+          border-bottom: 2px solid #2a5298;
+          padding-bottom: 0.5rem;
+      }
+
+      .article-content h3 {
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
+          color: #2a5298;
+      }
+
+      .article-content pre {
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+          border-radius: 8px;
+          padding: 1rem;
+          overflow-x: auto;
+      }
+
+      .article-content code {
+          color: #d63384;
+      }
+
+      .article-content pre code {
+          color: #212529;
+      }
+
+      .article-content table {
+          width: 100%;
+          margin: 1.5rem 0;
+      }
+
+      .article-content table th {
+          background: #1e3c72;
+          color: white;
+      }
+
+      .sidebar-widget {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          margin-bottom: 30px;
+      }
+
+      .tag-cloud a {
+          display: inline-block;
+          padding: 5px 15px;
+          margin: 5px;
+          background: #e9ecef;
+          border-radius: 20px;
+          color: #495057;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .tag-cloud a:hover {
+          background: #2a5298;
+          color: white;
+      }
+
+      .author-card {
+          border-left: 4px solid #2a5298;
+      }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto">
+        <input class="form-control me-2" type="search" placeholder="Buscar...">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Formulario DOM</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Manipulando Formularios con JavaScript y el DOM</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 14 de Diciembre, 2025</span>
+      <span><i class="bi bi-clock me-1"></i> 10 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">JavaScript</span>
+        <span class="badge bg-light text-dark">DOM</span>
+        <span class="badge bg-light text-dark">Bootstrap</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          Después de aprender a crear formularios con HTML y Bootstrap, el siguiente paso es darles vida con JavaScript. En este artículo aprenderemos a manipular el DOM para crear un formulario de operaciones matemáticas completamente interactivo.
+        </p>
+
+        <!-- Banner destacado -->
+        <div class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 my-4" role="alert">
+          <div>
+            <i class="bi bi-rocket-takeoff me-2 fs-5"></i>
+            <strong>¿Quieres ver el resultado final?</strong> Prueba el formulario interactivo ahora mismo.
+          </div>
+          <a href="/FormularioDOM/index.html" class="btn btn-primary btn-sm" target="_blank">
+            <i class="bi bi-play-fill me-1"></i>Ver Demo
+          </a>
+        </div>
+
+        <hr class="my-4">
+
+        <h2><i class="bi bi-bullseye me-2"></i>Objetivo del Proyecto</h2>
+
+        <p>El objetivo es integrar las 4 operaciones matemáticas básicas (suma, resta, multiplicación y división) en un formulario HTML, utilizando JavaScript y el DOM para procesar los datos sin recargar la página.</p>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>¿Qué es el DOM?</strong> El Document Object Model (DOM) es una interfaz de programación que permite a JavaScript acceder y manipular el contenido, estructura y estilo de un documento HTML.
+        </div>
+
+        <h2><i class="bi bi-file-earmark-code me-2"></i>Estructura HTML del Formulario</h2>
+
+        <p>Nuestro formulario utiliza Bootstrap 5 y contiene:</p>
+        <ul>
+          <li>Dos inputs para ingresar los números</li>
+          <li>Cuatro botones para cada operación matemática</li>
+          <li>Un input deshabilitado para mostrar el resultado</li>
+        </ul>
+
+        <h3>Inputs con Form Floating</h3>
+
+        <p>Utilizamos el componente <strong>Form Floating</strong> de Bootstrap para crear inputs con etiquetas flotantes:</p>
+
+        <pre><code>&lt;div class="form-floating"&gt;
+  &lt;input
+    class="form-control"
+    type="text"
+    id="numero1"
+    name="numero1"
+    placeholder="Numero 1"
+    required
+  /&gt;
+  &lt;label for="numero1"&gt;Numero 1&lt;/label&gt;
+  &lt;div class="invalid-feedback"&gt;
+    Este campo es obligatorio
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <p>Características importantes:</p>
+        <ul>
+          <li><code>placeholder</code> es requerido para que funcione el efecto flotante</li>
+          <li><code>required</code> activa la validación nativa de HTML5</li>
+          <li><code>invalid-feedback</code> muestra mensajes de error personalizados</li>
+        </ul>
+
+        <h3>Grupo de Botones</h3>
+
+        <p>Los botones de operaciones están agrupados con <code>btn-group</code>:</p>
+
+        <pre><code>&lt;div class="btn-group"&gt;
+  &lt;button id="sumar" type="submit" class="btn btn-outline-primary"&gt;
+    Sumar
+  &lt;/button&gt;
+  &lt;button id="restar" type="submit" class="btn btn-outline-primary"&gt;
+    Restar
+  &lt;/button&gt;
+  &lt;button id="multiplicar" type="submit" class="btn btn-outline-primary"&gt;
+    Multiplicar
+  &lt;/button&gt;
+  &lt;button id="dividir" type="submit" class="btn btn-outline-primary"&gt;
+    Dividir
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+        <h2><i class="bi bi-braces me-2"></i>Accediendo al DOM con JavaScript</h2>
+
+        <p>El primer paso es obtener referencias a los elementos del formulario usando <code>document.getElementById()</code>:</p>
+
+        <pre><code>// Referencias a los inputs
+let form = document.getElementById("form");
+let numero1 = document.getElementById("numero1");
+let numero2 = document.getElementById("numero2");
+let resultado = document.getElementById("resultado");
+
+// Referencias a los botones
+let btnSumar = document.getElementById("sumar");
+let btnRestar = document.getElementById("restar");
+let btnMultiplicar = document.getElementById("multiplicar");
+let btnDividir = document.getElementById("dividir");</code></pre>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-lightbulb me-2"></i>
+          <strong>Tip:</strong> Es buena práctica almacenar las referencias en variables para evitar múltiples búsquedas en el DOM, lo cual mejora el rendimiento.
+        </div>
+
+        <h2><i class="bi bi-cursor me-2"></i>Event Listeners: Escuchando Eventos</h2>
+
+        <p>Para ejecutar código cuando el usuario hace clic en un botón, utilizamos <code>addEventListener()</code>:</p>
+
+        <pre><code>btnSumar.addEventListener("click", (e) => {
+  // Validar el formulario primero
+  if (!validarFormulario(e)) {
+    return;
+  }
+
+  e.preventDefault(); // Evita que el formulario se envíe
+
+  // Obtener valores y convertirlos a números
+  let suma = Number(numero1.value) + Number(numero2.value);
+
+  // Mostrar el resultado
+  resultado.value = "El resultado de la suma es: " + suma;
+});</code></pre>
+
+        <h3>Conceptos Clave</h3>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Concepto</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>addEventListener("click", ...)</code></td>
+              <td>Escucha el evento de clic en el elemento</td>
+            </tr>
+            <tr>
+              <td><code>e.preventDefault()</code></td>
+              <td>Evita el comportamiento por defecto (enviar formulario)</td>
+            </tr>
+            <tr>
+              <td><code>Number(valor)</code></td>
+              <td>Convierte un string a número</td>
+            </tr>
+            <tr>
+              <td><code>input.value</code></td>
+              <td>Obtiene o establece el valor de un input</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-calculator me-2"></i>Implementando las Operaciones</h2>
+
+        <p>Cada operación sigue el mismo patrón, con una pequeña variación para la división:</p>
+
+        <h3>Suma</h3>
+        <pre><code>let suma = Number(numero1.value) + Number(numero2.value);
+resultado.value = "El resultado de la suma es: " + suma;</code></pre>
+
+        <h3>Resta</h3>
+        <pre><code>let resta = Number(numero1.value) - Number(numero2.value);
+resultado.value = "El resultado de la resta es: " + resta;</code></pre>
+
+        <h3>Multiplicación</h3>
+        <pre><code>let multiplicar = Number(numero1.value) * Number(numero2.value);
+resultado.value = "El resultado de la multiplicación es: " + multiplicar;</code></pre>
+
+        <h3>División (con validación especial)</h3>
+        <pre><code>let num1 = Number(numero1.value);
+let num2 = Number(numero2.value);
+
+if (num2 === 0) {
+  resultado.value = "No se puede dividir números entre 0";
+  resultado.classList.add("is-invalid");
+} else {
+  let dividir = num1 / num2;
+  resultado.value = "El resultado de la división es: " + dividir;
+}</code></pre>
+
+        <div class="alert alert-danger">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong>Importante:</strong> La división entre cero es matemáticamente indefinida. Siempre debemos validar que el divisor no sea cero antes de realizar la operación.
+        </div>
+
+        <h2><i class="bi bi-check2-circle me-2"></i>Validación del Formulario</h2>
+
+        <p>Bootstrap 5 incluye estilos de validación que podemos activar con JavaScript:</p>
+
+        <pre><code>function validarFormulario(e) {
+  let isValid = true;
+  resultado.classList.remove("is-invalid");
+
+  if (!form.checkValidity()) {
+    event.preventDefault();
+    event.stopPropagation();
+    isValid = false;
+  }
+
+  form.classList.add("was-validated");
+
+  return isValid;
+}</code></pre>
+
+        <h3>¿Cómo funciona?</h3>
+
+        <ol>
+          <li><code>form.checkValidity()</code> verifica si todos los campos cumplen sus restricciones (como <code>required</code>)</li>
+          <li><code>was-validated</code> activa los estilos visuales de validación de Bootstrap</li>
+          <li><code>is-invalid</code> marca un campo específico como inválido</li>
+        </ol>
+
+        <h2><i class="bi bi-palette me-2"></i>Atributos HTML Importantes</h2>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Atributo</th>
+              <th>Propósito</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>novalidate</code></td>
+              <td>Desactiva la validación nativa del navegador para usar la personalizada</td>
+            </tr>
+            <tr>
+              <td><code>autocomplete="off"</code></td>
+              <td>Evita que el navegador sugiera valores anteriores</td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td>El input de resultado está deshabilitado para evitar edición manual</td>
+            </tr>
+            <tr>
+              <td><code>required</code></td>
+              <td>Marca el campo como obligatorio</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-layout-sidebar me-2"></i>Diseño Responsivo con Grid</h2>
+
+        <p>El formulario utiliza el sistema de grid de Bootstrap para organizar el contenido:</p>
+
+        <pre><code>&lt;div class="row g-4"&gt;
+  &lt;div class="col-md-7"&gt;
+    &lt;!-- Formulario --&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-5"&gt;
+    &lt;!-- Sidebar con información --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <ul>
+          <li><code>row g-4</code> crea una fila con gap de 1.5rem</li>
+          <li><code>col-md-7</code> ocupa 7 columnas en pantallas medianas y grandes</li>
+          <li><code>col-md-5</code> ocupa 5 columnas en pantallas medianas y grandes</li>
+          <li>En móviles, ambas columnas ocupan el 100% del ancho</li>
+        </ul>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusión</h2>
+
+        <p>En este artículo aprendimos a:</p>
+
+        <ul>
+          <li>Acceder a elementos del DOM con <code>getElementById()</code></li>
+          <li>Escuchar eventos con <code>addEventListener()</code></li>
+          <li>Prevenir el comportamiento por defecto de formularios</li>
+          <li>Convertir valores de inputs a números con <code>Number()</code></li>
+          <li>Implementar validación personalizada con Bootstrap</li>
+          <li>Manejar casos especiales como la división entre cero</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Explorar más métodos del DOM como <code>querySelector()</code>, <code>querySelectorAll()</code> y aprender sobre manipulación de estilos con <code>classList</code>.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Call to Action - Formulario en Acción -->
+        <div class="card border-0 shadow-lg bg-primary text-white mb-4">
+          <div class="card-body p-4">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h4 class="mb-2"><i class="bi bi-play-circle-fill me-2"></i>Ver el Formulario en Acción</h4>
+                <p class="mb-md-0 opacity-75">Experimenta con el formulario interactivo y prueba todas las operaciones matemáticas.</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <a href="/FormularioDOM/index.html" class="btn btn-light btn-lg">
+                  <i class="bi bi-box-arrow-up-right me-2"></i>Abrir Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Post -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículo Relacionado</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/formulario-html-bootstrap.html" class="text-decoration-none text-dark">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-1 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Creando tu Primer Formulario Web con HTML5 y Bootstrap 5</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos antes de agregar JavaScript</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Colaboradores -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-people me-2"></i>Colaboradores</h5>
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <strong class="small">Evelyn V. Morocho P.</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <strong class="small">Sammy E. Rosero C.</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <img src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+               alt="Autor" class="rounded-circle me-2" width="40" height="40">
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Objetivo del Proyecto</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Estructura HTML</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Accediendo al DOM</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Event Listeners</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Implementando Operaciones</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Validación del Formulario</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Atributos HTML</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Diseño Responsivo</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conclusión</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">JavaScript</a>
+          <a href="#">DOM</a>
+          <a href="#">Bootstrap</a>
+          <a href="#">Formularios</a>
+          <a href="#">Eventos</a>
+          <a href="#">Validación</a>
+        </div>
+      </div>
+
+      <!-- Key Concepts -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-key me-2"></i>Conceptos Clave</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>getElementById()</code> - Seleccionar elementos</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>addEventListener()</code> - Escuchar eventos</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>preventDefault()</code> - Controlar formularios</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>Number()</code> - Conversión de tipos</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+            <span><code>classList</code> - Manipular clases CSS</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - DOM
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - addEventListener
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://getbootstrap.com/docs/5.3/forms/validation/" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>Bootstrap - Validación
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/FormularioDOM/index.html" class="text-decoration-none text-dark">
+              <i class="bi bi-code-slash me-2"></i>Ver código del formulario
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2024 <a href="https://bvelastegui.dev" target="_blank" class="text-white">Bryan D. Velastegui L.</a> Todos los derechos reservados.</p>
+      <p class="mb-0 mt-2 small opacity-75">
+        <i class="bi bi-robot"></i> Desarrollado con asistencia de <a href="https://claude.ai" target="_blank" class="text-white">Claude AI</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
