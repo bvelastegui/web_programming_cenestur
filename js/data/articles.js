@@ -69,6 +69,19 @@ const articles = [
       'formularios',
     ],
   },
+  {
+    path: '/blog/git-github.html',
+    publish_date: new Date("2025-12-12T00:00"),
+    title: 'Implementación de Git y GitHub: Guía Completa',
+    module: 'Unidad 1',
+    resume: 'Git es una herramienta fundamental en el flujo de trabajo de los desarrolladores. Aprende a instalar y configurar Git, crear una cuenta en GitHub, generar claves SSH y publicar tu primer repositorio.',
+    image_path: '/images/git-github.png',
+    tags: [
+      'git',
+      'github',
+      'ssh',
+    ],
+  },
 ]
 
 export default function useArticles () {

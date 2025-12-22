@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementación de Git y GitHub: Guía Completa - CENESTUR</title>
+  <meta
+    name="description"
+    content="Aprende a instalar y configurar Git, crear una cuenta en GitHub, generar claves SSH y subir tu primer repositorio"
+  >
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/app.css?v=251222.2">
+  <link rel="stylesheet" href="/css/post.css?v=251222.2">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto" id="search-form">
+        <input
+          aria-label="Buscar artículos" class="form-control me-2" type="search" placeholder="Buscar artículos..."
+          id="search-input"
+        >
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Git y GitHub</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Implementación de Git y GitHub: Guía Completa</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 12 de Diciembre, 2025</span>
+      <span><i class="bi bi-clock me-1"></i> 15 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">Git</span>
+        <span class="badge bg-light text-dark">GitHub</span>
+        <span class="badge bg-light text-dark">SSH</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          Git es una herramienta fundamental en el flujo de trabajo de los desarrolladores. En este laboratorio
+          aprenderemos a instalar y configurar Git, crear una cuenta en GitHub, generar claves SSH y publicar
+          nuestro primer repositorio en la nube.
+        </p>
+
+        <hr class="my-4">
+
+        <h2><i class="bi bi-bullseye me-2"></i>Objetivo</h2>
+
+        <p>Configurar Git y GitHub para poder versionar y compartir nuestro código de manera profesional.</p>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>¿Qué es Git?</strong> Git es un sistema de control de versiones distribuido que permite rastrear
+          cambios en el código fuente durante el desarrollo de software.
+        </div>
+
+        <h2><i class="bi bi-git me-2"></i>Configuración de Git</h2>
+
+        <h3>Instalación</h3>
+
+        <p>Descargamos el instalador desde la página oficial de Git:</p>
+
+        <div class="card bg-dark text-white mb-4">
+          <div class="card-body">
+            <code class="text-warning">https://git-scm.com/download/windows</code>
+          </div>
+        </div>
+
+        <p>Al completar la descarga:</p>
+        <ol>
+          <li>Ejecutamos el instalador</li>
+          <li>Utilizamos todas las configuraciones por defecto</li>
+          <li>Al finalizar, marcamos la casilla <strong>Launch Git Bash</strong></li>
+          <li>Presionamos <strong>Finish</strong></li>
+        </ol>
+
+        <p>Para verificar la instalación, ejecutamos:</p>
+
+        <pre><code>git --version
+# git version 2.52.0.windows.1</code></pre>
+
+        <h3>Configuración Inicial</h3>
+
+        <p>Configuramos el nombre y correo que se usarán para las confirmaciones (commits):</p>
+
+        <pre><code>git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"</code></pre>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong>Importante:</strong> El correo debe ser el mismo que usarás en tu cuenta de GitHub para que los
+          commits se asocien correctamente a tu perfil.
+        </div>
+
+        <h2><i class="bi bi-terminal me-2"></i>Práctica: Tu Primer Repositorio Local</h2>
+
+        <h3>Paso 1: Crear la carpeta del proyecto</h3>
+
+        <p>Creamos una carpeta llamada <code>practica_git</code>, hacemos clic derecho y seleccionamos
+          <strong>Open Git Bash Here</strong>.</p>
+
+        <h3>Paso 2: Inicializar el repositorio</h3>
+
+        <pre><code>git init
+# Initialized empty Git repository in C:/Users/.../practica_git/.git/</code></pre>
+
+        <p>Este comando crea una carpeta oculta <code>.git</code> que contiene toda la información del repositorio.</p>
+
+        <h3>Paso 3: Crear un archivo</h3>
+
+        <p>Abrimos VS Code con el comando <code>code .</code> y creamos un archivo <code>index.html</code>:</p>
+
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hola Mundo!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h3>Paso 4: Ver el estado del repositorio</h3>
+
+        <pre><code>git status
+# On branch master
+# Untracked files:
+#   index.html</code></pre>
+
+        <p>Git nos indica que <code>index.html</code> existe pero no está siendo rastreado.</p>
+
+        <h3>Paso 5: Agregar archivos al staging</h3>
+
+        <pre><code>git add index.html
+# O para agregar todos los archivos:
+git add .</code></pre>
+
+        <p>Ahora el archivo está en el <strong>staging area</strong> (área de preparación), listo para ser confirmado.</p>
+
+        <h3>Paso 6: Confirmar los cambios (commit)</h3>
+
+        <pre><code>git commit -m "Este es mi primer commit"
+# [master (root-commit) a4e73c9] Este es mi primer commit
+#  1 file changed, 1 insertion(+)
+#  create mode 100644 index.html</code></pre>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title"><i class="bi bi-diagram-3 me-2"></i>Flujo de trabajo en Git</h6>
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 text-center">
+              <div class="p-2">
+                <i class="bi bi-file-earmark-code fs-3 text-secondary"></i>
+                <div class="small">Working Directory</div>
+              </div>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <div class="p-2">
+                <i class="bi bi-collection fs-3 text-warning"></i>
+                <div class="small">Staging Area</div>
+                <code class="small">git add</code>
+              </div>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <div class="p-2">
+                <i class="bi bi-database fs-3 text-success"></i>
+                <div class="small">Repository</div>
+                <code class="small">git commit</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Paso 7: Verificar el estado limpio</h3>
+
+        <pre><code>git status
+# On branch master
+# nothing to commit, working tree clean</code></pre>
+
+        <h2><i class="bi bi-github me-2"></i>Configuración de GitHub</h2>
+
+        <p><strong>GitHub</strong> es una plataforma basada en la nube donde podemos almacenar y compartir nuestros
+          repositorios de Git.</p>
+
+        <h3>Creación de cuenta</h3>
+
+        <p>Para crear una cuenta, nos dirigimos a:</p>
+
+        <div class="card bg-dark text-white mb-4">
+          <div class="card-body">
+            <code class="text-warning">https://github.com/signup</code>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <i class="bi bi-lightbulb me-2"></i>
+          <strong>Recomendación:</strong> Usa tu cuenta de correo personal, nunca una cuenta institucional o laboral
+          (a menos que sea estrictamente necesario). Este correo debe coincidir con el configurado en Git.
+        </div>
+
+        <h3>Creación y configuración de clave SSH</h3>
+
+        <p>Para subir repositorios a GitHub de forma segura, necesitamos configurar una clave SSH.</p>
+
+        <h4>Generar la clave SSH</h4>
+
+        <p>En Git Bash ejecutamos:</p>
+
+        <pre><code>ssh-keygen -t rsa -b 4096 -C "tu@email.com"</code></pre>
+
+        <p>Explicación de los parámetros:</p>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Parámetro</th>
+            <th>Descripción</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>-t rsa</code></td>
+            <td>Tipo de algoritmo (RSA)</td>
+          </tr>
+          <tr>
+            <td><code>-b 4096</code></td>
+            <td>Cantidad de bits (mayor seguridad)</td>
+          </tr>
+          <tr>
+            <td><code>-C "email"</code></td>
+            <td>Comentario para identificar la clave</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <p>Al ejecutar el comando, presiona Enter para aceptar la ubicación por defecto y opcionalmente agrega una
+          contraseña.</p>
+
+        <h4>Ver la clave pública</h4>
+
+        <pre><code>cat ~/.ssh/id_rsa.pub
+# ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ... tu@email.com</code></pre>
+
+        <p>Copiamos todo el contenido de la clave (desde <code>ssh-rsa</code> hasta el correo).</p>
+
+        <h4>Agregar la clave a GitHub</h4>
+
+        <ol>
+          <li>Ve a <strong>Settings</strong> en tu perfil de GitHub</li>
+          <li>Selecciona <strong>SSH and GPG keys</strong></li>
+          <li>Clic en <strong>New SSH key</strong></li>
+          <li>Agrega un título descriptivo (ej: "Mi laptop")</li>
+          <li>Pega el contenido de la clave pública</li>
+          <li>Clic en <strong>Add SSH key</strong></li>
+        </ol>
+
+        <h3>Creación de un repositorio en GitHub</h3>
+
+        <ol>
+          <li>Ve a tu perfil y selecciona la pestaña <strong>Repositories</strong></li>
+          <li>Clic en el botón <strong>New</strong></li>
+          <li>Completa el formulario:
+            <ul>
+              <li><strong>Repository name:</strong> nombre sin espacios ni caracteres especiales</li>
+              <li><strong>Description:</strong> descripción opcional</li>
+              <li><strong>Visibility:</strong> Public o Private</li>
+            </ul>
+          </li>
+          <li>Clic en <strong>Create repository</strong></li>
+        </ol>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong>Nota:</strong> Para este ejercicio, no agregamos README, .gitignore ni licencia. Los agregaremos
+          desde nuestro repositorio local.
+        </div>
+
+        <h3>Subir archivos al repositorio</h3>
+
+        <p>Después de crear el repositorio en GitHub, nos muestra los comandos a ejecutar:</p>
+
+        <pre><code># Cambiar el nombre de la rama principal a 'main'
+git branch -M main
+
+# Agregar el repositorio remoto
+git remote add origin git@github.com:usuario/repositorio.git
+
+# Subir los cambios
+git push -u origin main</code></pre>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Comando</th>
+            <th>Descripción</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>git branch -M main</code></td>
+            <td>Renombra la rama actual a "main"</td>
+          </tr>
+          <tr>
+            <td><code>git remote add origin URL</code></td>
+            <td>Agrega un repositorio remoto llamado "origin"</td>
+          </tr>
+          <tr>
+            <td><code>git push -u origin main</code></td>
+            <td>Sube los commits al repositorio remoto</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <p>Si todo está correcto, al recargar la página del repositorio en GitHub veremos nuestros archivos
+          publicados.</p>
+
+        <h2><i class="bi bi-command me-2"></i>Resumen de Comandos</h2>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Comando</th>
+            <th>Descripción</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>git init</code></td>
+            <td>Inicializa un repositorio vacío</td>
+          </tr>
+          <tr>
+            <td><code>git status</code></td>
+            <td>Muestra el estado de los archivos</td>
+          </tr>
+          <tr>
+            <td><code>git add archivo</code></td>
+            <td>Agrega archivos al staging area</td>
+          </tr>
+          <tr>
+            <td><code>git commit -m "mensaje"</code></td>
+            <td>Confirma los cambios con un mensaje</td>
+          </tr>
+          <tr>
+            <td><code>git log</code></td>
+            <td>Muestra el historial de commits</td>
+          </tr>
+          <tr>
+            <td><code>git branch</code></td>
+            <td>Lista las ramas del repositorio</td>
+          </tr>
+          <tr>
+            <td><code>git remote -v</code></td>
+            <td>Lista los repositorios remotos</td>
+          </tr>
+          <tr>
+            <td><code>git push</code></td>
+            <td>Sube los commits al repositorio remoto</td>
+          </tr>
+          <tr>
+            <td><code>git pull</code></td>
+            <td>Descarga y fusiona cambios del remoto</td>
+          </tr>
+          <tr>
+            <td><code>git clone URL</code></td>
+            <td>Clona un repositorio existente</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusiones</h2>
+
+        <p>Git es una herramienta básica en el flujo de trabajo de los desarrolladores. En este laboratorio pudimos
+          aplicar los conocimientos básicos sobre Git y GitHub:</p>
+
+        <ul>
+          <li><strong>Git:</strong> Inicializar repositorios, agregar archivos y confirmar cambios</li>
+          <li><strong>GitHub:</strong> Crear cuenta, registrar clave SSH, crear repositorio y publicar código</li>
+          <li><strong>Flujo de trabajo:</strong> Working Directory → Staging Area → Repository → Remote</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Aprender sobre ramas (branches), fusiones (merge), resolución de conflictos
+          y flujos de trabajo colaborativos como Git Flow.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Related Posts -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículos Relacionados</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/arreglos-javascript.html" class="text-decoration-none text-dark d-block mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Arreglos en JavaScript</h6>
+                  <p class="text-muted mb-0 small">Métodos y operaciones CRUD con arrays</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+            <hr>
+            <a href="/blog/formulario-html-bootstrap.html" class="text-decoration-none text-dark d-block">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Formularios con HTML5 y Bootstrap 5</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos de HTML y Bootstrap</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Colaboradores -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-people me-2"></i>Colaboradores</h5>
+        <div class="d-flex align-items-center mb-3">
+          <img
+            src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+            alt="Autor" class="rounded-circle me-2" width="40" height="40"
+          >
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+          <div
+            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+            style="width: 40px; height: 40px;"
+          >
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <strong class="small">Lenin J. Guachamin R.</strong>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div
+            class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
+            style="width: 40px; height: 40px;"
+          >
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <strong class="small">Shynlu P. Chimbo T.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Objetivo</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Configuración de Git</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Primer Repositorio
+            Local</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Configuración de
+            GitHub</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Clave SSH</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Subir al Repositorio</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Resumen de Comandos</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conclusiones</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">Git</a>
+          <a href="#">GitHub</a>
+          <a href="#">SSH</a>
+          <a href="#">Control de versiones</a>
+          <a href="#">Repositorios</a>
+        </div>
+      </div>
+
+      <!-- Key Commands -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-terminal me-2"></i>Comandos Clave</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-play-circle text-success me-2 mt-1"></i>
+            <span><code>git init</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-plus-circle text-primary me-2 mt-1"></i>
+            <span><code>git add</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check-circle text-warning me-2 mt-1"></i>
+            <span><code>git commit</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-cloud-upload text-info me-2 mt-1"></i>
+            <span><code>git push</code></span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-eye text-secondary me-2 mt-1"></i>
+            <span><code>git status</code></span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="https://git-scm.com/" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>Git - Sitio oficial
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://github.com/" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>GitHub
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://docs.github.com/es/authentication/connecting-to-github-with-ssh" target="_blank"
+              class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>GitHub - SSH Keys
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://code.visualstudio.com/" target="_blank" class="text-decoration-none text-dark">
+              <i class="bi bi-box-arrow-up-right me-2"></i>Visual Studio Code
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p class="mb-0 text-center">&copy; 2025 <a
+      href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0"
+    >Bryan Velastegui.</a> All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/search.js?v=251222.2"></script>
+</body>
+</html>

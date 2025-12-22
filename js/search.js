@@ -1,4 +1,4 @@
-import useArticles from '/js/data/articles.js?v=251222.1'
+import useArticles from '/js/data/articles.js?v=251222.2'
 
 const { search } = useArticles()
 

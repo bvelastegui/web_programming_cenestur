@@ -1,6 +1,6 @@
-import useArticles from '/js/data/articles.js?v=251222.1'
-import { chunks } from '/js/helpers.js?v=251222.1'
-import { performSearch } from '/js/search.js?v=251222.1'
+import useArticles from '/js/data/articles.js?v=251222.2'
+import { chunks } from '/js/helpers.js?v=251222.2'
+import { performSearch } from '/js/search.js?v=251222.2'
 
 const { getPaginated, getTags, getTotalCount } = useArticles()
 
