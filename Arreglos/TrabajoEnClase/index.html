@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Mi Tienda</title>
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      box-sizing: content-box;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 0;
+      position: sticky;
+      top: 0;
+      z-index: 999999;
+      background: transparent;
+      padding: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(16px);
+      
+      h1 {
+        font-weight: 900;
+        flex: 1;
+        margin: 0;
+      }
+    }
+    
+    .container {
+      padding: 16px;
+    }
+
+    h1 {
+      margin-top: 2.5rem;
+      font-weight: bold;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px 10px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      position: relative;
+      
+      &:hover {
+        scale: 1.02;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+        img {
+          filter: grayscale();
+        }
+      }
+
+      .discount {
+        font-size: 14px;
+        font-weight: bold;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: #d00101;
+        color: white;
+        border-radius: 8px;
+        padding: 2px 5px;
+        z-index: 9999;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        
+        &[data-value="0"] {
+          display: none;
+        }
+      }
+
+      img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .product-content {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        height: 70px;
+      }
+
+      .name {
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .price {
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: auto;
+        text-align: end;
+        color: darkgreen;
+      }
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      
+      @media (width <= 450px) {
+        flex-wrap: wrap;
+        width: 90% !important;
+      }
+
+      input {
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        font-size: 16px;
+        outline: none;
+      }
+      
+      button {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        font-size: 16px;
+        padding: 5px 12px;
+        white-space: nowrap;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: #fff;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>MI TIENDA</h1>
+  <form class="search-form" id="search-form">
+    <input
+      aria-label="buscar"
+      placeholder="Buscar por nombre..."
+      type="text"
+      id="search-input"
+    >
+    <button type="submit">Buscar</button>
+    <button type="reset">Limpiar</button>
+  </form>
+</header>
+<main class="container">
+  <h1>Productos</h1>
+  <div class="products-grid" id="products">
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">10$</div>
+    </div>
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">20$</div>
+    </div>
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">20$</div>
+    </div>
+  </div>
+  <h1>Descuento del 12%</h1>
+  <div class="products-grid" id="discount-12">
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">10$</div>
+    </div>
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">20$</div>
+    </div>
+  </div>
+  <h1>Precio > 500</h1>
+  <div class="products-grid" id="discount-50">
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">10$</div>
+    </div>
+    <div class="product-card">
+      <div class="name">Product Name</div>
+      <div class="price">20$</div>
+    </div>
+  </div>
+</main>
+<script>
+  function renderProducts (products, container = null) {
+    // aplicar map para mostrar todos los productos
+    const productsContainer = container ?? document.getElementById('products')
+
+    const rows = products.map(product => `
+  <div class="product-card">
+    <div class="discount" data-value="${product.discount}">${Math.round(product.discount * 100)}%</div>
+    <img src="${product.imgUrl}" alt="${product.name}">
+    <div class="product-content">
+      <div class="name">${product.name}</div>
+      <div class="price">${product.price}$</div> 
+    </div>
+</div>
+  `)
+
+    productsContainer.innerHTML = rows.join('')
+  }
+
+  function buscarProducto (criterio, valor) {
+    return products.filter(producto => {
+      const valorPropiedad = producto[criterio]
+
+      // Si la propiedad es un texto (como el nombre), hacemos búsqueda parcial e ignoramos mayúsculas
+      if (typeof valorPropiedad === 'string') {
+        return valorPropiedad.toLowerCase().includes(valor.toLowerCase())
+      }
+
+      // Si es un número (como el precio), buscamos coincidencia exacta
+      return valorPropiedad === valor
+    })
+  }
+
+  const products = [
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=1',
+      name: 'Product 1',
+      price: 200,
+      discount: 0.12,
+    }, {
+      imgUrl: 'https://picsum.photos/300/200?random=2',
+      name: 'Laptop HP Pavilion',
+      price: 800,
+      discount: 0.12,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=3',
+      name: 'Smartphone Samsung Galaxy',
+      price: 600,
+      discount: 0.05,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=4',
+      name: 'Auriculares Sony WH-1000XM4',
+      price: 350,
+      discount: 0.10,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=5',
+      name: 'Smart TV LG OLED',
+      price: 1500,
+      discount: 0.15,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=6',
+      name: 'Tablet Apple iPad Air',
+      price: 550,
+      discount: 0.08,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=7',
+      name: 'Consola PlayStation 5',
+      price: 500,
+      discount: 0.00,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=8',
+      name: 'Cámara Canon EOS Rebel',
+      price: 700,
+      discount: 0.10,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=9',
+      name: 'Monitor Dell UltraSharp',
+      price: 400,
+      discount: 0.07,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=10',
+      name: 'Teclado Mecánico HyperX',
+      price: 120,
+      discount: 0.05,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=11',
+      name: 'Mouse Logitech MX Master',
+      price: 90,
+      discount: 0.03,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=12',
+      name: 'Impresora Epson EcoTank',
+      price: 250,
+      discount: 0.00,
+    },
+    {
+      imgUrl: 'https://picsum.photos/300/200?random=13',
+      name: 'Disco Duro Externo Seagate',
+      price: 80,
+      discount: 0.05,
+    },
+  ]
+
+  renderProducts(products)
+
+  const searchForm = document.getElementById('search-form')
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const searchInput = document.getElementById('search-input')
+
+    if (!searchInput.value.trim().length) {
+      return;
+    }
+
+    const filteredProducts = buscarProducto('name', searchInput.value)
+    renderProducts(filteredProducts)
+  })
+
+  searchForm.addEventListener('reset', () => {
+    renderProducts(products)
+  })
+
+  const productsWithDiscount = products.filter(product => product.discount === 0.12)
+  renderProducts(productsWithDiscount, document.getElementById('discount-12'))
+
+  const productsOver500 = products.filter(product => product.price > 500)
+  renderProducts(productsOver500, document.getElementById('discount-50'))
+</script>
+
+</body>
+</html>
