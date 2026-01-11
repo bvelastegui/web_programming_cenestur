@@ -15,6 +15,21 @@
  */
 const articles = [
   {
+    path: '/blog/tienda-filtrado-dinamico.html',
+    publish_date: new Date("2026-01-05T00:00"),
+    title: 'Tienda en Línea con Filtrado Dinámico usando JavaScript',
+    module: 'Unidad 1',
+    resume: 'Aprende a crear una tienda en línea funcional con JavaScript usando map, filter y forEach para implementar búsqueda dinámica y filtrado de productos. Proyecto práctico con interfaz moderna y responsiva.',
+    image_path: '/images/store.png',
+    tags: [
+      'javascript',
+      'arrays',
+      'map',
+      'filter',
+      'dom',
+    ],
+  },
+  {
     path: '/blog/arreglos-javascript.html',
     publish_date: new Date("2025-12-19T00:00"),
     title: 'Arreglos en JavaScript: Métodos y Operaciones CRUD',
