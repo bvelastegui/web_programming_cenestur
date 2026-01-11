@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Ejercicios Prácticos en Python: Palíndromos, Números Primos y Comparación - CENESTUR</title>
+  <meta
+    name="description"
+    content="Resuelve ejercicios prácticos de Python: detectar palíndromos, verificar números primos y encontrar el mayor y menor de tres números. Aplicación práctica de condicionales y bucles."
+  >
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap"
+    rel="stylesheet"
+  >
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/app.css?v=251222.3">
+  <link rel="stylesheet" href="/css/post.css?v=251222.3">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto" id="search-form">
+        <input
+          aria-label="Buscar artículos" class="form-control me-2" type="search" placeholder="Buscar artículos..."
+          id="search-input"
+        >
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+      <div class="dropdown theme-switcher ms-2">
+        <button class="btn dropdown-toggle" type="button" id="theme-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Cambiar tema">
+          <i class="bi bi-circle-half" id="theme-icon"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="light">
+              <i class="bi bi-sun-fill"></i> Light
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="dark">
+              <i class="bi bi-moon-stars-fill"></i> Dark
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="auto">
+              <i class="bi bi-circle-half"></i> Auto
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Ejercicios Python</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Ejercicios Prácticos en Python: Palíndromos, Números Primos y Comparación</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 6 de Enero, 2025</span>
+      <span><i class="bi bi-clock me-1"></i> 8 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">Python</span>
+        <span class="badge bg-light text-dark">Ejercicios</span>
+        <span class="badge bg-light text-dark">Algoritmos</span>
+        <span class="badge bg-light text-dark">Strings</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          En este trabajo en clase, resolvimos tres ejercicios prácticos de Python que aplican 
+          conceptos fundamentales como condicionales, bucles, manipulación de strings y funciones 
+          matemáticas. Aprende a detectar palíndromos, verificar números primos y comparar múltiples valores.
+        </p>
+
+        <hr class="my-4">
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Trabajo en Clase</strong><br>
+          <strong>Fecha:</strong> 6 de enero de 2025<br>
+          <strong>Objetivo:</strong> Aplicar conceptos de Python en problemas prácticos
+        </div>
+
+        <h2><i class="bi bi-list-check me-2"></i>Ejercicios Propuestos</h2>
+        <p>
+          Los tres ejercicios que implementamos en clase fueron:
+        </p>
+        <ol>
+          <li>Ingresar 3 números e indicar cuál es el mayor y el menor</li>
+          <li>Ingresar un número e indicar si es primo o no</li>
+          <li>Crear un programa que verifique si una palabra es un palíndromo</li>
+        </ol>
+
+        <h2><i class="bi bi-1-circle me-2"></i>Ejercicio 1: Mayor y Menor de Tres Números</h2>
+
+        <h3>Descripción del Problema</h3>
+        <p>
+          Crear un programa que solicite al usuario ingresar tres números enteros y determine 
+          cuál es el mayor y cuál es el menor de los tres.
+        </p>
+
+        <h3>Solución Implementada</h3>
+        <pre><code>num1 = int(input("digite el primer numero: "))
+num2 = int(input("digite el segundo numero: "))
+num3 = int(input("digite el tercer numero: "))
+
+mayor = max(num1, num2, num3)
+menor = min(num1, num2, num3)
+
+print("El numero mayor es: ", mayor)
+print("El numero menor es: ", menor)</code></pre>
+
+        <h3>Análisis del Código</h3>
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title">Conceptos Aplicados</h6>
+            <ul class="mb-0">
+              <li><code>input()</code> - Solicita datos al usuario</li>
+              <li><code>int()</code> - Convierte strings a enteros</li>
+              <li><code>max()</code> - Función integrada que devuelve el valor máximo</li>
+              <li><code>min()</code> - Función integrada que devuelve el valor mínimo</li>
+              <li><code>print()</code> - Muestra resultados en consola</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert alert-success">
+          <i class="bi bi-lightbulb me-2"></i>
+          <strong>Ventaja:</strong> Las funciones <code>max()</code> y <code>min()</code> simplifican 
+          mucho el código. Sin ellas, necesitaríamos múltiples condicionales if-else para comparar los números.
+        </div>
+
+        <h3>Ejemplo de Ejecución</h3>
+        <pre><code>digite el primer numero: 45
+digite el segundo numero: 12
+digite el tercer numero: 78
+
+El numero mayor es:  78
+El numero menor es:  12</code></pre>
+
+        <h2><i class="bi bi-2-circle me-2"></i>Ejercicio 2: Verificador de Números Primos</h2>
+
+        <h3>Descripción del Problema</h3>
+        <p>
+          Crear un programa que determine si un número ingresado por el usuario es primo o no. 
+          Un número primo es aquel que solo es divisible por 1 y por sí mismo.
+        </p>
+
+        <h3>Solución Implementada</h3>
+        <pre><code>num1 = int(input("Ingrese el primer numero: "))
+esPrimo = True
+
+if num1 <= 1:
+    esPrimo = False
+for i in range(2, int(num1 ** 0.5) + 1):
+    if num1 % i == 0:
+        esPrimo = False
+        break
+
+if esPrimo:
+    print("el numero: ", num1, " es primo")
+else:
+    print("el numero: ", num1, " no es primo")</code></pre>
+
+        <h3>Análisis del Algoritmo</h3>
+        <p>
+          Este algoritmo implementa una verificación eficiente de números primos:
+        </p>
+
+        <ol>
+          <li>
+            <strong>Validación inicial:</strong> Si el número es menor o igual a 1, no es primo
+            <pre><code>if num1 <= 1:
+    esPrimo = False</code></pre>
+          </li>
+
+          <li>
+            <strong>Optimización con raíz cuadrada:</strong> Solo necesitamos verificar divisores hasta 
+            la raíz cuadrada del número
+            <pre><code>for i in range(2, int(num1 ** 0.5) + 1):</code></pre>
+            <div class="alert alert-info mt-2">
+              <i class="bi bi-info-circle me-2"></i>
+              <strong>¿Por qué hasta la raíz cuadrada?</strong> Si un número tiene un divisor mayor que 
+              su raíz cuadrada, también debe tener un divisor menor. Por ejemplo, para 36: si 9 es divisor, 
+              entonces 4 también lo es (9 × 4 = 36).
+            </div>
+          </li>
+
+          <li>
+            <strong>Verificación de divisibilidad:</strong> Usamos el operador módulo <code>%</code>
+            <pre><code>if num1 % i == 0:
+    esPrimo = False
+    break  # Salimos del bucle inmediatamente</code></pre>
+          </li>
+        </ol>
+
+        <h3>Ejemplo de Ejecución</h3>
+        <pre><code># Ejemplo 1: Número primo
+Ingrese el primer numero: 17
+el numero:  17  es primo
+
+# Ejemplo 2: Número no primo
+Ingrese el primer numero: 24
+el numero:  24  no es primo</code></pre>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Número</th>
+            <th>¿Es Primo?</th>
+            <th>Razón</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>2</td>
+            <td>✅ Sí</td>
+            <td>Solo divisible por 1 y 2</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>✅ Sí</td>
+            <td>Solo divisible por 1 y 7</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>❌ No</td>
+            <td>Divisible por 1, 3 y 9</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>✅ Sí</td>
+            <td>Solo divisible por 1 y 17</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>❌ No</td>
+            <td>Divisible por 1, 2, 4, 5, 10 y 20</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-3-circle me-2"></i>Ejercicio 3: Detector de Palíndromos</h2>
+
+        <h3>Descripción del Problema</h3>
+        <p>
+          Crear un programa que verifique si una palabra ingresada por el usuario es un palíndromo. 
+          Un palíndromo es una palabra que se lee igual de izquierda a derecha que de derecha a izquierda.
+        </p>
+
+        <h3>Solución Implementada</h3>
+        <pre><code>print("Bienvenido a mi aplicación")
+letter = input("Ingresa tu palabra:").lower()
+
+if letter == letter[::-1]:
+    print("Felicitaciones tu palabra es un palíndromo")
+else:
+    print("No es palíndromo")</code></pre>
+
+        <h3>Análisis del Código</h3>
+
+        <h4>1. Normalización del Input</h4>
+        <pre><code>letter = input("Ingresa tu palabra:").lower()</code></pre>
+        <p>
+          Usamos <code>.lower()</code> para convertir toda la entrada a minúsculas, evitando 
+          problemas con mayúsculas/minúsculas. Por ejemplo, "Ana" se convierte en "ana".
+        </p>
+
+        <h4>2. Inversión de String con Slicing</h4>
+        <pre><code>letter[::-1]</code></pre>
+        <p>
+          Esta es una técnica muy potente de Python llamada "slice notation":
+        </p>
+        <ul>
+          <li><code>[start:stop:step]</code></li>
+          <li><code>[::-1]</code> significa: desde el inicio hasta el final, pero con paso -1 (al revés)</li>
+        </ul>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title">Ejemplos de Slicing</h6>
+            <pre class="mb-0"><code>palabra = "python"
+
+palabra[::1]   # "python" (normal)
+palabra[::-1]  # "nohtyp" (al revés)
+palabra[::2]   # "pto" (cada 2 caracteres)
+palabra[1::2]  # "yhn" (desde índice 1, cada 2)</code></pre>
+          </div>
+        </div>
+
+        <h3>Ejemplo de Ejecución</h3>
+        <pre><code># Ejemplo 1: Es palíndromo
+Bienvenido a mi aplicación
+Ingresa tu palabra: reconocer
+Felicitaciones tu palabra es un palíndromo
+
+# Ejemplo 2: No es palíndromo
+Bienvenido a mi aplicación
+Ingresa tu palabra: python
+No es palíndromo
+
+# Ejemplo 3: Palíndromo con mayúsculas
+Bienvenido a mi aplicación
+Ingresa tu palabra: Ana
+Felicitaciones tu palabra es un palíndromo</code></pre>
+
+        <h3>Ejemplos de Palíndromos</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card border-success mb-3">
+              <div class="card-header bg-success text-white">
+                <i class="bi bi-check-circle me-2"></i>Palabras Palíndromas
+              </div>
+              <div class="card-body">
+                <ul class="mb-0">
+                  <li><strong>reconocer</strong> → reconocer</li>
+                  <li><strong>anilina</strong> → anilina</li>
+                  <li><strong>oso</strong> → oso</li>
+                  <li><strong>radar</strong> → radar</li>
+                  <li><strong>seres</strong> → seres</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-danger mb-3">
+              <div class="card-header bg-danger text-white">
+                <i class="bi bi-x-circle me-2"></i>Palabras NO Palíndromas
+              </div>
+              <div class="card-body">
+                <ul class="mb-0">
+                  <li><strong>python</strong> → nohtyp</li>
+                  <li><strong>programar</strong> → ramargorP</li>
+                  <li><strong>codigo</strong> → ogidoc</li>
+                  <li><strong>desarrollo</strong> → ollorrased</li>
+                  <li><strong>computadora</strong> → arodatupmoc</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2><i class="bi bi-code-slash me-2"></i>Conceptos Clave Aplicados</h2>
+
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Concepto</th>
+            <th>Ejercicio</th>
+            <th>Aplicación</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>input()</code></td>
+            <td>Todos</td>
+            <td>Solicitar datos al usuario</td>
+          </tr>
+          <tr>
+            <td><code>int()</code></td>
+            <td>1 y 2</td>
+            <td>Conversión de tipos</td>
+          </tr>
+          <tr>
+            <td>Funciones built-in</td>
+            <td>1</td>
+            <td><code>max()</code> y <code>min()</code></td>
+          </tr>
+          <tr>
+            <td>Bucle <code>for</code></td>
+            <td>2</td>
+            <td>Iterar para verificar divisibilidad</td>
+          </tr>
+          <tr>
+            <td>Operador <code>%</code></td>
+            <td>2</td>
+            <td>Verificar resto de división</td>
+          </tr>
+          <tr>
+            <td>String slicing</td>
+            <td>3</td>
+            <td>Invertir cadenas con <code>[::-1]</code></td>
+          </tr>
+          <tr>
+            <td><code>.lower()</code></td>
+            <td>3</td>
+            <td>Normalizar entrada de texto</td>
+          </tr>
+          <tr>
+            <td><code>break</code></td>
+            <td>2</td>
+            <td>Salir de bucle anticipadamente</td>
+          </tr>
+          <tr>
+            <td>Operadores booleanos</td>
+            <td>2</td>
+            <td>Variable bandera <code>esPrimo</code></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-trophy me-2"></i>Mejoras y Extensiones Propuestas</h2>
+
+        <h3>Para el Ejercicio 1 (Mayor y Menor)</h3>
+        <ul>
+          <li>Permitir ingresar N números (cantidad variable)</li>
+          <li>Mostrar también el número del medio</li>
+          <li>Calcular el promedio de los tres números</li>
+        </ul>
+
+        <h3>Para el Ejercicio 2 (Número Primo)</h3>
+        <ul>
+          <li>Mostrar todos los divisores del número</li>
+          <li>Crear una función reutilizable <code>es_primo(n)</code></li>
+          <li>Generar una lista de números primos hasta N</li>
+        </ul>
+
+        <h3>Para el Ejercicio 3 (Palíndromo)</h3>
+        <ul>
+          <li>Ignorar espacios y signos de puntuación: "Anita lava la tina"</li>
+          <li>Agregar un menú con opciones salir/verificar</li>
+          <li>Permitir verificar frases completas, no solo palabras</li>
+        </ul>
+
+        <h2><i class="bi bi-github me-2"></i>Código Completo</h2>
+        <p>
+          Puedes encontrar el código completo de estos ejercicios en el repositorio:
+        </p>
+        <div class="d-grid gap-2 my-4">
+          <a href="https://github.com/bvelastegui/web_programming_cenestur/tree/main/python/TrabajosEnClase" 
+             target="_blank" 
+             class="btn btn-primary btn-lg">
+            <i class="bi bi-github me-2"></i>Ver Código en GitHub
+          </a>
+        </div>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusiones</h2>
+
+        <p>
+          Estos tres ejercicios nos permitieron aplicar conceptos fundamentales de Python en problemas prácticos:
+        </p>
+        <ul>
+          <li><strong>Funciones integradas:</strong> <code>max()</code>, <code>min()</code>, <code>input()</code></li>
+          <li><strong>Algoritmos matemáticos:</strong> Verificación eficiente de números primos</li>
+          <li><strong>Manipulación de strings:</strong> Slicing y métodos de cadenas</li>
+          <li><strong>Estructuras de control:</strong> Condicionales y bucles</li>
+          <li><strong>Optimización:</strong> Uso de <code>break</code> y raíz cuadrada para eficiencia</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Intenta implementar las mejoras propuestas y crea tus propios 
+          ejercicios combinando estos conceptos.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Related Posts -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículos Relacionados</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/introduccion-python.html" class="text-decoration-none text-dark d-block mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Introducción a Python: Conceptos Básicos y Fundamentos</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos de Python desde cero</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+            <hr>
+            <a href="/blog/arreglos-javascript.html" class="text-decoration-none text-dark d-block">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Arreglos en JavaScript: Métodos y Operaciones CRUD</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos de arrays en JavaScript</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Autor -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-person me-2"></i>Autor</h5>
+        <div class="d-flex align-items-center">
+          <img
+            src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+            alt="Bryan Velastegui" class="rounded-circle me-2" width="40" height="40"
+          >
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong><br>
+            <small class="text-muted">Estudiante - CENESTUR</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Mayor y Menor</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Números Primos</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Palíndromos</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conceptos Clave</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Mejoras</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">Python</a>
+          <a href="#">Ejercicios</a>
+          <a href="#">Algoritmos</a>
+          <a href="#">Strings</a>
+          <a href="#">Números Primos</a>
+          <a href="#">Palíndromos</a>
+        </div>
+      </div>
+
+      <!-- Exercises Summary -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-clipboard-check me-2"></i>Ejercicios</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-1-circle text-primary me-2 mt-1"></i>
+            <span>Mayor y menor de 3 números</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-2-circle text-success me-2 mt-1"></i>
+            <span>Verificar número primo</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-3-circle text-info me-2 mt-1"></i>
+            <span>Detector de palíndromos</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a
+              href="https://docs.python.org/es/3/library/functions.html" target="_blank"
+              class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>Funciones integradas
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://docs.python.org/es/3/library/stdtypes.html#string-methods"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>Métodos de strings
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://es.wikipedia.org/wiki/N%C3%BAmero_primo"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>Números Primos (Wikipedia)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p class="mb-0 text-center">&copy; 2025 <a
+      href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0"
+    >Bryan Velastegui.</a> All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/theme.js?v=251222.3"></script>
+<script type="module" src="/js/search.js?v=251222.3"></script>
+</body>
+</html>

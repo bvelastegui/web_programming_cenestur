@@ -15,8 +15,22 @@
  */
 const articles = [
   {
+    path: '/blog/ejercicios-python-practicos.html',
+    publish_date: new Date("2025-01-06T00:00"),
+    title: 'Ejercicios Prácticos en Python: Palíndromos, Números Primos y Comparación',
+    module: 'Unidad 2',
+    resume: 'Resuelve ejercicios prácticos de Python aplicando conceptos fundamentales: detectar palíndromos, verificar números primos y encontrar el mayor y menor de tres números. Trabajo en clase con soluciones explicadas.',
+    image_path: '/images/python-exercises.png',
+    tags: [
+      'python',
+      'ejercicios',
+      'algoritmos',
+      'strings',
+    ],
+  },
+  {
     path: '/blog/introduccion-python.html',
-    publish_date: new Date("2026-01-06T00:00"),
+    publish_date: new Date("2025-01-06T00:00"),
     title: 'Introducción a Python: Conceptos Básicos y Fundamentos',
     module: 'Unidad 2',
     resume: 'Aprende los fundamentos de Python desde cero: sintaxis básica, operadores aritméticos, lógicos y de comparación, condicionales if-elif-else y bucles for y while. Tutorial completo para principiantes.',
