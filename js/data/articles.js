@@ -15,6 +15,20 @@
  */
 const articles = [
   {
+    path: '/blog/introduccion-python.html',
+    publish_date: new Date("2026-01-06T00:00"),
+    title: 'Introducción a Python: Conceptos Básicos y Fundamentos',
+    module: 'Unidad 2',
+    resume: 'Aprende los fundamentos de Python desde cero: sintaxis básica, operadores aritméticos, lógicos y de comparación, condicionales if-elif-else y bucles for y while. Tutorial completo para principiantes.',
+    image_path: '/images/python-basics.png',
+    tags: [
+      'python',
+      'operadores',
+      'condicionales',
+      'loops',
+    ],
+  },
+  {
     path: '/blog/tienda-filtrado-dinamico.html',
     publish_date: new Date("2026-01-05T00:00"),
     title: 'Tienda en Línea con Filtrado Dinámico usando JavaScript',

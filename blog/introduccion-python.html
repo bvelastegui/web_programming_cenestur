@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Introducción a Python: Conceptos Básicos y Fundamentos - CENESTUR</title>
+  <meta
+    name="description"
+    content="Aprende los fundamentos de Python desde cero: sintaxis básica, operadores aritméticos, lógicos y de comparación, condicionales if-elif-else y bucles for y while."
+  >
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap"
+    rel="stylesheet"
+  >
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/app.css?v=251222.3">
+  <link rel="stylesheet" href="/css/post.css?v=251222.3">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto" id="search-form">
+        <input
+          aria-label="Buscar artículos" class="form-control me-2" type="search" placeholder="Buscar artículos..."
+          id="search-input"
+        >
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+      <div class="dropdown theme-switcher ms-2">
+        <button class="btn dropdown-toggle" type="button" id="theme-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Cambiar tema">
+          <i class="bi bi-circle-half" id="theme-icon"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="light">
+              <i class="bi bi-sun-fill"></i> Light
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="dark">
+              <i class="bi bi-moon-stars-fill"></i> Dark
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="auto">
+              <i class="bi bi-circle-half"></i> Auto
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Introducción a Python</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Introducción a Python: Conceptos Básicos y Fundamentos</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 6 de Enero, 2026</span>
+      <span><i class="bi bi-clock me-1"></i> 10 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">Python</span>
+        <span class="badge bg-light text-dark">Operadores</span>
+        <span class="badge bg-light text-dark">Condicionales</span>
+        <span class="badge bg-light text-dark">Loops</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          Python es uno de los lenguajes de programación más populares y versátiles del mundo. 
+          En este artículo aprenderemos los fundamentos esenciales de Python: sintaxis básica, 
+          operadores aritméticos, lógicos y de comparación, estructuras condicionales y bucles.
+        </p>
+
+        <hr class="my-4">
+
+        <h2><i class="bi bi-code-square me-2"></i>¿Por qué Python?</h2>
+        <p>
+          Python es conocido por su sintaxis clara y legible, lo que lo hace ideal para principiantes. 
+          Es ampliamente utilizado en:
+        </p>
+        <ul>
+          <li><strong>Desarrollo web:</strong> Django, Flask</li>
+          <li><strong>Ciencia de datos:</strong> Pandas, NumPy, Matplotlib</li>
+          <li><strong>Inteligencia Artificial:</strong> TensorFlow, PyTorch</li>
+          <li><strong>Automatización:</strong> Scripts y herramientas</li>
+          <li><strong>Desarrollo de aplicaciones:</strong> PyQt, Kivy</li>
+        </ul>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Versión:</strong> Este tutorial utiliza Python 3.13. Asegúrate de tener Python 3.x instalado 
+          ejecutando <code>python3 --version</code> en tu terminal.
+        </div>
+
+        <h2><i class="bi bi-file-code me-2"></i>Sintaxis Básica y Tipos de Datos</h2>
+
+        <h3>Variables y Tipos</h3>
+        <p>
+          En Python, no necesitas declarar el tipo de una variable. El lenguaje lo infiere automáticamente:
+        </p>
+
+        <pre><code>variable = {"name": "Juan", "age": 30, "city": "Madrid"}
+print("El tipo es:", type(variable))
+# Output: El tipo es: &lt;class 'dict'&gt;</code></pre>
+
+        <p>Los tipos de datos principales en Python son:</p>
+        <ul>
+          <li><code>int</code> - Números enteros: <code>42</code></li>
+          <li><code>float</code> - Números decimales: <code>3.14</code></li>
+          <li><code>str</code> - Cadenas de texto: <code>"Hola"</code></li>
+          <li><code>bool</code> - Booleanos: <code>True</code> o <code>False</code></li>
+          <li><code>list</code> - Listas: <code>[1, 2, 3]</code></li>
+          <li><code>dict</code> - Diccionarios: <code>{"clave": "valor"}</code></li>
+        </ul>
+
+        <h2><i class="bi bi-calculator me-2"></i>Operadores Aritméticos</h2>
+
+        <p>
+          Los operadores aritméticos permiten realizar cálculos matemáticos básicos:
+        </p>
+
+        <pre><code># Operadores aritméticos
+a = 10
+b = 3
+
+suma = a + b                # 13
+resta = a - b               # 7
+multiplicacion = a * b      # 30
+division = a / b            # 3.333...
+modulo = a % b              # 1 (resto de la división)
+potencia = a ** b           # 1000 (10 elevado a 3)
+divicionextacta = a // b    # 3 (división entera)
+
+print("Suma:", suma)
+print("Resta:", resta)
+print("Multiplicación:", multiplicacion)
+print("División:", division)
+print("Módulo:", modulo)
+print("Potencia:", potencia)
+print("División exacta:", divicionextacta)</code></pre>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Operador</th>
+            <th>Nombre</th>
+            <th>Ejemplo</th>
+            <th>Resultado</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>+</code></td>
+            <td>Suma</td>
+            <td><code>10 + 3</code></td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td><code>-</code></td>
+            <td>Resta</td>
+            <td><code>10 - 3</code></td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>Multiplicación</td>
+            <td><code>10 * 3</code></td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td><code>/</code></td>
+            <td>División</td>
+            <td><code>10 / 3</code></td>
+            <td>3.333...</td>
+          </tr>
+          <tr>
+            <td><code>%</code></td>
+            <td>Módulo</td>
+            <td><code>10 % 3</code></td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td><code>**</code></td>
+            <td>Potencia</td>
+            <td><code>10 ** 3</code></td>
+            <td>1000</td>
+          </tr>
+          <tr>
+            <td><code>//</code></td>
+            <td>División entera</td>
+            <td><code>10 // 3</code></td>
+            <td>3</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-lightbulb me-2"></i>
+          <strong>Nota:</strong> El operador <code>//</code> realiza una división entera, descartando la parte decimal. 
+          Es diferente de <code>/</code> que siempre devuelve un float.
+        </div>
+
+        <h2><i class="bi bi-bezier2 me-2"></i>Operadores de Comparación</h2>
+
+        <p>
+          Los operadores de comparación permiten comparar valores. Siempre devuelven <code>True</code> o <code>False</code>:
+        </p>
+
+        <pre><code># Operadores de comparación - Siempre es True o False
+x = 5
+y = 10
+
+igual = (x == y)            # False
+diferente = (x != y)        # True
+mayor_que = (x > y)         # False
+menor_que = (x < y)         # True
+mayor_o_igual = (x >= y)    # False
+menor_o_igual = (x <= y)    # True
+
+print("Igual:", igual)
+print("Diferente:", diferente)
+print("Mayor que:", mayor_que)
+print("Menor que:", menor_que)
+print("Mayor o igual:", mayor_o_igual)
+print("Menor o igual:", menor_o_igual)</code></pre>
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Operador</th>
+            <th>Significado</th>
+            <th>Ejemplo</th>
+            <th>Resultado</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><code>==</code></td>
+            <td>Igual a</td>
+            <td><code>5 == 10</code></td>
+            <td>False</td>
+          </tr>
+          <tr>
+            <td><code>!=</code></td>
+            <td>Diferente de</td>
+            <td><code>5 != 10</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td>Mayor que</td>
+            <td><code>5 &gt; 10</code></td>
+            <td>False</td>
+          </tr>
+          <tr>
+            <td><code>&lt;</code></td>
+            <td>Menor que</td>
+            <td><code>5 &lt; 10</code></td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td><code>&gt;=</code></td>
+            <td>Mayor o igual</td>
+            <td><code>5 &gt;= 10</code></td>
+            <td>False</td>
+          </tr>
+          <tr>
+            <td><code>&lt;=</code></td>
+            <td>Menor o igual</td>
+            <td><code>5 &lt;= 10</code></td>
+            <td>True</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-toggle-on me-2"></i>Operadores Lógicos</h2>
+
+        <p>
+          Los operadores lógicos permiten combinar expresiones booleanas:
+        </p>
+
+        <pre><code># Operadores Lógicos
+a = True
+b = False
+
+and_op = a and b    # False (ambos deben ser True)
+or_op = a or b      # True (al menos uno debe ser True)
+not_a = not a       # False (invierte el valor)
+
+print("AND:", and_op)
+print("OR:", or_op)
+print("NOT a:", not_a)</code></pre>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Tabla de Verdad</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Operador AND</h6>
+                <ul class="mb-0">
+                  <li><code>True and True</code> → <strong>True</strong></li>
+                  <li><code>True and False</code> → <strong>False</strong></li>
+                  <li><code>False and True</code> → <strong>False</strong></li>
+                  <li><code>False and False</code> → <strong>False</strong></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6>Operador OR</h6>
+                <ul class="mb-0">
+                  <li><code>True or True</code> → <strong>True</strong></li>
+                  <li><code>True or False</code> → <strong>True</strong></li>
+                  <li><code>False or True</code> → <strong>True</strong></li>
+                  <li><code>False or False</code> → <strong>False</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2><i class="bi bi-signpost-split me-2"></i>Condicionales: if, elif, else</h2>
+
+        <p>
+          Las estructuras condicionales permiten que tu programa tome decisiones basadas en condiciones:
+        </p>
+
+        <pre><code># Condicionales IF
+edad1 = int(input("Ingresa tu edad: "))
+
+if edad1 >= 18:
+    print("Eres mayor de edad.")
+elif edad1 == 17:
+    print("Estás a punto de ser mayor de edad.")
+else:
+    print("Eres menor de edad.")</code></pre>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Indentación en Python:</strong> Python usa la indentación (espacios al inicio de la línea) 
+          para definir bloques de código. Por convención, se usan 4 espacios (no tabs).
+        </div>
+
+        <h3>Estructura de las Condicionales</h3>
+        <ul>
+          <li><strong>if:</strong> Evalúa la primera condición</li>
+          <li><strong>elif:</strong> (opcional) Evalúa condiciones adicionales si el if es False</li>
+          <li><strong>else:</strong> (opcional) Se ejecuta si ninguna condición anterior es True</li>
+        </ul>
+
+        <pre><code># Ejemplo con múltiples condiciones
+nota = 85
+
+if nota >= 90:
+    print("Excelente - A")
+elif nota >= 80:
+    print("Muy bien - B")
+elif nota >= 70:
+    print("Bien - C")
+elif nota >= 60:
+    print("Aprobado - D")
+else:
+    print("Reprobado - F")</code></pre>
+
+        <h2><i class="bi bi-arrow-repeat me-2"></i>Bucles: for y while</h2>
+
+        <h3>Bucle for</h3>
+        <p>
+          El bucle <code>for</code> itera sobre una secuencia (lista, tupla, rango, etc.):
+        </p>
+
+        <pre><code>for i in range(1, 6):
+    print("iteración:", i)
+
+# Output:
+# iteración: 1
+# iteración: 2
+# iteración: 3
+# iteración: 4
+# iteración: 5</code></pre>
+
+        <p>La función <code>range()</code> puede usarse de varias formas:</p>
+        <ul>
+          <li><code>range(5)</code> → genera 0, 1, 2, 3, 4</li>
+          <li><code>range(1, 6)</code> → genera 1, 2, 3, 4, 5 (no incluye el 6)</li>
+          <li><code>range(0, 10, 2)</code> → genera 0, 2, 4, 6, 8 (incremento de 2)</li>
+        </ul>
+
+        <h3>Bucle while</h3>
+        <p>
+          El bucle <code>while</code> ejecuta un bloque de código mientras una condición sea verdadera:
+        </p>
+
+        <pre><code>print("*" * 25)
+
+# Loops While
+count = 1
+
+while count <= 5:
+    print("Count es:", count)
+    count += 1
+
+print("*" * 25)
+
+# Output:
+# *************************
+# Count es: 1
+# Count es: 2
+# Count es: 3
+# Count es: 4
+# Count es: 5
+# *************************</code></pre>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          <strong>Cuidado con los bucles infinitos:</strong> Asegúrate de que la condición del <code>while</code> 
+          eventualmente se vuelva <code>False</code>, o el bucle nunca terminará.
+        </div>
+
+        <h3>Diferencia entre for y while</h3>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>for</th>
+            <th>while</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Número de iteraciones conocido</td>
+            <td>Número de iteraciones desconocido</td>
+          </tr>
+          <tr>
+            <td>Itera sobre secuencias</td>
+            <td>Itera mientras una condición es True</td>
+          </tr>
+          <tr>
+            <td>Menos propenso a bucles infinitos</td>
+            <td>Requiere actualizar la condición manualmente</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h2><i class="bi bi-code-slash me-2"></i>Ejemplo Práctico Completo</h2>
+
+        <p>
+          Vamos a combinar todos los conceptos aprendidos en un programa que calcula el promedio de calificaciones:
+        </p>
+
+        <pre><code># Programa para calcular promedio de calificaciones
+print("=== Calculadora de Promedio ===")
+
+# Solicitar número de calificaciones
+num_calificaciones = int(input("¿Cuántas calificaciones vas a ingresar? "))
+
+# Validar entrada
+if num_calificaciones <= 0:
+    print("Error: Debes ingresar al menos una calificación.")
+else:
+    suma_total = 0
+    
+    # Recopilar calificaciones usando for
+    for i in range(1, num_calificaciones + 1):
+        nota = float(input(f"Ingresa la calificación {i}: "))
+        suma_total += nota
+    
+    # Calcular promedio
+    promedio = suma_total / num_calificaciones
+    
+    # Mostrar resultado con condicionales
+    print(f"\nTu promedio es: {promedio:.2f}")
+    
+    if promedio >= 90:
+        print("¡Excelente trabajo! 🎉")
+    elif promedio >= 70:
+        print("¡Buen trabajo! 👍")
+    elif promedio >= 60:
+        print("Aprobado, pero puedes mejorar. 📚")
+    else:
+        print("Necesitas estudiar más. 💪")</code></pre>
+
+        <h2><i class="bi bi-journal-code me-2"></i>Ejercicios Propuestos</h2>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title"><i class="bi bi-list-check me-2"></i>Practica lo aprendido</h6>
+            <ol class="mb-0">
+              <li>Crea un programa que calcule el área de un círculo usando <code>π * radio²</code></li>
+              <li>Escribe un programa que determine si un número es par o impar</li>
+              <li>Crea un programa que imprima los números del 1 al 10 usando un bucle <code>for</code></li>
+              <li>Escribe un programa que cuente regresivamente desde 10 hasta 1 usando <code>while</code></li>
+              <li>Combina operadores lógicos para verificar si un número está entre 1 y 100</li>
+            </ol>
+          </div>
+        </div>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusión</h2>
+
+        <p>
+          En este artículo hemos aprendido los fundamentos esenciales de Python:
+        </p>
+        <ul>
+          <li><strong>Variables y tipos de datos:</strong> Cómo Python maneja diferentes tipos de información</li>
+          <li><strong>Operadores aritméticos:</strong> Suma, resta, multiplicación, división, módulo, potencia</li>
+          <li><strong>Operadores de comparación:</strong> Comparaciones que devuelven True o False</li>
+          <li><strong>Operadores lógicos:</strong> AND, OR, NOT para combinar condiciones</li>
+          <li><strong>Condicionales:</strong> if, elif, else para tomar decisiones</li>
+          <li><strong>Bucles:</strong> for y while para repetir acciones</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Explora estructuras de datos más avanzadas como listas, tuplas, 
+          diccionarios y conjuntos. También aprende sobre funciones y módulos en Python.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Related Posts -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículos Relacionados</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/arreglos-javascript.html" class="text-decoration-none text-dark d-block mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Arreglos en JavaScript: Métodos y Operaciones CRUD</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos de arrays en JavaScript</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+            <hr>
+            <a href="/blog/tienda-filtrado-dinamico.html" class="text-decoration-none text-dark d-block">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Tienda en Línea con Filtrado Dinámico</h6>
+                  <p class="text-muted mb-0 small">Aplicación práctica de map() y filter()</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Autor -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-person me-2"></i>Autor</h5>
+        <div class="d-flex align-items-center">
+          <img
+            src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+            alt="Bryan Velastegui" class="rounded-circle me-2" width="40" height="40"
+          >
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong><br>
+            <small class="text-muted">Estudiante - CENESTUR</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> ¿Por qué Python?</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Sintaxis Básica</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Operadores</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Condicionales</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Bucles</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Ejercicios</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">Python</a>
+          <a href="#">Operadores</a>
+          <a href="#">Condicionales</a>
+          <a href="#">Loops</a>
+          <a href="#">if-else</a>
+          <a href="#">for</a>
+          <a href="#">while</a>
+        </div>
+      </div>
+
+      <!-- Key Concepts -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-key me-2"></i>Conceptos Clave</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-calculator text-primary me-2 mt-1"></i>
+            <span>Operadores aritméticos</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-bezier2 text-success me-2 mt-1"></i>
+            <span>Operadores de comparación</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-toggle-on text-info me-2 mt-1"></i>
+            <span>Operadores lógicos</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-signpost-split text-warning me-2 mt-1"></i>
+            <span>Estructuras if-elif-else</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-arrow-repeat text-danger me-2 mt-1"></i>
+            <span>Bucles for y while</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a
+              href="https://docs.python.org/es/3/tutorial/" target="_blank"
+              class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>Tutorial oficial de Python
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://www.python.org/about/gettingstarted/"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>Getting Started with Python
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://peps.python.org/pep-0008/"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>PEP 8 - Style Guide
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p class="mb-0 text-center">&copy; 2026 <a
+      href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0"
+    >Bryan Velastegui.</a> All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/theme.js?v=251222.3"></script>
+<script type="module" src="/js/search.js?v=251222.3"></script>
+</body>
+</html>
