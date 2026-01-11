@@ -107,7 +107,8 @@ h1, h2, h3, h4, h5, h6 {
 .blog-post-card .card-img-top {
   width: 100%;
   height: 260px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top;
 }
 
 .category-badge {
