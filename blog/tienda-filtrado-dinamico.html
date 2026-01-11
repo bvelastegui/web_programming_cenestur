@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Tienda en Línea con Filtrado Dinámico usando JavaScript - CENESTUR</title>
+  <meta
+    name="description"
+    content="Aprende a crear una tienda en línea funcional con JavaScript usando map, filter y forEach para implementar búsqueda dinámica y filtrado de productos."
+  >
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favico/favicon-16x16.png">
+  <link rel="manifest" href="/images/favico/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap"
+    rel="stylesheet"
+  >
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/app.css?v=251222.3">
+  <link rel="stylesheet" href="/css/post.css?v=251222.3">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-body shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      <span class="cenestur-logo"><i class="bi bi-code-slash"></i> CENESTUR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex ms-auto" id="search-form">
+        <input
+          aria-label="Buscar artículos" class="form-control me-2" type="search" placeholder="Buscar artículos..."
+          id="search-input"
+        >
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+      <div class="dropdown theme-switcher ms-2">
+        <button class="btn dropdown-toggle" type="button" id="theme-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Cambiar tema">
+          <i class="bi bi-circle-half" id="theme-icon"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="light">
+              <i class="bi bi-sun-fill"></i> Light
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="dark">
+              <i class="bi bi-moon-stars-fill"></i> Dark
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item" data-bs-theme-value="auto">
+              <i class="bi bi-circle-half"></i> Auto
+              <i class="bi bi-check2"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="text-white-50">Inicio</a></li>
+        <li class="breadcrumb-item active text-white" aria-current="page">Tienda Filtrado Dinámico</li>
+      </ol>
+    </nav>
+    <h1 class="display-5 fw-bold mb-3">Tienda en Línea con Filtrado Dinámico usando JavaScript</h1>
+    <div class="d-flex align-items-center flex-wrap gap-3">
+      <span><i class="bi bi-calendar3 me-1"></i> 5 de Enero, 2026</span>
+      <span><i class="bi bi-clock me-1"></i> 12 min de lectura</span>
+      <span>
+        <span class="badge bg-light text-dark">JavaScript</span>
+        <span class="badge bg-light text-dark">Arrays</span>
+        <span class="badge bg-light text-dark">Map</span>
+        <span class="badge bg-light text-dark">Filter</span>
+        <span class="badge bg-light text-dark">DOM</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- Article Content -->
+    <div class="col-lg-8">
+      <article class="article-content">
+        <p class="lead">
+          En esta actividad de clase desarrollamos una tienda en línea completamente funcional utilizando 
+          JavaScript vanilla para aplicar los métodos de arrays más importantes: <code>map()</code>, 
+          <code>filter()</code> y <code>forEach()</code>. El objetivo fue crear una interfaz 
+          interactiva que permita buscar y filtrar productos de manera dinámica.
+        </p>
+
+        <hr class="my-4">
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Trabajo en Clase</strong><br>
+          <strong>Integrantes:</strong> Erika M. Gudiño S. y Bryan D. Velastegui L.<br>
+          <strong>Fecha:</strong> 5 de enero de 2026
+        </div>
+
+        <h2><i class="bi bi-cart3 me-2"></i>¿Qué Construimos?</h2>
+        <p>
+          Creamos una aplicación de tienda que incluye las siguientes funcionalidades:
+        </p>
+        <ul>
+          <li><strong>Catálogo de productos:</strong> Una colección de 13 productos con imágenes, nombres, precios y descuentos</li>
+          <li><strong>Búsqueda dinámica:</strong> Un buscador que filtra productos por nombre en tiempo real</li>
+          <li><strong>Filtros predefinidos:</strong> Secciones especiales para productos con descuento del 12% y productos con precio mayor a $500</li>
+          <li><strong>Interfaz moderna:</strong> Diseño responsivo con efectos hover y tarjetas de producto atractivas</li>
+        </ul>
+
+        <figure class="my-4">
+          <img src="/images/store.png" alt="Tienda en línea con filtrado dinámico" class="img-fluid rounded shadow">
+          <figcaption class="text-center text-muted mt-2"><small>Vista de la tienda en línea con productos y buscador</small></figcaption>
+        </figure>
+
+        <h2><i class="bi bi-database me-2"></i>Estructura de los Datos</h2>
+        <p>
+          Cada producto en nuestro catálogo se representa como un objeto con las siguientes propiedades:
+        </p>
+
+        <pre><code>const products = [
+  {
+    imgUrl: 'https://picsum.photos/300/200?random=2',
+    name: 'Laptop HP Pavilion',
+    price: 800,
+    discount: 0.12
+  },
+  {
+    imgUrl: 'https://picsum.photos/300/200?random=3',
+    name: 'Smartphone Samsung Galaxy',
+    price: 600,
+    discount: 0.05
+  },
+  // ... más productos
+]</code></pre>
+
+        <div class="alert alert-warning">
+          <i class="bi bi-lightbulb me-2"></i>
+          <strong>Nota:</strong> Los descuentos se almacenan como decimales (0.12 = 12%, 0.05 = 5%) para facilitar los cálculos matemáticos.
+        </div>
+
+        <h2><i class="bi bi-arrow-repeat me-2"></i>Métodos de Arrays Aplicados</h2>
+
+        <h3>1. Map() - Renderizado de Productos</h3>
+        <p>
+          Utilizamos <code>map()</code> para transformar nuestro array de productos en elementos HTML. 
+          Este método es perfecto para crear una nueva versión de nuestros datos (en este caso, strings de HTML):
+        </p>
+
+        <pre><code>function renderProducts(products, container = null) {
+  const productsContainer = container ?? document.getElementById('products')
+
+  const rows = products.map(product => `
+    &lt;div class="product-card"&gt;
+      &lt;div class="discount" data-value="${product.discount}"&gt;
+        ${Math.round(product.discount * 100)}%
+      &lt;/div&gt;
+      &lt;img src="${product.imgUrl}" alt="${product.name}"&gt;
+      &lt;div class="product-content"&gt;
+        &lt;div class="name"&gt;${product.name}&lt;/div&gt;
+        &lt;div class="price"&gt;${product.price}$&lt;/div&gt; 
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `)
+
+  productsContainer.innerHTML = rows.join('')
+}</code></pre>
+
+        <div class="alert alert-success">
+          <i class="bi bi-check-circle me-2"></i>
+          <strong>¿Por qué map()?</strong> Porque necesitamos transformar cada producto en HTML sin modificar 
+          el array original. Map crea un nuevo array con los resultados de la transformación.
+        </div>
+
+        <h3>2. Filter() - Búsqueda y Filtrado</h3>
+        <p>
+          El método <code>filter()</code> es esencial para nuestra funcionalidad de búsqueda. 
+          Nos permite crear un nuevo array con solo los elementos que cumplan ciertos criterios:
+        </p>
+
+        <pre><code>function buscarProducto(criterio, valor) {
+  return products.filter(producto => {
+    const valorPropiedad = producto[criterio]
+
+    // Si la propiedad es un texto, hacemos búsqueda parcial
+    if (typeof valorPropiedad === 'string') {
+      return valorPropiedad.toLowerCase().includes(valor.toLowerCase())
+    }
+
+    // Si es un número, buscamos coincidencia exacta
+    return valorPropiedad === valor
+  })
+}</code></pre>
+
+        <p>
+          Esta función flexible permite buscar por cualquier propiedad del producto:
+        </p>
+        <ul>
+          <li>Búsqueda por nombre: <code>buscarProducto('name', 'laptop')</code></li>
+          <li>Búsqueda por precio exacto: <code>buscarProducto('price', 800)</code></li>
+        </ul>
+
+        <h3>3. Filter() - Filtros Predefinidos</h3>
+        <p>
+          También aplicamos <code>filter()</code> para crear secciones especiales con productos específicos:
+        </p>
+
+        <pre><code>// Productos con descuento del 12%
+const productsWithDiscount = products.filter(product => 
+  product.discount === 0.12
+)
+renderProducts(productsWithDiscount, document.getElementById('discount-12'))
+
+// Productos con precio mayor a $500
+const productsOver500 = products.filter(product => 
+  product.price > 500
+)
+renderProducts(productsOver500, document.getElementById('discount-50'))</code></pre>
+
+        <h2><i class="bi bi-cursor me-2"></i>Manejo de Eventos con el DOM</h2>
+        <p>
+          Para hacer la búsqueda interactiva, implementamos event listeners en el formulario:
+        </p>
+
+        <pre><code>const searchForm = document.getElementById('search-form')
+
+// Evento de submit para buscar
+searchForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const searchInput = document.getElementById('search-input')
+
+  if (!searchInput.value.trim().length) {
+    return
+  }
+
+  const filteredProducts = buscarProducto('name', searchInput.value)
+  renderProducts(filteredProducts)
+})
+
+// Evento de reset para limpiar búsqueda
+searchForm.addEventListener('reset', () => {
+  renderProducts(products)
+})</code></pre>
+
+        <div class="alert alert-info">
+          <i class="bi bi-info-circle me-2"></i>
+          <strong>Validación:</strong> Usamos <code>trim()</code> para evitar búsquedas con espacios vacíos y 
+          <code>preventDefault()</code> para evitar que el formulario recargue la página.
+        </div>
+
+        <h2><i class="bi bi-palette me-2"></i>Características del Diseño</h2>
+
+        <h3>CSS Moderno</h3>
+        <p>
+          El proyecto utiliza características modernas de CSS para crear una interfaz atractiva:
+        </p>
+        <ul>
+          <li><strong>CSS Grid:</strong> Layout responsivo con <code>grid-template-columns: repeat(auto-fill, minmax(220px, 1fr))</code></li>
+          <li><strong>Backdrop Filter:</strong> Header con efecto de vidrio esmerilado (<code>backdrop-filter: blur(16px)</code>)</li>
+          <li><strong>Sticky Header:</strong> Navegación que permanece visible al hacer scroll</li>
+          <li><strong>Hover Effects:</strong> Tarjetas con animaciones y efectos de escala</li>
+          <li><strong>Media Queries:</strong> Diseño adaptable para dispositivos móviles</li>
+        </ul>
+
+        <h3>Detalles de UX</h3>
+        <ul>
+          <li><strong>Badges de descuento:</strong> Se ocultan automáticamente cuando el descuento es 0 usando <code>[data-value="0"]</code></li>
+          <li><strong>Validación de búsqueda:</strong> No se ejecuta la búsqueda si el input está vacío</li>
+          <li><strong>Botón de limpiar:</strong> Restaura el catálogo completo con un solo clic</li>
+          <li><strong>Búsqueda case-insensitive:</strong> No importa si escribes en mayúsculas o minúsculas</li>
+        </ul>
+
+        <h2><i class="bi bi-lightbulb me-2"></i>Conceptos Clave Aplicados</h2>
+
+        <div class="card bg-light border-0 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Map vs Filter vs ForEach</h5>
+            <ul class="mb-0">
+              <li><strong>map():</strong> Transforma cada elemento y devuelve un nuevo array</li>
+              <li><strong>filter():</strong> Selecciona elementos que cumplen una condición y devuelve un nuevo array</li>
+              <li><strong>forEach():</strong> Itera sobre elementos pero no devuelve nada (usado para efectos secundarios)</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2><i class="bi bi-check2-square me-2"></i>Aprendizajes y Buenas Prácticas</h2>
+
+        <ol>
+          <li>
+            <strong>Separación de responsabilidades:</strong> La función <code>renderProducts()</code> 
+            se encarga solo de renderizar, no de filtrar ni buscar.
+          </li>
+          <li>
+            <strong>Reutilización de código:</strong> La misma función de renderizado sirve para todos los 
+            contenedores, usando el parámetro opcional <code>container</code>.
+          </li>
+          <li>
+            <strong>Búsqueda flexible:</strong> La función <code>buscarProducto()</code> puede buscar por 
+            cualquier propiedad, haciéndola extensible para futuras necesidades.
+          </li>
+          <li>
+            <strong>Inmutabilidad:</strong> Usamos <code>map()</code> y <code>filter()</code> que no 
+            modifican el array original, evitando efectos secundarios no deseados.
+          </li>
+          <li>
+            <strong>Template literals:</strong> Usamos backticks para crear HTML de manera más legible 
+            y mantenible.
+          </li>
+        </ol>
+
+        <h2><i class="bi bi-github me-2"></i>Código Completo</h2>
+        <p>
+          Puedes encontrar el código completo de este proyecto en el repositorio:
+        </p>
+        <div class="d-grid gap-2 my-4">
+          <a href="https://github.com/bvelastegui/web_programming_cenestur/tree/main/Arreglos/TrabajoEnClase" 
+             target="_blank" 
+             class="btn btn-primary btn-lg">
+            <i class="bi bi-github me-2"></i>Ver Código en GitHub
+          </a>
+          <a href="/Arreglos/TrabajoEnClase/" 
+             target="_blank" 
+             class="btn btn-outline-primary btn-lg">
+            <i class="bi bi-window me-2"></i>Ver Demo en Vivo
+          </a>
+        </div>
+
+        <h2><i class="bi bi-check-circle me-2"></i>Conclusiones</h2>
+        <p>
+          Este proyecto nos permitió aplicar de manera práctica los métodos de arrays más importantes 
+          de JavaScript en un contexto real. Aprendimos que:
+        </p>
+        <ul>
+          <li><code>map()</code> es ideal para transformar datos en visualizaciones</li>
+          <li><code>filter()</code> es perfecto para implementar búsquedas y filtros</li>
+          <li>La combinación de estos métodos permite crear interfaces interactivas y dinámicas</li>
+          <li>El manejo adecuado de eventos y validaciones mejora la experiencia del usuario</li>
+          <li>CSS moderno puede crear interfaces atractivas sin necesidad de frameworks</li>
+        </ul>
+
+        <div class="alert alert-success mt-4">
+          <i class="bi bi-arrow-right-circle me-2"></i>
+          <strong>Siguiente paso:</strong> Explorar métodos más avanzados como <code>reduce</code>, <code>find</code>,
+          <code>some</code>, <code>every</code> y la integración con APIs reales.
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Related Posts -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Artículos Relacionados</h5>
+          </div>
+          <div class="card-body">
+            <a href="/blog/arreglos-javascript.html" class="text-decoration-none text-dark d-block mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Arreglos en JavaScript: Métodos y Operaciones CRUD</h6>
+                  <p class="text-muted mb-0 small">Aprende los fundamentos de arrays en JavaScript</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+            <hr>
+            <a href="/blog/the-cats-api.html" class="text-decoration-none text-dark d-block">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-code fs-3 text-primary me-3"></i>
+                <div>
+                  <h6 class="mb-1">Consumiendo APIs con JavaScript</h6>
+                  <p class="text-muted mb-0 small">Usa fetch y async/await para consumir APIs</p>
+                </div>
+                <i class="bi bi-arrow-right ms-auto"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Autor -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-people me-2"></i>Autores</h5>
+        <div class="d-flex align-items-center mb-2">
+          <img
+            src="https://www.gravatar.com/avatar/cda100c8eacd0b3ffbe4e99a41eff3325730e7107ecf5a08edfc44ff93e42968"
+            alt="Bryan Velastegui" class="rounded-circle me-2" width="40" height="40"
+          >
+          <div>
+            <strong class="small">Bryan D. Velastegui L.</strong><br>
+            <small class="text-muted">Estudiante - CENESTUR</small>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <img
+            src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp"
+            alt="Erika Gudiño" class="rounded-circle me-2" width="40" height="40"
+          >
+          <div>
+            <strong class="small">Erika M. Gudiño S.</strong><br>
+            <small class="text-muted">Estudiante - CENESTUR</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-list-ul me-2"></i>Contenido</h5>
+        <nav class="nav flex-column">
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> ¿Qué Construimos?</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Estructura de Datos</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Métodos de Arrays</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Manejo de Eventos</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Diseño CSS</a>
+          <a class="nav-link text-dark py-1" href="#"><i class="bi bi-chevron-right me-1"></i> Conclusiones</a>
+        </nav>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-tags me-2"></i>Etiquetas</h5>
+        <div class="tag-cloud">
+          <a href="#">JavaScript</a>
+          <a href="#">Arrays</a>
+          <a href="#">Map</a>
+          <a href="#">Filter</a>
+          <a href="#">DOM</a>
+          <a href="#">CSS Grid</a>
+        </div>
+      </div>
+
+      <!-- Key Methods -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-key me-2"></i>Métodos Usados</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-arrow-repeat text-primary me-2 mt-1"></i>
+            <span><code>map()</code> - Transformación</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-funnel text-success me-2 mt-1"></i>
+            <span><code>filter()</code> - Filtrado</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-cursor text-info me-2 mt-1"></i>
+            <span><code>addEventListener()</code> - Eventos</span>
+          </li>
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-code-square text-warning me-2 mt-1"></i>
+            <span><code>join()</code> - Unir arrays</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources Widget -->
+      <div class="sidebar-widget">
+        <h5 class="mb-3"><i class="bi bi-book me-2"></i>Recursos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a
+              href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Array.map()
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - Array.filter()
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener"
+              target="_blank" class="text-decoration-none text-dark"
+            >
+              <i class="bi bi-box-arrow-up-right me-2"></i>MDN - addEventListener()
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p class="mb-0 text-center">&copy; 2026 <a
+      href="https://bvelastegui.dev" target="_blank" class="text-white link-underline-info link-underline-opacity-0"
+    >Bryan Velastegui.</a> All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/theme.js?v=251222.3"></script>
+<script type="module" src="/js/search.js?v=251222.3"></script>
+</body>
+</html>
