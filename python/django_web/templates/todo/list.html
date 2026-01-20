@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="container py-5">
-    <h1 class="text-center">Tareas</h1>
+  <div
+    class="container py-5"
+    style="max-width: var(--bs-breakpoint-md)"
+  >
+    <h1 class="text-center mb-5">Lista de Tareas</h1>
     <form
       method="post"
-      class="card bg-body-tertiary"
+      action="{% url 'todo:add' %}"
+      class="card bg-body-tertiary mb-5"
     >
       {% csrf_token %}
       <div class="card-body">
@@ -15,11 +19,13 @@
               autofocus
               type="text"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="title"
+              name="title"
               placeholder=""
+              required
             >
             <label
-              for="exampleFormControlInput1"
+              for="title"
               class="form-label"
             >Añadir una tarea nueva</label>
           </div>
@@ -43,28 +49,144 @@
         </div>
 
         <a
-          href="#description"
+          href="#add-description"
           class="text-body-emphasis"
           data-bs-toggle="collapse"
         >Agregar descripción</a>
 
         <div
           class="mt-3 form-floating collapse"
-          id="description"
+          id="add-description"
         >
           <textarea
             class="form-control"
-            id="exampleFormControlTextarea1"
+            id="description"
+            name="description"
             placeholder="Descripción de la tarea (opcional)"
             style="height: 100px"
           ></textarea>
           <label
-            for="exampleFormControlTextarea1"
+            for="description"
             class="form-label"
           >Descripción de la tarea
             (opcional)</label>
         </div>
       </div>
     </form>
+    <div class="d-flex flex-column gap-3">
+      {% for task in tasks %}
+        <form
+          action="{% url 'todo:update' task.id %}"
+          method="post"
+          class="card {% if task.status == 2 %}border-success{% endif %}"
+        >
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="d-flex mb-2">
+              <div class="form-floating flex-fill">
+                <input
+                  type="text"
+                  name="title"
+                  id="title-{{ task.pk }}"
+                  class="form-control"
+                  value="{{ task.title }}"
+                >
+                <label
+                  class="form-label"
+                  for="title-{{ task.pk }}"
+                >Título</label>
+              </div>
+              <div class="form-floating ms-2">
+                <select
+                  name="status"
+                  class="form-select form-select-sm"
+                  id="status-{{ task.pk }}"
+                >
+                  <option
+                    value="0"
+                    {% if task.status == 0 %}selected{% endif %}
+                  >Pendiente
+                  </option>
+                  <option
+                    value="1"
+                    {% if task.status == 1 %}selected{% endif %}
+                  >En Progreso
+                  </option>
+                  <option
+                    value="2"
+                    {% if task.status == 2 %}selected{% endif %}
+                  >Completa
+                  </option>
+                </select>
+                <label
+                  for="status-{{ task.pk }}"
+                  class="form-label"
+                >Estado</label>
+              </div>
+            </div>
+            <div class="form-floating">
+                <textarea
+                  name="description"
+                  class="form-control form-control-sm"
+                  id="description-{{ task.pk }}"
+                >{{ task.description }}</textarea>
+              <label
+                for="description-{{ task.pk }}"
+                class="form-label"
+              >Descripción</label>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <button
+              name="action"
+              value="update"
+              type="submit"
+              class="btn btn-sm btn-secondary"
+            >Guardar
+            </button>
+            <button
+              type="submit"
+              value="delete"
+              name="action"
+              class="btn btn-sm btn-danger"
+            >
+              Eliminar
+            </button>
+          </div>
+        </form>
+      {% empty %}
+        <div class="list-group-item">
+          <div class="d-flex flex-column py-4 align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="90"
+              height="90"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              class="mb-3"
+            >
+              <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"></path>
+              <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"></path>
+              <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"></path>
+            </svg>
+
+            <span class="fs-1">No tienes tareas pendientes.</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const deleteButtons = document.querySelectorAll('button[value="delete"]')
+
+          deleteButtons.forEach((btn) => {
+              btn.addEventListener('click', (e) => {
+                  if (!confirm('Esta seguro de eliminar esta tarea?')) {
+                      e.preventDefault();
+                  }
+              })
+          })
+      })
+  </script>
 {% endblock %}
